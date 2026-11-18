@@ -535,7 +535,6 @@ function openAge(){
   $("birthError").hidden=true;
   $("birthSave").textContent=birthDate?"Guardar cambios":"¡Empezar!";
   $("ageModal").showModal();
-  if(!birthDate)showBirthPicker("day");
 }
 function openBirthday(){
   const age=birthdayPendingAge;
