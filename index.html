@@ -199,9 +199,28 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
   <div class="center">
     <svg class="mascot" viewBox="0 0 120 120" aria-hidden="true"><use href="#mascot-sym"/></svg>
     <h2 id="agetitle" tabindex="-1" autofocus>¡Hola! Soy Cuentitis</h2>
-    <p><b>¿Cuántos años tienes?</b></p>
-    <div class="row ages" id="ageBtns" style="justify-content:center"></div>
-    <p class="hint">Así elegiré lecturas perfectas para ti.</p>
+    <p id="birthIntro"><b>¿Cuál es tu fecha de nacimiento?</b></p>
+    <form id="birthForm">
+      <div class="fld" style="text-align:left;max-width:360px;margin:16px auto">
+        <label for="birthDate">Fecha de nacimiento</label>
+        <input id="birthDate" name="birthDate" type="date" required autocomplete="bday" aria-describedby="birthHelp birthError">
+      </div>
+      <p class="hint" id="birthHelp">Calcularé tu edad automáticamente para elegir las lecturas adecuadas.</p>
+      <p class="hint" id="birthError" role="alert" style="color:var(--bad)" hidden></p>
+      <button class="big pri" id="birthSave" type="submit">¡Empezar!</button>
+    </form>
+    <p class="hint">La fecha se guarda solo en este dispositivo.</p>
+  </div>
+</dialog>
+
+<dialog id="birthdayModal" aria-labelledby="birthdayTitle">
+  <div class="center">
+    <svg class="mascot" viewBox="0 0 120 120" aria-hidden="true"><use href="#mascot-sym"/></svg>
+    <div class="emoji">🎂🎉</div>
+    <h2 id="birthdayTitle">¡Feliz cumpleaños!</h2>
+    <p id="birthdayMessage">¡Has cumplido un año más!</p>
+    <p>Ya tienes preparadas nuevas lecturas para tu edad.</p>
+    <button class="big pri" id="acceptBirthday" type="button">¡Vamos a leer!</button>
   </div>
 </dialog>
 
@@ -234,7 +253,8 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
   <div class="ai"><b>🤖 Contenido creado con inteligencia artificial.</b> Todas las lecturas y preguntas están generadas con IA (Claude, de Anthropic). Han pasado comprobaciones automáticas de formato, longitud, puntuación y una doble comprobación para que el contenido esté adaptado a la edad por otra IA, en este caso, Gemini; aun así, pueden contener errores o frases mejorables.</div>
   <h3>Cómo funciona</h3>
   <ul>
-    <li>La primera vez, el niño elige su edad y queda guardada. Después elige 3 gustos: el primero que marca es el tema principal de la lectura y los otros dos aparecen como detalles.</li>
+    <li>La primera vez, la familia introduce la fecha de nacimiento. Cuentitis calcula la edad automáticamente y selecciona lecturas del tramo correspondiente. Después se eligen 3 gustos: el primero que se marca es el tema principal y los otros dos aparecen como detalles.</li>
+    <li>Cuando llega un cumpleaños, aparece una felicitación. Al aceptarla, Cuentitis actualiza la edad y adapta las lecturas al nuevo tramo automáticamente.</li>
     <li>Se le propone una lectura adaptada a su edad. Al llegar al final del texto se activa el botón «Ya me lo he leído».</li>
     <li>Después responde 5 preguntas tipo test sobre lo que ha leído.</li>
     <li>Con 4 o 5 aciertos supera la lectura: gana 10 puntos, que se van sumando, y puede conseguir insignias. Con menos, vuelve a leer el texto y lo intenta de nuevo.</li>
@@ -249,11 +269,12 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <li>Letra ajustable (A− y A+), barra de progreso de lectura, puntos y 8 insignias por conseguir.</li>
   </ul>
   <h3>Edad</h3>
-  <p>Edad guardada: <b id="ageNow"></b>. <button class="flink" id="ageChange">Cambiar edad</button></p>
+  <p>Edad calculada: <b id="ageNow"></b>. <button class="flink" id="ageChange">Cambiar fecha de nacimiento</button></p>
   <h3>Privacidad</h3>
   <ul>
-    <li>No hay cuentas y la aplicación no pide datos personales para usarla. El único formulario es el de comentarios del pie de página, pensado para adultos: es opcional y solo envía lo que se escriba en él, junto con el tipo de navegador y de pantalla.</li>
-    <li>Los premios, los puntos, la edad y las lecturas ya vistas se guardan solo en el navegador de este dispositivo. Si se borran los datos del navegador, se pierden.</li>
+    <li>No hay cuentas. La fecha de nacimiento se guarda únicamente en el almacenamiento local del navegador de este dispositivo y no se envía a ningún servidor.</li>
+    <li>Los premios, los puntos, la fecha de nacimiento y las lecturas ya vistas se guardan solo en este navegador. Si se borran sus datos, se pierden.</li>
+    <li>El formulario de comentarios del pie de página es opcional, está pensado para adultos y envía únicamente el comentario escrito, junto con el tipo de navegador y de pantalla.</li>
   </ul>
 </dialog>
 
@@ -273,7 +294,6 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
-const AGES=[5,6,7,8,9,10,11,12];
 const LIKES=[["🐶","Animales"],["🦖","Dinosaurios"],["🚀","Espacio"],["⚽","Fútbol"],["👑","Princesas y reyes"],["🦸","Superhéroes"],["🏴‍☠️","Piratas"],["🚗","Coches"],["🍰","Cocina"],["🔬","Ciencia"],["🐉","Dragones"],["🤖","Robots"]];
 const POINTS=10;
 const BADGES=[
@@ -291,9 +311,83 @@ let st={age:null,likes:[]},story=null,qi=0,right=0,failedBefore=false,fs=0;
 function loadStats(){try{const v=JSON.parse(localStorage.getItem("lector_stats")||"null");if(v&&v.topics){if(typeof v.points!=="number")v.points=(v.passes||0)*POINTS;return v}}catch(e){}return{passes:0,perfect:0,persist:0,points:0,topics:[],badges:[]}}
 function saveStats(s){try{localStorage.setItem("lector_stats",JSON.stringify(s))}catch(e){}}
 let stats=loadStats();
-try{const a=+localStorage.getItem("lector_age");if(a>=5&&a<=12)st.age=a}catch(e){}
-function setAge(a){st.age=a;try{localStorage.setItem("lector_age",String(a))}catch(e){}$("ageModal").close();drawHome();window.scrollTo({top:0})}
-function buildAgeModal(){const box=$("ageBtns");box.innerHTML="";AGES.forEach(a=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=a;b.setAttribute("aria-label",a+" años");b.onclick=()=>setAge(a);box.appendChild(b)})}
+let birthDate="",birthdayPendingAge=null;
+
+function calculateAge(value){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value||""))return -1;
+  const parts=value.split("-").map(Number),birth=new Date(parts[0],parts[1]-1,parts[2]);
+  if(birth.getFullYear()!==parts[0]||birth.getMonth()!==parts[1]-1||birth.getDate()!==parts[2])return -1;
+  const today=new Date();
+  let age=today.getFullYear()-birth.getFullYear();
+  if(today.getMonth()<birth.getMonth()||(today.getMonth()===birth.getMonth()&&today.getDate()<birth.getDate()))age--;
+  return age;
+}
+function loadBirthProfile(){
+  try{birthDate=localStorage.getItem("lector_birthdate")||""}catch(e){}
+  if(!birthDate)return;
+  const age=calculateAge(birthDate);
+  if(age<5){birthDate="";return}
+  st.age=age;
+  let acknowledged=null;
+  try{
+    const saved=localStorage.getItem("lector_birthday_ack_age");
+    acknowledged=saved===null?age:Number(saved);
+    if(saved===null)localStorage.setItem("lector_birthday_ack_age",String(age));
+    localStorage.setItem("lector_age",String(age));
+  }catch(e){acknowledged=age}
+  if(!Number.isFinite(acknowledged))acknowledged=age;
+  if(age>acknowledged)birthdayPendingAge=age;
+}
+function saveBirthDate(event){
+  event.preventDefault();
+  const input=$("birthDate"),value=input.value,age=calculateAge(value);
+  if(!value||age<5){
+    $("birthError").textContent="Introduce una fecha válida. Cuentitis está pensado para niños y niñas a partir de 5 años.";
+    $("birthError").hidden=false;
+    input.focus();
+    return;
+  }
+  birthDate=value;
+  st.age=age;
+  birthdayPendingAge=null;
+  try{
+    localStorage.setItem("lector_birthdate",birthDate);
+    localStorage.setItem("lector_age",String(age));
+    localStorage.setItem("lector_birthday_ack_age",String(age));
+  }catch(e){}
+  $("birthError").hidden=true;
+  $("ageModal").close();
+  drawHome();
+  window.scrollTo({top:0});
+}
+function openAge(){
+  $("agetitle").textContent=birthDate?"Fecha de nacimiento":"¡Hola! Soy Cuentitis";
+  $("birthIntro").textContent=birthDate?"Puedes actualizar la fecha de nacimiento para ajustar la edad y las lecturas.":"¿Cuál es tu fecha de nacimiento?";
+  $("birthDate").value=birthDate||"";
+  $("birthError").hidden=true;
+  $("birthSave").textContent=birthDate?"Guardar cambios":"¡Empezar!";
+  $("ageModal").showModal();
+}
+function openBirthday(){
+  const age=birthdayPendingAge;
+  if(age===null)return;
+  $("birthdayMessage").textContent="¡Hoy celebramos que has cumplido "+age+" años!";
+  if(age>12)$("birthdayMessage").textContent+=" Por ahora, tus lecturas seguirán siendo del tramo de 11-12 años, el más avanzado de Cuentitis.";
+  $("birthdayModal").showModal();
+}
+function acceptBirthday(){
+  if(birthdayPendingAge!==null){
+    st.age=birthdayPendingAge;
+    try{
+      localStorage.setItem("lector_birthday_ack_age",String(st.age));
+      localStorage.setItem("lector_age",String(st.age));
+    }catch(e){}
+  }
+  birthdayPendingAge=null;
+  $("birthdayModal").close();
+  drawHome();
+  show("home");
+}
 
 function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$(x).hidden=x!==id);$("hbar").hidden=id!=="read";$("fsz").hidden=id!=="read";window.scrollTo({top:0,behavior:"smooth"})}
 
@@ -455,10 +549,16 @@ $("retryGen").onclick=generate;
 $("go").onclick=generate;
 $("prizesBtn").onclick=()=>{drawBadges("badgesHome","starsHome",[]);$("modal").showModal()};
 $("mclose").onclick=()=>$("modal").close();
-$("infoBtn").onclick=()=>{$("ageNow").textContent=st.age?st.age+" años":"sin indicar";$("parentModal").showModal()};
+$("infoBtn").onclick=()=>{
+  const dob=birthDate?new Date(birthDate+"T12:00:00").toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"}):"sin indicar";
+  $("ageNow").textContent=st.age?st.age+" años · nacimiento: "+dob:"sin indicar";
+  $("parentModal").showModal();
+};
 $("ageChange").onclick=()=>{$("parentModal").close();openAge()};
 $("ageModal").addEventListener("cancel",e=>e.preventDefault());
-function openAge(){buildAgeModal();$("ageModal").showModal()}
+$("birthdayModal").addEventListener("cancel",e=>e.preventDefault());
+$("birthForm").addEventListener("submit",saveBirthDate);
+$("acceptBirthday").onclick=acceptBirthday;
 // Comentarios beta: reenvío a correo con FormSubmit. Se usa su código aleatorio en lugar del correo, para no mostrarlo en la página.
 // Opción alternativa: clave de Web3Forms (web3forms.com). Si se rellena, se usa en lugar de FormSubmit.
 const W3_KEY="";
@@ -497,8 +597,10 @@ $("iclose").onclick=()=>$("infoModal").close();
 $("infoModal").addEventListener("click",e=>{if(e.target===$("infoModal"))$("infoModal").close()});
 loadBank().then(b=>{$("nRead").textContent=b.length;checkNew(b)}).catch(()=>{});
 $("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").close()});
+loadBirthProfile();
 drawHome();
-if(!st.age)openAge();
+if(!birthDate)openAge();
+else if(birthdayPendingAge!==null)openBirthday();
 </script>
 </body>
 </html>
