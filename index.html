@@ -103,6 +103,12 @@ dialog{overflow:auto}
 .fld label{display:block;font-weight:700;margin-bottom:4px}
 .fld select,.fld textarea,.fld input{width:100%;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
 .fld textarea{resize:vertical}
+/* Selector infantil de fecha de nacimiento: retirar si se rediseña el perfil. */
+.birth-pickers{display:grid;grid-template-columns:.85fr 1.45fr 1fr;gap:8px;max-width:420px;margin:16px auto}
+.birth-picker{min-width:0;padding:9px;background:var(--chip);border:2px solid var(--line);border-radius:18px;text-align:left}
+.birth-picker label{display:block;margin-bottom:6px;font-weight:900;font-size:.88rem}
+.birth-picker select{width:100%;min-width:0;font:inherit;font-size:1rem;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 6px}
+@media(max-width:380px){.birth-pickers{gap:5px}.birth-picker{padding:7px}.birth-picker label{font-size:.8rem}.birth-picker select{font-size:.94rem;padding:9px 4px}}
 dialog h3{font-size:1.05rem;margin:1.1em 0 .3em}
 dialog ul{margin:.2em 0 0;padding-left:1.2em}
 dialog li{margin:.35em 0}
@@ -201,9 +207,25 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <h2 id="agetitle" tabindex="-1" autofocus>¡Hola! Soy Cuentitis</h2>
     <p id="birthIntro"><b>¿Cuál es tu fecha de nacimiento?</b></p>
     <form id="birthForm">
-      <div class="fld" style="text-align:left;max-width:360px;margin:16px auto">
-        <label for="birthDate">Fecha de nacimiento</label>
-        <input id="birthDate" name="birthDate" type="date" required autocomplete="bday" aria-describedby="birthHelp birthError">
+      <div class="birth-pickers" role="group" aria-label="Fecha de nacimiento">
+        <div class="birth-picker">
+          <label for="birthDay">☀️ Día</label>
+          <select id="birthDay" name="dia" required aria-label="Día de nacimiento">
+            <option value="">Día</option>
+          </select>
+        </div>
+        <div class="birth-picker">
+          <label for="birthMonth">🌷 Mes</label>
+          <select id="birthMonth" name="mes" required aria-label="Mes de nacimiento">
+            <option value="">Mes</option>
+          </select>
+        </div>
+        <div class="birth-picker">
+          <label for="birthYear">📅 Año</label>
+          <select id="birthYear" name="año" required aria-label="Año de nacimiento">
+            <option value="">Año</option>
+          </select>
+        </div>
       </div>
       <p class="hint" id="birthHelp">Calcularé tu edad automáticamente para elegir las lecturas adecuadas.</p>
       <p class="hint" id="birthError" role="alert" style="color:var(--bad)" hidden></p>
@@ -342,13 +364,50 @@ function loadBirthProfile(){
     st.age=age;
   }
 }
+const MONTH_NAMES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+function addSelectOption(select,value,label){
+  const option=document.createElement("option");
+  option.value=String(value);option.textContent=label;select.appendChild(option);
+}
+function syncBirthDays(preferredDay){
+  const daySelect=$("birthDay"),year=Number($("birthYear").value),month=Number($("birthMonth").value);
+  const previous=Number(preferredDay||daySelect.value)||0;
+  const max=year&&month?new Date(year,month,0).getDate():31;
+  daySelect.innerHTML="";
+  addSelectOption(daySelect,"","Día");
+  for(let day=1;day<=max;day++)addSelectOption(daySelect,day,String(day));
+  if(previous)daySelect.value=String(Math.min(previous,max));
+}
+function fillBirthPickers(value){
+  const parts=value?value.split("-").map(Number):[];
+  const yearSelect=$("birthYear"),monthSelect=$("birthMonth");
+  yearSelect.innerHTML="";monthSelect.innerHTML="";
+  addSelectOption(yearSelect,"","Año");
+  addSelectOption(monthSelect,"","Mes");
+  MONTH_NAMES.forEach((name,index)=>addSelectOption(monthSelect,index+1,name.charAt(0).toUpperCase()+name.slice(1)));
+  const currentYear=new Date().getFullYear();
+  const firstYear=Math.min(currentYear-12,parts[0]||currentYear-12);
+  const lastYear=currentYear-5;
+  for(let year=firstYear;year<=lastYear;year++)addSelectOption(yearSelect,year,String(year));
+  yearSelect.value=parts[0]?String(parts[0]):"";
+  monthSelect.value=parts[1]?String(parts[1]):"";
+  syncBirthDays(parts[2]||0);
+}
 function saveBirthDate(event){
   event.preventDefault();
-  const input=$("birthDate"),value=input.value,age=calculateAge(value);
-  if(!value||age<5){
-    $("birthError").textContent="Introduce una fecha válida. Cuentitis está pensado para niños y niñas a partir de 5 años.";
+  const day=Number($("birthDay").value),month=Number($("birthMonth").value),year=Number($("birthYear").value);
+  if(!day||!month||!year){
+    $("birthError").textContent="¡Elige el día, el mes y el año de tu nacimiento!";
     $("birthError").hidden=false;
-    input.focus();
+    (!day?$("birthDay"):!month?$("birthMonth"):$("birthYear")).focus();
+    return;
+  }
+  const value=String(year)+"-"+String(month).padStart(2,"0")+"-"+String(day).padStart(2,"0");
+  const age=calculateAge(value);
+  if(age<5){
+    $("birthError").textContent="La fecha debe corresponder a una edad de 5 años o más.";
+    $("birthError").hidden=false;
+    $("birthYear").focus();
     return;
   }
   birthDate=value;
@@ -368,11 +427,14 @@ function saveBirthDate(event){
 function openAge(){
   $("agetitle").textContent=birthDate?"Fecha de nacimiento":"¡Hola! Soy Cuentitis";
   $("birthIntro").textContent=birthDate?"Puedes actualizar la fecha de nacimiento para ajustar la edad y las lecturas.":"¿Cuál es tu fecha de nacimiento?";
-  $("birthDate").value=birthDate||"";
+  fillBirthPickers(birthDate);
   $("birthError").hidden=true;
   $("birthSave").textContent=birthDate?"Guardar cambios":"¡Empezar!";
   $("ageModal").showModal();
 }
+$("birthMonth").addEventListener("change",()=>syncBirthDays());
+$("birthYear").addEventListener("change",()=>syncBirthDays());
+$("birthDay").addEventListener("change",()=>{});
 function openBirthday(){
   const age=birthdayPendingAge;
   if(age===null)return;
