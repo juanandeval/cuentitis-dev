@@ -327,7 +327,6 @@ function loadBirthProfile(){
   if(!birthDate)return;
   const age=calculateAge(birthDate);
   if(age<5){birthDate="";return}
-  st.age=age;
   let acknowledged=null;
   try{
     const saved=localStorage.getItem("lector_birthday_ack_age");
@@ -336,7 +335,12 @@ function loadBirthProfile(){
     localStorage.setItem("lector_age",String(age));
   }catch(e){acknowledged=age}
   if(!Number.isFinite(acknowledged))acknowledged=age;
-  if(age>acknowledged)birthdayPendingAge=age;
+  if(age>acknowledged){
+    st.age=acknowledged;
+    birthdayPendingAge=age;
+  }else{
+    st.age=age;
+  }
 }
 function saveBirthDate(event){
   event.preventDefault();
@@ -371,7 +375,7 @@ function openAge(){
 function openBirthday(){
   const age=birthdayPendingAge;
   if(age===null)return;
-  $("birthdayMessage").textContent="¡Hoy celebramos que has cumplido "+age+" años!";
+  $("birthdayMessage").textContent="¡Feliz cumpleaños! ¡Has cumplido "+age+" años!";
   if(age>12)$("birthdayMessage").textContent+=" Por ahora, tus lecturas seguirán siendo del tramo de 11-12 años, el más avanzado de Cuentitis.";
   $("birthdayModal").showModal();
 }
