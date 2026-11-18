@@ -499,6 +499,13 @@ function fillBirthWheels(value){
 }
 function saveBirthDate(event){
   event.preventDefault();
+  // Lee el elemento más cercano al centro de cada rueda por si se pulsa Guardar justo después de deslizar.
+  ["day","month","year"].forEach(kind=>{
+    const value=nearestBirthWheelValue(kind);
+    if(value!==null)birthParts[kind]=value;
+  });
+  normalizeBirthDay();
+  ["day","month","year"].forEach(updateBirthWheelSelection);
   const day=Number(birthParts.day),month=Number(birthParts.month),year=Number(birthParts.year);
   if(!day||!month||!year){
     $("birthError").textContent="¡Elige el día, el mes y el año de tu nacimiento!";
