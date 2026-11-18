@@ -125,6 +125,7 @@ dialog{overflow:auto}
 .birth-option:active{transform:scale(.96)}
 .birth-option[aria-pressed="true"]{border-color:var(--ok);background:var(--okbg);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ok)}
 @media(min-width:600px){.birth-picker{padding:12px}.birth-picker-trigger{min-height:70px;font-size:1.18rem}.birth-options{padding:16px}.birth-option{min-height:62px;font-size:1.15rem}.birth-options-grid.months .birth-option,.birth-options-grid.years .birth-option{min-height:68px}}
+@media(max-width:480px){.birth-options-grid.days{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:380px){.birth-pickers{gap:6px}.birth-picker{padding:7px}.birth-picker-label{font-size:.82rem}.birth-picker-trigger{min-height:58px;padding:8px 5px;font-size:.96rem}.birth-chevron{font-size:1rem}.birth-options{padding:9px}.birth-options-grid{gap:6px}.birth-option{min-height:48px;padding:5px 2px;font-size:.95rem;border-radius:12px}.birth-options-grid.months .birth-option{font-size:.9rem;min-height:54px}.birth-options-grid.years .birth-option{min-height:54px}}
 dialog h3{font-size:1.05rem;margin:1.1em 0 .3em}
 dialog ul{margin:.2em 0 0;padding-left:1.2em}
@@ -246,7 +247,7 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
       </div>
       <section class="birth-options" id="birthOptions" aria-label="Opciones de fecha de nacimiento" hidden>
         <div class="birth-options-head">
-          <h3 id="birthOptionsTitle">Elige el día</h3>
+          <h3 id="birthOptionsTitle" tabindex="-1">Elige el día</h3>
           <button class="birth-options-close" id="birthOptionsClose" type="button" aria-label="Cerrar opciones">✕</button>
         </div>
         <div class="birth-options-grid days" id="birthOptionsGrid"></div>
@@ -462,13 +463,13 @@ function saveBirthDate(event){
   if(!day||!month||!year){
     $("birthError").textContent="¡Elige el día, el mes y el año de tu nacimiento!";
     $("birthError").hidden=false;
-    $("birthOptions").hidden?$("chooseBirthDay").focus():$("birthOptionsTitle").focus();
+    (!day?$("chooseBirthDay"):!month?$("chooseBirthMonth"):$("chooseBirthYear")).focus();
     return;
   }
   const value=String(year)+"-"+String(month).padStart(2,"0")+"-"+String(day).padStart(2,"0");
   const age=calculateAge(value);
-  if(age<5){
-    $("birthError").textContent="La fecha debe corresponder a una edad de 5 años o más.";
+  if(age<5||age>12){
+    $("birthError").textContent="La fecha debe corresponder a una edad de entre 5 y 12 años.";
     $("birthError").hidden=false;
     $("chooseBirthYear").focus();
     return;
