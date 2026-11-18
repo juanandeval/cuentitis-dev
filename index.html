@@ -103,12 +103,29 @@ dialog{overflow:auto}
 .fld label{display:block;font-weight:700;margin-bottom:4px}
 .fld select,.fld textarea,.fld input{width:100%;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
 .fld textarea{resize:vertical}
-/* Selector infantil de fecha de nacimiento: retirar si se rediseña el perfil. */
-.birth-pickers{display:grid;grid-template-columns:.85fr 1.45fr 1fr;gap:8px;max-width:420px;margin:16px auto}
-.birth-picker{min-width:0;padding:9px;background:var(--chip);border:2px solid var(--line);border-radius:18px;text-align:left}
-.birth-picker label{display:block;margin-bottom:6px;font-weight:900;font-size:.88rem}
-.birth-picker select{width:100%;min-width:0;font:inherit;font-size:1rem;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 6px}
-@media(max-width:380px){.birth-pickers{gap:5px}.birth-picker{padding:7px}.birth-picker label{font-size:.8rem}.birth-picker select{font-size:.94rem;padding:9px 4px}}
+/* Selector infantil táctil: botones grandes y panel de opciones propio. */
+.birth-pickers{display:grid;grid-template-columns:.82fr 1.45fr 1fr;gap:10px;max-width:540px;margin:18px auto 12px}
+.birth-picker{min-width:0;padding:10px;background:var(--chip);border:2px solid var(--line);border-radius:20px;text-align:left}
+.birth-picker-label{display:block;margin:0 0 8px;font-weight:900;font-size:.95rem}
+.birth-picker-trigger{display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;min-height:64px;padding:10px 9px;border:2px solid var(--pri);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;font-size:1.08rem;font-weight:900;text-align:center;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.birth-picker-trigger[aria-expanded="true"]{background:var(--pri);color:var(--priink);box-shadow:0 3px 0 rgba(43,42,76,.16)}
+.birth-picker-trigger>span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.birth-chevron{font-size:1.25rem;line-height:1;opacity:.8}
+.birth-options{margin:12px auto 18px;max-width:560px;padding:12px;border:2px solid var(--pri);border-radius:22px;background:var(--chip);max-height:42vh;min-height:110px;overflow-y:auto;overscroll-behavior:contain}
+.birth-options-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px}
+.birth-options-head h3{margin:0;font-size:1.1rem}
+.birth-options-close{flex:none;width:44px;height:44px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-weight:900;font-size:1.05rem;cursor:pointer;touch-action:manipulation}
+.birth-options-grid{display:grid;gap:8px}
+.birth-options-grid.days{grid-template-columns:repeat(7,minmax(0,1fr))}
+.birth-options-grid.months{grid-template-columns:repeat(3,minmax(0,1fr))}
+.birth-options-grid.years{grid-template-columns:repeat(4,minmax(0,1fr))}
+.birth-option{display:flex;align-items:center;justify-content:center;min-width:0;min-height:56px;padding:8px 4px;border:2px solid var(--line);border-radius:15px;background:var(--card);color:var(--ink);font:inherit;font-size:1.06rem;font-weight:900;text-align:center;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform .08s,border-color .08s,background .08s}
+.birth-options-grid.months .birth-option{min-height:62px;font-size:1rem}
+.birth-options-grid.years .birth-option{min-height:62px;font-size:1.1rem}
+.birth-option:active{transform:scale(.96)}
+.birth-option[aria-pressed="true"]{border-color:var(--ok);background:var(--okbg);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ok)}
+@media(min-width:600px){.birth-picker{padding:12px}.birth-picker-trigger{min-height:70px;font-size:1.18rem}.birth-options{padding:16px}.birth-option{min-height:62px;font-size:1.15rem}.birth-options-grid.months .birth-option,.birth-options-grid.years .birth-option{min-height:68px}}
+@media(max-width:380px){.birth-pickers{gap:6px}.birth-picker{padding:7px}.birth-picker-label{font-size:.82rem}.birth-picker-trigger{min-height:58px;padding:8px 5px;font-size:.96rem}.birth-chevron{font-size:1rem}.birth-options{padding:9px}.birth-options-grid{gap:6px}.birth-option{min-height:48px;padding:5px 2px;font-size:.95rem;border-radius:12px}.birth-options-grid.months .birth-option{font-size:.9rem;min-height:54px}.birth-options-grid.years .birth-option{min-height:54px}}
 dialog h3{font-size:1.05rem;margin:1.1em 0 .3em}
 dialog ul{margin:.2em 0 0;padding-left:1.2em}
 dialog li{margin:.35em 0}
@@ -209,24 +226,31 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <form id="birthForm">
       <div class="birth-pickers" role="group" aria-label="Fecha de nacimiento">
         <div class="birth-picker">
-          <label for="birthDay">☀️ Día</label>
-          <select id="birthDay" name="dia" required aria-label="Día de nacimiento">
-            <option value="">Día</option>
-          </select>
+          <span class="birth-picker-label">☀️ Día</span>
+          <button class="birth-picker-trigger" id="chooseBirthDay" type="button" aria-controls="birthOptions" aria-expanded="false">
+            <span id="birthDayValue">Elige día</span><span class="birth-chevron" aria-hidden="true">⌄</span>
+          </button>
         </div>
         <div class="birth-picker">
-          <label for="birthMonth">🌷 Mes</label>
-          <select id="birthMonth" name="mes" required aria-label="Mes de nacimiento">
-            <option value="">Mes</option>
-          </select>
+          <span class="birth-picker-label">🌷 Mes</span>
+          <button class="birth-picker-trigger" id="chooseBirthMonth" type="button" aria-controls="birthOptions" aria-expanded="false">
+            <span id="birthMonthValue">Elige mes</span><span class="birth-chevron" aria-hidden="true">⌄</span>
+          </button>
         </div>
         <div class="birth-picker">
-          <label for="birthYear">📅 Año</label>
-          <select id="birthYear" name="año" required aria-label="Año de nacimiento">
-            <option value="">Año</option>
-          </select>
+          <span class="birth-picker-label">📅 Año</span>
+          <button class="birth-picker-trigger" id="chooseBirthYear" type="button" aria-controls="birthOptions" aria-expanded="false">
+            <span id="birthYearValue">Elige año</span><span class="birth-chevron" aria-hidden="true">⌄</span>
+          </button>
         </div>
       </div>
+      <section class="birth-options" id="birthOptions" aria-label="Opciones de fecha de nacimiento" hidden>
+        <div class="birth-options-head">
+          <h3 id="birthOptionsTitle">Elige el día</h3>
+          <button class="birth-options-close" id="birthOptionsClose" type="button" aria-label="Cerrar opciones">✕</button>
+        </div>
+        <div class="birth-options-grid days" id="birthOptionsGrid"></div>
+      </section>
       <p class="hint" id="birthHelp">Calcularé tu edad automáticamente para elegir las lecturas adecuadas.</p>
       <p class="hint" id="birthError" role="alert" style="color:var(--bad)" hidden></p>
       <button class="big pri" id="birthSave" type="submit">¡Empezar!</button>
@@ -365,41 +389,80 @@ function loadBirthProfile(){
   }
 }
 const MONTH_NAMES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-function addSelectOption(select,value,label){
-  const option=document.createElement("option");
-  option.value=String(value);option.textContent=label;select.appendChild(option);
+let birthParts={day:0,month:0,year:0},activeBirthPicker=null;
+function birthDaysInMonth(){
+  if(!birthParts.month)return 31;
+  return new Date(birthParts.year||2000,birthParts.month,0).getDate();
 }
-function syncBirthDays(preferredDay){
-  const daySelect=$("birthDay"),year=Number($("birthYear").value),month=Number($("birthMonth").value);
-  const previous=Number(preferredDay||daySelect.value)||0;
-  const max=year&&month?new Date(year,month,0).getDate():31;
-  daySelect.innerHTML="";
-  addSelectOption(daySelect,"","Día");
-  for(let day=1;day<=max;day++)addSelectOption(daySelect,day,String(day));
-  if(previous)daySelect.value=String(Math.min(previous,max));
+function normalizeBirthDay(){
+  const max=birthDaysInMonth();
+  if(birthParts.day>max)birthParts.day=max;
 }
-function fillBirthPickers(value){
-  const parts=value?value.split("-").map(Number):[];
-  const yearSelect=$("birthYear"),monthSelect=$("birthMonth");
-  yearSelect.innerHTML="";monthSelect.innerHTML="";
-  addSelectOption(yearSelect,"","Año");
-  addSelectOption(monthSelect,"","Mes");
-  MONTH_NAMES.forEach((name,index)=>addSelectOption(monthSelect,index+1,name.charAt(0).toUpperCase()+name.slice(1)));
-  const currentYear=new Date().getFullYear();
-  const firstYear=Math.min(currentYear-12,parts[0]||currentYear-12);
-  const lastYear=currentYear-5;
-  for(let year=firstYear;year<=lastYear;year++)addSelectOption(yearSelect,year,String(year));
-  yearSelect.value=parts[0]?String(parts[0]):"";
-  monthSelect.value=parts[1]?String(parts[1]):"";
-  syncBirthDays(parts[2]||0);
+function updateBirthPickerValues(){
+  $("birthDayValue").textContent=birthParts.day?String(birthParts.day):"Elige día";
+  const month=birthParts.month?MONTH_NAMES[birthParts.month-1]:"";
+  $("birthMonthValue").textContent=month?month.charAt(0).toUpperCase()+month.slice(1):"Elige mes";
+  $("birthYearValue").textContent=birthParts.year?String(birthParts.year):"Elige año";
+}
+function setActiveBirthPicker(kind){
+  activeBirthPicker=kind;
+  ["day","month","year"].forEach(part=>{
+    const button=$("chooseBirth"+part.charAt(0).toUpperCase()+part.slice(1));
+    button.setAttribute("aria-expanded",String(part===kind));
+  });
+}
+function closeBirthPicker(){
+  activeBirthPicker=null;
+  $("birthOptions").hidden=true;
+  ["day","month","year"].forEach(part=>{
+    $("chooseBirth"+part.charAt(0).toUpperCase()+part.slice(1)).setAttribute("aria-expanded","false");
+  });
+}
+function showBirthPicker(kind){
+  setActiveBirthPicker(kind);
+  const grid=$("birthOptionsGrid");
+  grid.innerHTML="";
+  grid.className="birth-options-grid "+(kind==="day"?"days":kind==="month"?"months":"years");
+  $("birthOptionsTitle").textContent=kind==="day"?"☀️ Elige el día":kind==="month"?"🌷 Elige el mes":"📅 Elige el año";
+  let options=[];
+  if(kind==="day"){
+    options=Array.from({length:birthDaysInMonth()},(_,i)=>({value:i+1,label:String(i+1)}));
+  }else if(kind==="month"){
+    options=MONTH_NAMES.map((name,i)=>({value:i+1,label:name.charAt(0).toUpperCase()+name.slice(1)}));
+  }else{
+    const currentYear=new Date().getFullYear();
+    const savedYear=birthDate?Number(birthDate.slice(0,4)):0;
+    const firstYear=Math.min(currentYear-12,savedYear||currentYear-12);
+    const lastYear=currentYear-5;
+    for(let year=lastYear;year>=firstYear;year--)options.push({value:year,label:String(year)});
+  }
+  options.forEach(option=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="birth-option";
+    button.textContent=option.label;
+    const selected=Number(birthParts[kind])===option.value;
+    button.setAttribute("aria-pressed",String(selected));
+    button.onclick=()=>selectBirthOption(kind,option.value);
+    grid.appendChild(button);
+  });
+  $("birthOptions").hidden=false;
+}
+function selectBirthOption(kind,value){
+  birthParts[kind]=value;
+  normalizeBirthDay();
+  updateBirthPickerValues();
+  if(kind==="day")showBirthPicker("month");
+  else if(kind==="month")showBirthPicker("year");
+  else closeBirthPicker();
 }
 function saveBirthDate(event){
   event.preventDefault();
-  const day=Number($("birthDay").value),month=Number($("birthMonth").value),year=Number($("birthYear").value);
+  const day=Number(birthParts.day),month=Number(birthParts.month),year=Number(birthParts.year);
   if(!day||!month||!year){
     $("birthError").textContent="¡Elige el día, el mes y el año de tu nacimiento!";
     $("birthError").hidden=false;
-    (!day?$("birthDay"):!month?$("birthMonth"):$("birthYear")).focus();
+    $("birthOptions").hidden?$("chooseBirthDay").focus():$("birthOptionsTitle").focus();
     return;
   }
   const value=String(year)+"-"+String(month).padStart(2,"0")+"-"+String(day).padStart(2,"0");
@@ -407,7 +470,7 @@ function saveBirthDate(event){
   if(age<5){
     $("birthError").textContent="La fecha debe corresponder a una edad de 5 años o más.";
     $("birthError").hidden=false;
-    $("birthYear").focus();
+    $("chooseBirthYear").focus();
     return;
   }
   birthDate=value;
@@ -427,14 +490,19 @@ function saveBirthDate(event){
 function openAge(){
   $("agetitle").textContent=birthDate?"Fecha de nacimiento":"¡Hola! Soy Cuentitis";
   $("birthIntro").textContent=birthDate?"Puedes actualizar la fecha de nacimiento para ajustar la edad y las lecturas.":"¿Cuál es tu fecha de nacimiento?";
-  fillBirthPickers(birthDate);
+  const parts=birthDate?birthDate.split("-").map(Number):[];
+  birthParts={day:parts[2]||0,month:parts[1]||0,year:parts[0]||0};
+  updateBirthPickerValues();
+  closeBirthPicker();
   $("birthError").hidden=true;
   $("birthSave").textContent=birthDate?"Guardar cambios":"¡Empezar!";
   $("ageModal").showModal();
+  if(!birthDate)showBirthPicker("day");
 }
-$("birthMonth").addEventListener("change",()=>syncBirthDays());
-$("birthYear").addEventListener("change",()=>syncBirthDays());
-$("birthDay").addEventListener("change",()=>{});
+$("chooseBirthDay").onclick=()=>showBirthPicker("day");
+$("chooseBirthMonth").onclick=()=>showBirthPicker("month");
+$("chooseBirthYear").onclick=()=>showBirthPicker("year");
+$("birthOptionsClose").onclick=closeBirthPicker;
 function openBirthday(){
   const age=birthdayPendingAge;
   if(age===null)return;
@@ -625,6 +693,7 @@ $("ageChange").onclick=()=>{$("parentModal").close();openAge()};
 $("ageModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthdayModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthForm").addEventListener("submit",saveBirthDate);
+$("birthOptionsClose").onclick=closeBirthPicker;
 $("acceptBirthday").onclick=acceptBirthday;
 // Comentarios beta: reenvío a correo con FormSubmit. Se usa su código aleatorio en lugar del correo, para no mostrarlo en la página.
 // Opción alternativa: clave de Web3Forms (web3forms.com). Si se rellena, se usa en lugar de FormSubmit.
