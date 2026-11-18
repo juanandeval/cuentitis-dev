@@ -103,30 +103,26 @@ dialog{overflow:auto}
 .fld label{display:block;font-weight:700;margin-bottom:4px}
 .fld select,.fld textarea,.fld input{width:100%;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
 .fld textarea{resize:vertical}
-/* Selector infantil táctil: botones grandes y panel de opciones propio. */
-.birth-pickers{display:grid;grid-template-columns:.82fr 1.45fr 1fr;gap:10px;max-width:540px;margin:18px auto 12px}
-.birth-picker{min-width:0;padding:10px;background:var(--chip);border:2px solid var(--line);border-radius:20px;text-align:left}
-.birth-picker-label{display:block;margin:0 0 8px;font-weight:900;font-size:.95rem}
-.birth-picker-trigger{display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;min-height:64px;padding:10px 9px;border:2px solid var(--pri);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;font-size:1.08rem;font-weight:900;text-align:center;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.birth-picker-trigger[aria-expanded="true"]{background:var(--pri);color:var(--priink);box-shadow:0 3px 0 rgba(43,42,76,.16)}
-.birth-picker-trigger>span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
-.birth-chevron{font-size:1.25rem;line-height:1;opacity:.8}
-.birth-options{margin:12px auto 18px;max-width:560px;padding:12px;border:2px solid var(--pri);border-radius:22px;background:var(--chip);max-height:42vh;min-height:110px;overflow-y:auto;overscroll-behavior:contain}
-.birth-options-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px}
-.birth-options-head h3{margin:0;font-size:1.1rem}
-.birth-options-close{flex:none;width:44px;height:44px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-weight:900;font-size:1.05rem;cursor:pointer;touch-action:manipulation}
-.birth-options-grid{display:grid;gap:8px}
-.birth-options-grid.days{grid-template-columns:repeat(7,minmax(0,1fr))}
-.birth-options-grid.months{grid-template-columns:repeat(3,minmax(0,1fr))}
-.birth-options-grid.years{grid-template-columns:repeat(4,minmax(0,1fr))}
-.birth-option{display:flex;align-items:center;justify-content:center;min-width:0;min-height:56px;padding:8px 4px;border:2px solid var(--line);border-radius:15px;background:var(--card);color:var(--ink);font:inherit;font-size:1.06rem;font-weight:900;text-align:center;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform .08s,border-color .08s,background .08s}
-.birth-options-grid.months .birth-option{min-height:62px;font-size:1rem}
-.birth-options-grid.years .birth-option{min-height:62px;font-size:1.1rem}
-.birth-option:active{transform:scale(.96)}
-.birth-option[aria-pressed="true"]{border-color:var(--ok);background:var(--okbg);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ok)}
-@media(min-width:600px){.birth-picker{padding:12px}.birth-picker-trigger{min-height:70px;font-size:1.18rem}.birth-options{padding:16px}.birth-option{min-height:62px;font-size:1.15rem}.birth-options-grid.months .birth-option,.birth-options-grid.years .birth-option{min-height:68px}}
-@media(max-width:480px){.birth-options-grid.days{grid-template-columns:repeat(5,minmax(0,1fr))}}
-@media(max-width:380px){.birth-pickers{gap:6px}.birth-picker{padding:7px}.birth-picker-label{font-size:.82rem}.birth-picker-trigger{min-height:58px;padding:8px 5px;font-size:.96rem}.birth-chevron{font-size:1rem}.birth-options{padding:9px}.birth-options-grid{gap:6px}.birth-option{min-height:48px;padding:5px 2px;font-size:.95rem;border-radius:12px}.birth-options-grid.months .birth-option{font-size:.9rem;min-height:54px}.birth-options-grid.years .birth-option{min-height:54px}}
+/* Selector horizontal táctil: tres ruedas con el valor activo centrado. */
+.birth-wheel-set{display:grid;gap:12px;max-width:540px;margin:18px auto 8px}
+.birth-wheel-row{min-width:0;padding:10px 10px 12px;background:var(--chip);border:2px solid var(--line);border-radius:20px;text-align:left}
+.birth-picker-label{display:block;margin:0 0 7px;font-weight:900;font-size:1rem}
+.birth-wheel-shell{position:relative;overflow:hidden;border-radius:16px;background:var(--card)}
+.birth-wheel-shell::before,.birth-wheel-shell::after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:24px;pointer-events:none}
+.birth-wheel-shell::before{left:0;background:linear-gradient(90deg,var(--card),transparent)}
+.birth-wheel-shell::after{right:0;background:linear-gradient(270deg,var(--card),transparent)}
+.birth-wheel{position:relative;display:flex;align-items:center;gap:8px;width:100%;overflow-x:auto;overflow-y:hidden;padding:7px calc(50% - (var(--wheel-item-width)/2));scroll-snap-type:x mandatory;scroll-padding-inline:50%;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x;scrollbar-width:none}
+.birth-wheel::-webkit-scrollbar{display:none}
+.birth-wheel.days{--wheel-item-width:58px}
+.birth-wheel.months{--wheel-item-width:126px}
+.birth-wheel.years{--wheel-item-width:78px}
+.birth-wheel-item{display:flex;flex:0 0 var(--wheel-item-width);align-items:center;justify-content:center;min-width:0;min-height:66px;padding:8px 5px;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;font-size:1.12rem;font-weight:900;text-align:center;white-space:nowrap;cursor:pointer;scroll-snap-align:center;touch-action:pan-x;-webkit-tap-highlight-color:transparent;transition:transform .08s,border-color .1s,background .1s}
+.birth-wheel.months .birth-wheel-item{font-size:1rem}
+.birth-wheel-item:active{transform:scale(.96)}
+.birth-wheel-item[aria-pressed="true"]{border:3px solid var(--ok);background:var(--okbg);color:var(--ink);box-shadow:0 3px 0 rgba(31,166,106,.18);transform:scale(1.04)}
+.birth-wheel-hint{margin:6px auto 12px;text-align:center}
+@media(min-width:600px){.birth-wheel-set{gap:14px}.birth-wheel-row{padding:12px 14px 14px}.birth-wheel-item{min-height:72px;font-size:1.2rem}.birth-wheel.months .birth-wheel-item{font-size:1.08rem}}
+@media(max-width:380px){.birth-wheel-set{gap:9px}.birth-wheel-row{padding:8px 7px 10px}.birth-picker-label{font-size:.9rem}.birth-wheel{gap:6px;padding-top:6px;padding-bottom:6px}.birth-wheel.days{--wheel-item-width:52px}.birth-wheel.months{--wheel-item-width:112px}.birth-wheel.years{--wheel-item-width:70px}.birth-wheel-item{min-height:58px;font-size:1rem;border-radius:14px}.birth-wheel.months .birth-wheel-item{font-size:.94rem}.birth-wheel-shell::before,.birth-wheel-shell::after{width:16px}}
 dialog h3{font-size:1.05rem;margin:1.1em 0 .3em}
 dialog ul{margin:.2em 0 0;padding-left:1.2em}
 dialog li{margin:.35em 0}
@@ -225,33 +221,27 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <h2 id="agetitle" tabindex="-1" autofocus>¡Hola! Soy Cuentitis</h2>
     <p id="birthIntro"><b>¿Cuál es tu fecha de nacimiento?</b></p>
     <form id="birthForm">
-      <div class="birth-pickers" role="group" aria-label="Fecha de nacimiento">
-        <div class="birth-picker">
+      <div class="birth-wheel-set" role="group" aria-label="Fecha de nacimiento">
+        <div class="birth-wheel-row">
           <span class="birth-picker-label">☀️ Día</span>
-          <button class="birth-picker-trigger" id="chooseBirthDay" type="button" aria-controls="birthOptions" aria-expanded="false">
-            <span id="birthDayValue">Elige día</span><span class="birth-chevron" aria-hidden="true">⌄</span>
-          </button>
+          <div class="birth-wheel-shell">
+            <div class="birth-wheel days" id="birthDayWheel" role="group" aria-label="Día de nacimiento"></div>
+          </div>
         </div>
-        <div class="birth-picker">
+        <div class="birth-wheel-row">
           <span class="birth-picker-label">🌷 Mes</span>
-          <button class="birth-picker-trigger" id="chooseBirthMonth" type="button" aria-controls="birthOptions" aria-expanded="false">
-            <span id="birthMonthValue">Elige mes</span><span class="birth-chevron" aria-hidden="true">⌄</span>
-          </button>
+          <div class="birth-wheel-shell">
+            <div class="birth-wheel months" id="birthMonthWheel" role="group" aria-label="Mes de nacimiento"></div>
+          </div>
         </div>
-        <div class="birth-picker">
+        <div class="birth-wheel-row">
           <span class="birth-picker-label">📅 Año</span>
-          <button class="birth-picker-trigger" id="chooseBirthYear" type="button" aria-controls="birthOptions" aria-expanded="false">
-            <span id="birthYearValue">Elige año</span><span class="birth-chevron" aria-hidden="true">⌄</span>
-          </button>
+          <div class="birth-wheel-shell">
+            <div class="birth-wheel years" id="birthYearWheel" role="group" aria-label="Año de nacimiento"></div>
+          </div>
         </div>
       </div>
-      <section class="birth-options" id="birthOptions" aria-label="Opciones de fecha de nacimiento" hidden>
-        <div class="birth-options-head">
-          <h3 id="birthOptionsTitle" tabindex="-1">Elige el día</h3>
-          <button class="birth-options-close" id="birthOptionsClose" type="button" aria-label="Cerrar opciones">✕</button>
-        </div>
-        <div class="birth-options-grid days" id="birthOptionsGrid"></div>
-      </section>
+      <p class="hint birth-wheel-hint">Desliza cada fila a izquierda o derecha. El dato del centro es el seleccionado.</p>
       <p class="hint" id="birthHelp">Calcularé tu edad automáticamente para elegir las lecturas adecuadas.</p>
       <p class="hint" id="birthError" role="alert" style="color:var(--bad)" hidden></p>
       <button class="big pri" id="birthSave" type="submit">¡Empezar!</button>
@@ -390,72 +380,122 @@ function loadBirthProfile(){
   }
 }
 const MONTH_NAMES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-let birthParts={day:0,month:0,year:0},activeBirthPicker=null;
+let birthParts={day:15,month:6,year:0},birthWheelTimers={},birthWheelFrames={},birthWheelsBound=false;
+function availableBirthYears(){
+  const currentYear=new Date().getFullYear();
+  const savedYear=birthDate?Number(birthDate.slice(0,4)):0;
+  const firstYear=Math.min(currentYear-12,savedYear||currentYear-12);
+  const lastYear=currentYear-5;
+  const years=[];
+  for(let year=firstYear;year<=lastYear;year++)years.push(year);
+  return years;
+}
 function birthDaysInMonth(){
-  if(!birthParts.month)return 31;
-  return new Date(birthParts.year||2000,birthParts.month,0).getDate();
+  return new Date(birthParts.year||2000,birthParts.month||1,0).getDate();
 }
 function normalizeBirthDay(){
-  const max=birthDaysInMonth();
-  if(birthParts.day>max)birthParts.day=max;
+  birthParts.day=Math.min(Math.max(1,Number(birthParts.day)||15),birthDaysInMonth());
 }
-function updateBirthPickerValues(){
-  $("birthDayValue").textContent=birthParts.day?String(birthParts.day):"Elige día";
-  const month=birthParts.month?MONTH_NAMES[birthParts.month-1]:"";
-  $("birthMonthValue").textContent=month?month.charAt(0).toUpperCase()+month.slice(1):"Elige mes";
-  $("birthYearValue").textContent=birthParts.year?String(birthParts.year):"Elige año";
+function birthWheelId(kind){return "birth"+kind.charAt(0).toUpperCase()+kind.slice(1)+"Wheel"}
+function birthWheelOptions(kind){
+  if(kind==="day")return Array.from({length:birthDaysInMonth()},(_,i)=>({value:i+1,label:String(i+1)}));
+  if(kind==="month")return MONTH_NAMES.map((name,i)=>({value:i+1,label:name.charAt(0).toUpperCase()+name.slice(1)}));
+  return availableBirthYears().map(year=>({value:year,label:String(year)}));
 }
-function setActiveBirthPicker(kind){
-  activeBirthPicker=kind;
-  ["day","month","year"].forEach(part=>{
-    const button=$("chooseBirth"+part.charAt(0).toUpperCase()+part.slice(1));
-    button.setAttribute("aria-expanded",String(part===kind));
-  });
+function centerBirthWheelItem(kind,behavior){
+  const wheel=$(birthWheelId(kind));
+  const selected=String(birthParts[kind]);
+  const item=[...wheel.children].find(el=>el.dataset.value===selected);
+  if(!item)return;
+  const wheelRect=wheel.getBoundingClientRect(),itemRect=item.getBoundingClientRect();
+  const left=wheel.scrollLeft+(itemRect.left-wheelRect.left)-(wheel.clientWidth-item.clientWidth)/2;
+  wheel.scrollTo({left,behavior:behavior||"auto"});
 }
-function closeBirthPicker(){
-  activeBirthPicker=null;
-  $("birthOptions").hidden=true;
-  ["day","month","year"].forEach(part=>{
-    $("chooseBirth"+part.charAt(0).toUpperCase()+part.slice(1)).setAttribute("aria-expanded","false");
-  });
+function updateBirthWheelSelection(kind){
+  const wheel=$(birthWheelId(kind)),selected=String(birthParts[kind]);
+  [...wheel.children].forEach(item=>item.setAttribute("aria-pressed",String(item.dataset.value===selected)));
 }
-function showBirthPicker(kind){
-  setActiveBirthPicker(kind);
-  const grid=$("birthOptionsGrid");
-  grid.innerHTML="";
-  grid.className="birth-options-grid "+(kind==="day"?"days":kind==="month"?"months":"years");
-  $("birthOptionsTitle").textContent=kind==="day"?"☀️ Elige el día":kind==="month"?"🌷 Elige el mes":"📅 Elige el año";
-  let options=[];
-  if(kind==="day"){
-    options=Array.from({length:birthDaysInMonth()},(_,i)=>({value:i+1,label:String(i+1)}));
-  }else if(kind==="month"){
-    options=MONTH_NAMES.map((name,i)=>({value:i+1,label:name.charAt(0).toUpperCase()+name.slice(1)}));
-  }else{
-    const currentYear=new Date().getFullYear();
-    const savedYear=birthDate?Number(birthDate.slice(0,4)):0;
-    const firstYear=Math.min(currentYear-12,savedYear||currentYear-12);
-    const lastYear=currentYear-5;
-    for(let year=lastYear;year>=firstYear;year--)options.push({value:year,label:String(year)});
-  }
-  options.forEach(option=>{
+function renderBirthWheel(kind,center){
+  const wheel=$(birthWheelId(kind));
+  wheel.innerHTML="";
+  birthWheelOptions(kind).forEach(option=>{
     const button=document.createElement("button");
     button.type="button";
-    button.className="birth-option";
+    button.className="birth-wheel-item";
     button.textContent=option.label;
-    const selected=Number(birthParts[kind])===option.value;
-    button.setAttribute("aria-pressed",String(selected));
-    button.onclick=()=>selectBirthOption(kind,option.value);
-    grid.appendChild(button);
+    button.dataset.value=String(option.value);
+    button.setAttribute("aria-pressed",String(Number(birthParts[kind])===option.value));
+    button.setAttribute("aria-label",kind==="month"?option.label:kind==="day"?"Día "+option.label:"Año "+option.label);
+    button.onclick=()=>selectBirthWheelValue(kind,option.value);
+    wheel.appendChild(button);
   });
-  $("birthOptions").hidden=false;
+  if(center)requestAnimationFrame(()=>centerBirthWheelItem(kind,"auto"));
 }
-function selectBirthOption(kind,value){
-  birthParts[kind]=value;
+function selectBirthWheelValue(kind,value){
+  birthParts[kind]=Number(value);
+  if(kind==="month"||kind==="year"){
+    normalizeBirthDay();
+    renderBirthWheel("day",true);
+  }
+  updateBirthWheelSelection(kind);
+  centerBirthWheelItem(kind,"smooth");
+}
+function nearestBirthWheelValue(kind){
+  const wheel=$(birthWheelId(kind)),center=wheel.getBoundingClientRect().left+wheel.clientWidth/2;
+  let nearest=null,distance=Infinity;
+  [...wheel.children].forEach(item=>{
+    const rect=item.getBoundingClientRect(),d=Math.abs(rect.left+rect.width/2-center);
+    if(d<distance){distance=d;nearest=item}
+  });
+  return nearest?Number(nearest.dataset.value):null;
+}
+function bindBirthWheel(kind){
+  const wheel=$(birthWheelId(kind));
+  wheel.addEventListener("scroll",()=>{
+    if(!birthWheelFrames[kind]){
+      birthWheelFrames[kind]=requestAnimationFrame(()=>{
+        const value=nearestBirthWheelValue(kind);
+        if(value!==null)birthParts[kind]=value;
+        updateBirthWheelSelection(kind);
+        birthWheelFrames[kind]=0;
+      });
+    }
+    clearTimeout(birthWheelTimers[kind]);
+    birthWheelTimers[kind]=setTimeout(()=>{
+      const value=nearestBirthWheelValue(kind);
+      if(value!==null)birthParts[kind]=value;
+      if(kind==="month"||kind==="year"){
+        const oldDay=birthParts.day;
+        normalizeBirthDay();
+        if(oldDay!==birthParts.day)renderBirthWheel("day",true);
+      }
+      updateBirthWheelSelection(kind);
+    },140);
+  },{passive:true});
+}
+function bindBirthWheels(){
+  if(birthWheelsBound)return;
+  ["day","month","year"].forEach(bindBirthWheel);
+  birthWheelsBound=true;
+}
+function fillBirthWheels(value){
+  const parts=value?value.split("-").map(Number):[];
+  const years=availableBirthYears();
+  birthParts={
+    day:parts[2]||15,
+    month:parts[1]||6,
+    year:parts[0]||years[Math.floor(years.length/2)]||new Date().getFullYear()-8
+  };
   normalizeBirthDay();
-  updateBirthPickerValues();
-  if(kind==="day")showBirthPicker("month");
-  else if(kind==="month")showBirthPicker("year");
-  else closeBirthPicker();
+  renderBirthWheel("day",false);
+  renderBirthWheel("month",false);
+  renderBirthWheel("year",false);
+  requestAnimationFrame(()=>{
+    centerBirthWheelItem("day","auto");
+    centerBirthWheelItem("month","auto");
+    centerBirthWheelItem("year","auto");
+  });
+  bindBirthWheels();
 }
 function saveBirthDate(event){
   event.preventDefault();
@@ -491,19 +531,12 @@ function saveBirthDate(event){
 function openAge(){
   $("agetitle").textContent=birthDate?"Fecha de nacimiento":"¡Hola! Soy Cuentitis";
   $("birthIntro").textContent=birthDate?"Puedes actualizar la fecha de nacimiento para ajustar la edad y las lecturas.":"¿Cuál es tu fecha de nacimiento?";
-  const parts=birthDate?birthDate.split("-").map(Number):[];
-  birthParts={day:parts[2]||0,month:parts[1]||0,year:parts[0]||0};
-  updateBirthPickerValues();
-  closeBirthPicker();
+  fillBirthWheels(birthDate);
   $("birthError").hidden=true;
   $("birthSave").textContent=birthDate?"Guardar cambios":"¡Empezar!";
   $("ageModal").showModal();
   if(!birthDate)showBirthPicker("day");
 }
-$("chooseBirthDay").onclick=()=>showBirthPicker("day");
-$("chooseBirthMonth").onclick=()=>showBirthPicker("month");
-$("chooseBirthYear").onclick=()=>showBirthPicker("year");
-$("birthOptionsClose").onclick=closeBirthPicker;
 function openBirthday(){
   const age=birthdayPendingAge;
   if(age===null)return;
@@ -694,7 +727,6 @@ $("ageChange").onclick=()=>{$("parentModal").close();openAge()};
 $("ageModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthdayModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthForm").addEventListener("submit",saveBirthDate);
-$("birthOptionsClose").onclick=closeBirthPicker;
 $("acceptBirthday").onclick=acceptBirthday;
 // Comentarios beta: reenvío a correo con FormSubmit. Se usa su código aleatorio en lugar del correo, para no mostrarlo en la página.
 // Opción alternativa: clave de Web3Forms (web3forms.com). Si se rellena, se usa en lugar de FormSubmit.
