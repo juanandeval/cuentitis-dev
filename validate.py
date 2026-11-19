@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Valida lecturas.json antes de subirlo. Uso: python3 validate.py"""
 import json, re, sys
-TOPICS={"Animales","Dinosaurios","Espacio","Fútbol","Princesas y reyes","Superhéroes","Piratas","Coches","Cocina","Ciencia","Dragones","Robots"}
+TOPICS={"Animales","Dinosaurios","Espacio","Fútbol","Princesas y reyes","Superhéroes","Piratas","Coches","Cocina","Ciencia","Dragones","Robots","Naturaleza y medioambiente","Música","Misterios y detectives","¿Sabías que...?"}
 # tramo: (palabras mín, máx, media palabras/frase mín, máx en narración)
 LIM={"5-6":(350,550,7,13),"7-8":(380,600,8,15),"9-10":(450,650,11,18),"11-12":(450,650,14,22)}
 err=0; warn=0; ids=set()
