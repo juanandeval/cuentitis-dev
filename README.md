@@ -12,12 +12,12 @@ Web estática de lectura comprensiva (5-12 años). Sin servidor ni API: las lect
 ## Añadir lecturas
 Pide a Claude lecturas nuevas con este prompt y pega el resultado dentro del array de `lecturas.json`:
 
-> Genera N lecturas en español de España para niños, en JSON con esta forma: {"id","band" (5-6|7-8|9-10|11-12),"topics" (1-2 de: Animales, Dinosaurios, Espacio, Fútbol, Princesas y reyes, Superhéroes, Piratas, Coches, Cocina, Ciencia, Dragones, Robots),"hero" (niño|niña|neutro),"title","paragraphs" (5-8, 450-550 palabras),"questions" (5: {"q","options","answer" (índice desde 0),"why"})}. Opciones: 3 por pregunta en 5-6 y 7-8 años, 4 en 9-10 y 11-12. 2 preguntas de detalle, 2 de inferencia, 1 de vocabulario o idea principal. Posición de la correcta variada. Lenguaje adaptado a la edad. Contenido positivo y apto para niños.
+> Genera N lecturas en español de España para niños, en JSON con esta forma: {"id","band" (5-6|7-8|9-10|11-12),"topics" (1-2 de: Animales, Dinosaurios, Espacio, Fútbol, Princesas y reyes, Superhéroes, Piratas, Coches, Cocina, Ciencia, Dragones, Robots, Naturaleza y medioambiente, Música, Misterios y detectives, ¿Sabías que...?),"hero" (niño|niña|neutro),"title","paragraphs","questions" (5: {"q","options","answer" (índice desde 0),"why"}),"english"}. Longitud: 5-6 años, 350-550 palabras; 7-8, 380-600; 9-10 y 11-12, 450-650. Opciones: 3 por pregunta en 5-6 y 7-8 años, 4 en 9-10 y 11-12. 2 preguntas de detalle, 2 de inferencia, 1 de vocabulario o idea principal. Posición de la correcta variada. Cada lectura debe incluir 3-4 palabras en inglés marcadas con [en:english|español] y listadas en english. Lenguaje adaptado a la edad. Contenido positivo y apto para niños. En ¿Sabías que...? utiliza datos reales y contrastados con fuentes fiables.
 
 Después ejecuta `python3 validate.py` para comprobar el formato.
 
 ## Cómo elige la lectura
-Filtra por tramo de edad y puntúa: tema principal (el primer gusto) > otros gustos > lecturas no vistas > protagonista según niño/niña (o neutro). Se guardan las ya vistas en el navegador para no repetir.
+El niño elige un solo tema favorito. Cuentitis intenta ofrecer primero una lectura inédita de ese tema dentro de su tramo de edad. Cuando ya se han leído todas las lecturas de ese tema, continúa con otras lecturas inéditas de la misma edad. No repite ninguna lectura hasta que una persona adulta reinicie el historial desde Información para familias. La selección y el historial se guardan en el navegador.
 
 ## Aviso de «lecturas nuevas»
 Al abrir la web, esta compara los `id` de `lecturas.json` con los que ese navegador ya conocía. Si hay `id` nuevos, aparece una etiqueta 🆕 en la cabecera; al pulsarla se listan los títulos nuevos. La primera vez que alguien entra no se avisa de nada (todo es nuevo para él).
