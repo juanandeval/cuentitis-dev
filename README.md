@@ -29,7 +29,7 @@ Al abrir la web, esta compara los `id` de `lecturas.json` con los que ese navega
 - Español de España y frases adaptadas a la edad: 5-6 años, frases cortas (media 7-13 palabras); 7-8, 8-15; 9-10, 11-18; 11-12, 14-22.
 - Longitud: 5-6 años desde 350 palabras; 7-8 desde 380; 9-10 y 11-12 desde 450.
 - Evitar series de frases muy cortas seguidas en 9-10 y 11-12 años.
-- 5 preguntas por lectura: 3 opciones hasta los 8 años y 4 desde los 9, con la respuesta correcta en posiciones distintas.
+- 5 preguntas por lectura: 3 opciones hasta los 8 años y 4 desde los 9. Todas deben ser textos completos, sin valores `null`; el índice `answer` debe señalar la opción correcta y `why` explicar la respuesta.
 
 ## Comentarios de usuarios beta
 El pie de página tiene un botón «Enviar comentarios» que abre un formulario y lo reenvía por correo con FormSubmit (sin cuenta ni servidor propio).
@@ -39,9 +39,10 @@ El pie de página tiene un botón «Enviar comentarios» que abre un formulario 
 4. Si hay spam, el formulario ya lleva un campo trampa. Puedes mirar las opciones extra en la documentación de FormSubmit.
 
 ## Palabras en inglés
-Cada lectura lleva 3-4 palabras básicas que aparecen **en inglés en lugar de la palabra española**. En el texto se escriben como `[en:palabra inglesa|palabra española tal como estaba]`, por ejemplo `un cuenco de [en:milk|leche]`, y se listan en el campo `english` de la lectura con su forma base: `"english":[{"en":"milk","es":"leche"}]`.
+Cada lectura lleva 3-4 palabras básicas que aparecen **en inglés en lugar de la palabra española**. En el texto se escriben como `[en:palabra inglesa|palabra española]`, por ejemplo `un cuenco de [en:milk|leche]`, y el campo `english` debe contener exactamente las mismas parejas `en`/`es` que aparecen en las etiquetas. Si la palabra está en plural o tiene género, utiliza la forma que corresponda dentro de los corchetes y repítela igual en `english`.
 La web las muestra resaltadas. Al pulsarlas aparece un aviso con la traducción («milk = leche») y se pronuncian con la voz del dispositivo (inglés británico). Al final del texto se repasan todas en una cajita «Palabras en inglés».
-- Las plurales se escriben en plural en inglés (`[en:birds|pájaros]`).
-- Evita verbos conjugados: usa infinitivos o formas que encajen (`[en:asleep|dormido]`).
+- Escribe cada forma completa dentro de la etiqueta: por ejemplo, `[en:birds|pájaros]`, nunca `[en:bird|pájaro]s` ni `[en:team|cuadrilla]es`.
+- El glosario debe coincidir carácter por carácter con las parejas de las etiquetas; incluye las formas plurales o de género usadas en el relato.
+- Evita verbos conjugados: utiliza infinitivos o formas adecuadas (`[en:asleep|dormido]`).
 - Nivel: 5-6 años, colores, animales y objetos; 7-8, casa, comida y naturaleza; 9-10 y 11-12, palabras cotidianas algo más largas.
 - `validate.py` comprueba que el número de marcas coincida con la lista `english`, y cuenta las palabras como si siguieran en español.
