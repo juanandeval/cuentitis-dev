@@ -3883,7 +3883,8 @@
         "options": [
           "Había demasiados árboles",
           "Estaba casi todo cubierto de cemento y se calentaba",
-          "Tenía demasiadas flores"
+          "Tenía demasiadas flores",
+          "Porque el patio necesitaba más cemento"
         ],
         "answer": 1,
         "why": "El patio tenía mucho cemento, poca sombra y pocos insectos."
@@ -3893,7 +3894,8 @@
         "options": [
           "Porque se adaptan mejor al clima local",
           "Porque no necesitan nunca agua",
-          "Porque todas tienen flores azules"
+          "Porque todas tienen flores azules",
+          "Porque las flores solo crecen bajo techo"
         ],
         "answer": 0,
         "why": "La jardinera recomendó especies adecuadas a la zona y resistentes."
@@ -3903,7 +3905,8 @@
         "options": [
           "Construyen nidos en las paredes",
           "Transportan polen entre flores",
-          "Enfrían el suelo con sus alas"
+          "Enfrían el suelo con sus alas",
+          "Porque todos los insectos viven en árboles"
         ],
         "answer": 1,
         "why": "Al visitar flores, algunos insectos ayudan a trasladar el polen."
@@ -3913,7 +3916,8 @@
         "options": [
           "Para que el agua pudiera filtrarse",
           "Para que el cemento se secara",
-          "Para que no crecieran plantas"
+          "Para que no crecieran plantas",
+          null
         ],
         "answer": 0,
         "why": "La zona permeable permite que el agua entre en el terreno."
@@ -3923,7 +3927,8 @@
         "options": [
           "Un refugio natural se crea de inmediato",
           "Solo los árboles grandes ayudan al patio",
-          "La biodiversidad necesita tiempo, variedad y cuidados"
+          "La biodiversidad necesita tiempo, variedad y cuidados",
+          null
         ],
         "answer": 2,
         "why": "El proyecto mostró cambios graduales que requerían mantenimiento."
@@ -3963,7 +3968,8 @@
       "El día de la actuación, el público siguió el ritmo con los pies. Al llegar al silencio final, todos esperaron un instante. Después sonaron los aplausos. Dani comprendió que una composición puede organizar sonidos y silencios para contar algo sin palabras.",
       "Al recoger la sala, la profesora les enseñó una partitura sencilla. Vieron que los símbolos sirven para recordar cuánto dura cada sonido. Dani quiso aprender a leerlos mejor. Ahora sabía que la música también puede escribirse y compartirse.",
       "En otra sesión, la profesora mostró cómo una partitura reúne varios compases. Cada compás agrupa pulsos y ayuda a ordenar la interpretación. Dani observó que los silencios también aparecen representados. La música escrita permite que otras personas interpreten una composición sin haber estado en el ensayo.",
-      "Dani llevó su cuaderno a casa y escribió una nueva secuencia. Alternó sonidos fuertes con otros suaves y dejó pausas entre ellos. Después la ensayó con su familia. Descubrió que una idea musical puede cambiar mucho sin perder su estructura."
+      "Dani llevó su cuaderno a casa y escribió una nueva secuencia. Alternó sonidos fuertes con otros suaves y dejó pausas entre ellos. Después la ensayó con su familia. Descubrió que una idea musical puede cambiar mucho sin perder su estructura.",
+      "Dani guardó la secuencia y anotó el tempo aproximado. La próxima vez quería combinarla con una melodía diferente. Comprendió que escuchar y contar ayuda a construir una pieza clara, incluso con pocos instrumentos."
     ],
     "questions": [
       {
@@ -3971,7 +3977,8 @@
         "options": [
           "Una pieza de percusión corporal",
           "Una obra de teatro",
-          "Una canción con guitarras eléctricas"
+          "Una canción con guitarras eléctricas",
+          "Porque el grupo no tenía voz"
         ],
         "answer": 0,
         "why": "La profesora propuso utilizar palmas, chasquidos y golpes suaves."
@@ -3981,7 +3988,8 @@
         "options": [
           "Un sonido muy fuerte",
           "Una referencia regular que sostiene la música",
-          "El final de una canción"
+          "El final de una canción",
+          "Porque una partitura solo sirve para bailar"
         ],
         "answer": 1,
         "why": "El pulso se comparó con un latido regular."
@@ -3991,7 +3999,8 @@
         "options": [
           "Porque permite descansar los instrumentos para siempre",
           "Porque sustituye todas las notas",
-          "Porque crea un silencio intencionado dentro del patrón"
+          "Porque crea un silencio intencionado dentro del patrón",
+          "Porque las pausas eliminan el ritmo"
         ],
         "answer": 2,
         "why": "La pausa se utiliza como un momento de silencio organizado."
@@ -4001,7 +4010,8 @@
         "options": [
           "Que tocar deprisa siempre es mejor",
           "Que debe mantener la precisión aunque cambie el tempo",
-          "Que no hace falta contar"
+          "Que no hace falta contar",
+          null
         ],
         "answer": 1,
         "why": "La velocidad no sustituye al control del patrón."
@@ -4011,7 +4021,8 @@
         "options": [
           "Una forma de recordar y compartir la música escrita",
           "Una lista de instrumentos caros",
-          "Un dibujo sin relación con los sonidos"
+          "Un dibujo sin relación con los sonidos",
+          null
         ],
         "answer": 0,
         "why": "Los símbolos permiten representar duraciones y sonidos."
@@ -4059,7 +4070,8 @@
         "options": [
           "Se mojaba",
           "Cambiaba la dirección de la aguja",
-          "Se quedaba sin color"
+          "Se quedaba sin color",
+          "Porque el museo estaba oscuro"
         ],
         "answer": 1,
         "why": "La aguja se desviaba al acercar la caja."
@@ -4069,7 +4081,8 @@
         "options": [
           "Una aguja imantada que responde al campo magnético terrestre",
           "Una luz dentro de la caja",
-          "El ruido de los aparatos"
+          "El ruido de los aparatos",
+          "Porque todas las brújulas apuntan al Sol"
         ],
         "answer": 0,
         "why": "La aguja imantada se orienta con el campo magnético terrestre."
@@ -4079,7 +4092,8 @@
         "options": [
           "Un mapa doblado",
           "Una pila de monedas",
-          "Un altavoz con un imán"
+          "Un altavoz con un imán",
+          "Porque la aguja estaba hecha de plástico"
         ],
         "answer": 2,
         "why": "El altavoz contenía un imán que afectaba a la brújula."
@@ -4089,7 +4103,8 @@
         "options": [
           "Porque desaparecía la interferencia cercana",
           "Porque el norte se había movido",
-          "Porque la brújula se calentaba"
+          "Porque la brújula se calentaba",
+          null
         ],
         "answer": 0,
         "why": "Al alejar el altavoz, su campo magnético dejaba de alterar la aguja."
@@ -4099,7 +4114,8 @@
         "options": [
           "Aceptó la primera suposición",
           "Comparó situaciones y comprobó una explicación",
-          "Desmontó la brújula sin permiso"
+          "Desmontó la brújula sin permiso",
+          null
         ],
         "answer": 1,
         "why": "Observó, anotó y realizó pruebas con ayuda del guía."
@@ -4147,7 +4163,8 @@
         "options": [
           "Un pez de mar",
           "Un anfibio originario de México",
-          "Un insecto acuático"
+          "Un insecto acuático",
+          "Porque vive en el desierto"
         ],
         "answer": 1,
         "why": "El texto explica que es un anfibio de México."
@@ -4157,7 +4174,8 @@
         "options": [
           "Las patas o extremidades",
           "Las plumas",
-          "Las escamas de un pez"
+          "Las escamas de un pez",
+          "Porque tiene alas"
         ],
         "answer": 0,
         "why": "Puede volver a formar una extremidad perdida."
@@ -4167,7 +4185,8 @@
         "options": [
           "Aparece entera en un segundo",
           "La produce el agua limpia por sí sola",
-          "Las células reconstruyen poco a poco los tejidos"
+          "Las células reconstruyen poco a poco los tejidos",
+          "Porque su cuerpo está formado por conchas"
         ],
         "answer": 2,
         "why": "El proceso organiza células y reconstruye distintos tejidos."
@@ -4177,7 +4196,8 @@
         "options": [
           "La contaminación y la pérdida de hábitat",
           "La nieve de las montañas",
-          "La falta de luz del Sol"
+          "La falta de luz del Sol",
+          null
         ],
         "answer": 0,
         "why": "El texto menciona contaminación y pérdida de zonas adecuadas."
@@ -4187,7 +4207,8 @@
         "options": [
           "Para convertirlo en pez",
           "Para comprender cómo regenera tejidos",
-          "Para enseñarle a caminar fuera del agua"
+          "Para enseñarle a caminar fuera del agua",
+          null
         ],
         "answer": 1,
         "why": "Su capacidad puede ayudar a investigar la reparación de tejidos."
@@ -4218,14 +4239,15 @@
     "title": "La ciudad que aprendió a guardar el fresco",
     "paragraphs": [
       "En el barrio de Inés, las tardes de verano eran cada vez más difíciles. La plaza tenía mucho asfalto, pocos árboles y bancos al sol. En las calles cercanas, la temperatura parecía menor. El instituto decidió estudiar por qué algunos lugares de la ciudad acumulaban más calor.",
-      "El grupo midió la temperatura en distintos puntos durante varios días. Repitieron las mediciones a la misma hora y anotaron si había sombra o viento. También registraron los materiales del suelo y la presencia de vegetación. Querían comparar datos, no quedarse solo con impresiones.",
+      "El grupo midió la temperatura en distintos puntos durante varios días. Repitieron las mediciones a la misma hora y anotaron si había sombra o viento. También registraron los materiales de la [en:surface|superficie] y la presencia de vegetación. Querían comparar datos, no quedarse solo con impresiones.",
       "La profesora explicó el efecto de isla de calor urbana. En algunas zonas construidas, los materiales absorben energía solar y la liberan lentamente. La falta de vegetación y de sombra puede aumentar la temperatura. Los edificios, el tráfico y el diseño de las calles también influyen.",
       "Inés propuso plantar árboles, pero el técnico municipal les pidió pensar antes en el espacio. Las raíces necesitan suelo suficiente y algunas calles tienen tuberías bajo tierra. También hay que elegir especies adecuadas al clima, al tamaño disponible y al mantenimiento que puede asumir el barrio.",
-      "El equipo comparó varias soluciones. Los árboles podían ofrecer sombra, mientras que los jardines de lluvia ayudarían a que parte del agua se filtrara en el terreno. En algunos tejados, una cubierta vegetal podría reducir el calentamiento del edificio. Ninguna medida servía igual para todos los lugares.",
+      "El equipo comparó varias soluciones. Los árboles podían ofrecer [en:shade|sombra], mientras que los jardines de lluvia ayudarían a que parte del agua se filtrara en el terreno. En algunos tejados, una cubierta vegetal podría reducir el calentamiento del edificio. Ninguna medida servía igual para todos los lugares.",
       "Prepararon una propuesta para la plaza. Incluía dos árboles en zonas apropiadas, un parterre con plantas resistentes y un pavimento permeable en un rincón. El técnico revisó el plano para evitar conducciones subterráneas. También explicó cómo garantizar el paso de personas con movilidad reducida.",
       "Cuando se aprobó una primera prueba, el barrio participó en la plantación. Los vecinos recibieron instrucciones para regar los ejemplares jóvenes. El instituto instaló un pequeño termómetro protegido del sol directo. Cada semana anotaban las temperaturas y observaban el estado de las plantas.",
-      "Los resultados no fueron inmediatos. Un árbol pequeño daba poca sombra y el pavimento necesitaba tiempo para mostrar sus efectos. Sin embargo, el parterre absorbía parte del agua de lluvia y el espacio se veía más vivo. El grupo aprendió que una intervención urbana debe evaluarse durante meses.",
-      "Inés presentó el informe con una conclusión prudente. La plaza no se había convertido en un lugar fresco de repente. La combinación de sombra, vegetación y superficies adecuadas podía mejorar el entorno, pero requería diseño, cuidados y datos. La ciudad también se construye pensando en el clima."
+      "Los resultados no fueron inmediatos. Un árbol pequeño daba poca sombra y el pavimento necesitaba tiempo para mostrar sus efectos. Sin embargo, el parterre absorbía parte del [en:rainwater|agua de lluvia] y el espacio se veía más vivo. El grupo aprendió que una intervención urbana debe evaluarse durante meses.",
+      "Inés presentó el informe con una conclusión prudente. La plaza no se había convertido en un lugar fresco de repente. La combinación de sombra, vegetación y superficies adecuadas podía mejorar el entorno, pero requería diseño, cuidados y datos. La ciudad también se construye pensando en el clima.",
+      "Al cabo de varias semanas, el equipo presentó una comparación de sus mediciones. No podían atribuir todos los cambios a una sola intervención, porque también variaban el viento y la nubosidad. Aun así, habían aprendido a planificar soluciones y evaluar sus resultados."
     ],
     "questions": [
       {
@@ -4308,15 +4330,16 @@
     "hero": "niño",
     "title": "El archivo secreto de los sonidos",
     "paragraphs": [
-      "El centro cultural del barrio guardaba grabaciones antiguas de conciertos y fiestas. Algunas cintas tenían más de treinta años. Cuando el equipo juvenil recibió permiso para escucharlas, descubrió voces, instrumentos y ruidos del público. Querían preparar una exposición sobre la memoria sonora del lugar.",
-      "El técnico explicó que el sonido se produce por vibraciones. Cuando una cuerda, una membrana o una columna de aire vibra, transmite energía al entorno. En el aire, esas vibraciones llegan al oído como ondas de presión. No podemos verlas directamente, pero podemos medirlas.",
-      "Una de las grabaciones tenía un zumbido constante. El técnico mostró una representación de la señal en una pantalla. Los picos indicaban cambios de amplitud, relacionados con la intensidad del sonido. La frecuencia, en cambio, se relaciona con el tono: más alta suele percibirse como más aguda.",
+      "El centro cultural del barrio guardaba [en:recording|grabaciones] antiguas de conciertos y fiestas. Algunas cintas tenían más de treinta años. Cuando el equipo juvenil recibió permiso para escucharlas, descubrió voces, instrumentos y ruidos del público. Querían preparar una exposición sobre la memoria sonora del lugar.",
+      "El técnico explicó que el sonido se produce por vibraciones. Cuando una cuerda, una membrana o una columna de aire vibra, transmite energía al entorno. En el aire, esas vibraciones llegan al oído como [en:wave|ondas] de presión. No podemos verlas directamente, pero podemos medirlas.",
+      "Una de las grabaciones tenía un zumbido constante. El técnico mostró una representación de la señal en una pantalla. Los picos indicaban cambios de amplitud, relacionados con la intensidad del sonido. La frecuencia, en cambio, se relaciona con el [en:pitch|tono]: más alta suele percibirse como más aguda.",
       "El grupo escuchó una guitarra afinada y después una nota más grave. Aunque el volumen era parecido, el tono no era el mismo. La técnica pidió que no confundieran intensidad y frecuencia. Una nota puede ser aguda y suave, o grave y fuerte.",
       "Para limpiar la grabación, primero hicieron una copia digital. Después compararon los fragmentos antes y después de aplicar un filtro. El técnico insistió en conservar el original. Un filtro puede reducir un ruido, pero también alterar detalles de la música si se utiliza sin cuidado.",
       "Al escuchar de nuevo, reconocieron el zumbido de un aparato eléctrico del escenario. En otra parte se oía una silla arrastrándose y una risa. El grupo decidió no borrar todos los sonidos. Algunos formaban parte del ambiente y contaban cómo fue aquel concierto.",
       "Cada persona eligió un fragmento para la exposición. Una estudiante preparó una explicación sobre ondas, otro comparó instrumentos de cuerda y viento. El equipo añadió auriculares y un panel con formas de onda. Así los visitantes podían relacionar lo que escuchaban con una representación visual.",
       "Al preparar los textos, aprendieron a distinguir hechos y recuerdos. La grabación demostraba qué sonidos habían quedado registrados, pero no explicaba por sí sola quién estaba allí. Para completar la historia consultaron programas, fotografías y testimonios de personas mayores.",
-      "El día de la exposición, un vecino reconoció la voz de su antigua profesora de música. Se emocionó al escucharla de nuevo. El grupo comprendió que una grabación conserva sonidos, pero también puede abrir preguntas. La tecnología ayuda a guardar la memoria cuando se usa con criterio."
+      "El día de la exposición, un vecino reconoció la voz de su antigua profesora de música. Se emocionó al escucharla de nuevo. El grupo comprendió que una grabación conserva sonidos, pero también puede abrir preguntas. La tecnología ayuda a guardar la memoria cuando se usa con criterio.",
+      "El grupo añadió una breve explicación sobre cómo viaja el sonido. Las vibraciones de una fuente producen cambios de presión que se propagan por el medio. Al llegar al oído, el cerebro interpreta esas señales. La grabación permite conservar una parte de ese fenómeno para analizarla después."
     ],
     "questions": [
       {
@@ -4399,15 +4422,16 @@
     "hero": "niña",
     "title": "La clave de las etiquetas cambiadas",
     "paragraphs": [
-      "En el museo local estaban preparando una exposición sobre la historia del barrio. Tres cajas de documentos habían llegado del archivo municipal. Cada una tenía una etiqueta, pero al abrirlas encontraron planos de épocas diferentes. Los nombres no parecían corresponder con el contenido.",
+      "En el museo local estaban preparando una exposición sobre la historia del barrio. Tres cajas de documentos habían llegado del archivo municipal. Cada una tenía una [en:label|etiqueta], pero al abrirlas encontraron planos de épocas diferentes. Los nombres no parecían corresponder con el contenido.",
       "Elena y Saúl ayudaban a ordenar las fichas bajo supervisión. La primera caja decía «Obras de 1950», aunque contenía planos anteriores. La segunda indicaba «Calles antiguas», pero incluía fotografías recientes. La tercera tenía una etiqueta casi borrada y varios documentos mezclados.",
-      "Elena propuso intercambiar las etiquetas, pero Saúl pidió detenerse. No debían mover documentos sin registrar su ubicación. Primero fotografiaron las cajas y anotaron el orden en que estaban. Después consultaron el inventario, una lista que describía cada conjunto por fecha y número.",
+      "Elena propuso intercambiar las etiquetas, pero Saúl pidió detenerse. No debían mover documentos sin registrar su ubicación. Primero fotografiaron las cajas y anotaron el orden en que estaban. Después consultaron el [en:record|registro], una lista que describía cada conjunto por fecha y número.",
       "El inventario incluía códigos alfanuméricos. Los dos primeros números indicaban el año de entrada y las letras señalaban el tipo de material. No todos los documentos tenían un código visible, pero algunos conservaban una pegatina en el reverso. Aquello podía ayudar a reconstruir el orden correcto.",
       "Saúl revisó las fotografías antiguas del depósito. En una imagen se veía una caja con una etiqueta azul junto a una ventana. La descripción del inventario mencionaba que los planos de obras se guardaban en la estantería superior. Sin embargo, la imagen mostraba las cajas en otra posición.",
       "Elena comparó los códigos de las fichas con los documentos. Descubrió que dos etiquetas se habían intercambiado durante una mudanza. La tercera caja no estaba mal identificada: reunía materiales pendientes de catalogar. El aparente desorden tenía dos causas distintas.",
       "El equipo pidió al responsable que revisara la propuesta. Comprobaron las fechas, los códigos y las fotografías antes de mover nada. Después corrigieron las etiquetas y dejaron constancia del cambio. Los documentos sin identificar permanecieron separados, a la espera de una revisión más completa.",
-      "Al terminar, Elena escribió un informe con las pruebas utilizadas. No afirmaba más de lo que los datos permitían. Explicó qué etiquetas se habían cambiado y qué materiales seguían sin clasificar. El responsable valoró que hubieran mantenido la incertidumbre donde faltaba información.",
-      "Saúl se dio cuenta de que resolver un misterio no siempre significa encontrar una respuesta para todo. A veces, investigar consiste en separar lo que sabemos de lo que todavía no podemos asegurar. En un archivo, esa prudencia ayuda a proteger la historia."
+      "Al terminar, Elena escribió un informe con las [en:evidence|pruebas] utilizadas. No afirmaba más de lo que los datos permitían. Explicó qué etiquetas se habían cambiado y qué materiales seguían sin clasificar. El responsable valoró que hubieran mantenido la incertidumbre donde faltaba información.",
+      "Saúl se dio cuenta de que resolver un misterio no siempre significa encontrar una respuesta para todo. A veces, investigar consiste en separar lo que sabemos de lo que todavía no podemos asegurar. En un archivo, esa prudencia ayuda a proteger la historia.",
+      "El responsable incorporó el informe al archivo para que futuras personas conocieran el cambio. También conservó las fotografías iniciales y el inventario consultado. De ese modo, otra persona podría repetir el proceso y revisar las mismas pruebas si aparecía información nueva."
     ],
     "questions": [
       {
@@ -4490,15 +4514,16 @@
     "hero": "niño",
     "title": "¿Sabías que las abejas bailan para indicar dónde hay flores?",
     "paragraphs": [
-      "En una visita a un centro de apicultura, Marcos observó una colmena de demostración. Las abejas entraban y salían con pequeños granos de polen. La apicultora explicó que las obreras no solo encuentran alimento. También pueden comunicar a otras abejas dónde buscarlo.",
+      "En una visita a un centro de apicultura, Marcos observó una [en:hive|colmena] de demostración. Las abejas entraban y salían con pequeños granos de polen. La apicultora explicó que las obreras no solo encuentran alimento. También pueden comunicar a otras abejas dónde buscarlo.",
       "Cuando una abeja encuentra una fuente de alimento interesante, regresa a la colmena. Allí puede realizar una danza especial sobre los panales. Se conoce como danza de la abeja o danza del meneo. Su recorrido incluye una parte recta en la que mueve el abdomen.",
-      "El ángulo de esa parte recta aporta información sobre la dirección. En un panal vertical, la orientación se relaciona con la posición del Sol en el exterior. La abeja utiliza la gravedad como referencia dentro de la colmena. Así sus compañeras pueden interpretar hacia dónde volar.",
-      "La duración del tramo de meneo aporta información sobre la distancia. Cuanto más dura ese tramo, más lejos suele estar la fuente de alimento. No es una medida perfecta como la de una regla. Es una señal biológica que ayuda a las recolectoras a orientarse.",
+      "El ángulo de esa parte recta aporta información sobre la [en:direction|dirección]. En un panal vertical, la orientación se relaciona con la posición del Sol en el exterior. La abeja utiliza la gravedad como referencia dentro de la colmena. Así sus compañeras pueden interpretar hacia dónde volar.",
+      "La duración del tramo de meneo aporta información sobre la [en:distance|distancia]. Cuanto más dura ese tramo, más lejos suele estar la fuente de alimento. No es una medida perfecta como la de una regla. Es una señal biológica que ayuda a las recolectoras a orientarse.",
       "Marcos preguntó si la danza indicaba siempre el mismo ángulo. La apicultora explicó que la posición del Sol cambia durante el día. Por eso una misma fuente puede representarse con un ángulo distinto según la hora. Las abejas tienen que relacionar la danza con el momento.",
       "La danza tampoco funciona como un mapa con calles y nombres. Comunica una dirección aproximada y una distancia estimada. Otras señales, como el olor de las flores, también pueden ayudar. Las compañeras siguen la información y después buscan la fuente en el entorno.",
       "La apicultora mostró un dibujo con dos recorridos. En uno, el tramo recto apuntaba hacia arriba. En otro, el recorrido formaba un ángulo diferente. Explicó que el ángulo cambia según la dirección de las flores respecto al Sol.",
       "Marcos comprendió que la colmena funciona como una comunidad organizada. Las abejas comparten información para encontrar recursos y mantener la colonia. No necesitan palabras ni un plano dibujado. Utilizan movimientos que otras pueden interpretar.",
-      "Antes de terminar, la apicultora recordó que las abejas también necesitan flores variadas y lugares seguros. Cuidar los espacios donde viven ayuda a los polinizadores. Marcos anotó que una danza puede contener información útil y que observar la naturaleza exige paciencia."
+      "Antes de terminar, la apicultora recordó que las abejas también necesitan flores variadas y lugares seguros. Cuidar los espacios donde viven ayuda a los polinizadores. Marcos anotó que una danza puede contener información útil y que observar la naturaleza exige paciencia.",
+      "La apicultora explicó que las abejas no ofrecen una dirección exacta como un navegador. La danza aporta pistas que las otras recolectoras combinan con el Sol, el paisaje y los olores. Es una forma eficaz de comunicación, aunque puede tener variaciones y margen de error."
     ],
     "questions": [
       {
