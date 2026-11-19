@@ -412,7 +412,7 @@ const BADGES=[
  {id:"perfect",e:"⭐",n:"Cinco de cinco",d:"Acierta las 5 preguntas",f:s=>s.perfect>=1},
  {id:"persist",e:"💪",n:"Nunca me rindo",d:"Aprueba tras volver a leer",f:s=>s.persist>=1},
  {id:"three",e:"📖",n:"Lector constante",d:"Supera 3 lecturas",f:s=>s.passes>=3},
- {id:"explorer",e:"🧭",n:"Explorador",d:"Lee sobre 6 gustos distintos",f:s=>s.topics.length>=6},
+ {id:"explorer",e:"🧭",n:"Explorador",d:"Lee sobre 6 temas distintos",f:s=>s.topics.length>=6},
  {id:"five",e:"🏆",n:"Súper lector",d:"Supera 5 lecturas",f:s=>s.passes>=5},
  {id:"points",e:"🌟",n:"Cazapuntos",d:"Consigue 150 puntos",f:s=>s.points>=150},
  {id:"ten",e:"👑",n:"Rey o reina de la lectura",d:"Supera 10 lecturas",f:s=>s.passes>=10}
@@ -839,7 +839,7 @@ function finish(){
     mk("h2","Has acertado "+right+" de 5");
     mk("p","Para conseguir premios necesitas acertar al menos 4. ¡Vuelve a leer con calma y fíjate en los detalles!");
     const b=mk("button","📖 Volver a leer","big pri");b.onclick=startReading;
-    const h=mk("button","Elegir otros gustos","link");h.onclick=goHome;
+    const h=mk("button","Elegir otro tema","link");h.onclick=goHome;
   }
   show("result");
 }
@@ -877,7 +877,7 @@ $("requestMoreStories").onclick=async()=>{
   const message=[
     "Solicitud de nuevas lecturas para Cuentitis.",
     "Tramo de edad: "+band(st.age),
-    "Gustos elegidos: "+st.likes.join(", "),
+    "Tema elegido: "+st.likes.join(", "),
     "Cuentos leídos en este dispositivo: "+loadSeenStories().length,
     "La petición se ha realizado desde la versión de desarrollo."
   ].join("\n");
