@@ -27,7 +27,7 @@ for r in data:
     eng=r.get("english",[])
     if not isinstance(eng,list): bad(i,"english debe ser una lista"); eng=[]
     if len(marks)!=len(eng): bad(i,"las marcas [en:…|…] no coinciden con la lista english")
-    if len(eng)>5: note(i,"más de 5 palabras en inglés")
+    if not 3<=len(eng)<=4: bad(i,"cada lectura debe incluir entre 3 y 4 palabras en inglés")
     if any(not isinstance(e,dict) or not str(e.get("en","")).strip() or not str(e.get("es","")).strip() for e in eng): bad(i,"entrada english incompleta")
     english_pairs={(e.get("en"),e.get("es")) for e in eng if isinstance(e,dict)}
     for en,es in marks:
