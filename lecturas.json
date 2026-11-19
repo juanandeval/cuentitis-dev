@@ -3508,6 +3508,12 @@
         "en": "blue",
         "es": "azulada"
       }
+    ],
+    "sources": [
+      {
+        "name": "Smithsonian Ocean – Cephalopods",
+        "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives"
+      }
     ]
   },
   {
@@ -3853,6 +3859,12 @@
       {
         "en": "slowly",
         "es": "despacio"
+      }
+    ],
+    "sources": [
+      {
+        "name": "NASA Science – Venus Facts",
+        "url": "https://science.nasa.gov/venus/venus-facts/"
       }
     ]
   },
@@ -4227,6 +4239,12 @@
         "en": "tissue",
         "es": "tejidos"
       }
+    ],
+    "sources": [
+      {
+        "name": "National Geographic – Axolotl",
+        "url": "https://www.nationalgeographic.com/animals/amphibians/facts/axolotl"
+      }
     ]
   },
   {
@@ -4597,6 +4615,12 @@
       {
         "en": "distance",
         "es": "distancia"
+      }
+    ],
+    "sources": [
+      {
+        "name": "NC State Extension – The Honey Bee Dance Language",
+        "url": "https://content.ces.ncsu.edu/honey-bee-dance-language"
       }
     ]
   }
