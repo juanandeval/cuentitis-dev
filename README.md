@@ -1,5 +1,5 @@
 # Cuentitis
-Web estática de lectura comprensiva (5-12 años). Sin servidor ni API: las lecturas están en `lecturas.json`.
+Web estática de lectura comprensiva (5-12 años). Sin servidor ni API: las lecturas están en `lecturas.json`. El catálogo actual contiene 50 lecturas, 16 temas y cuatro tramos de edad.
 
 ## Probar en local
 `python3 -m http.server 8000` y abre http://localhost:8000 (hace falta servidor; no vale abrir el archivo directamente).
@@ -12,7 +12,7 @@ Web estática de lectura comprensiva (5-12 años). Sin servidor ni API: las lect
 ## Añadir lecturas
 Pide a Claude lecturas nuevas con este prompt y pega el resultado dentro del array de `lecturas.json`:
 
-> Genera N lecturas en español de España para niños, en JSON con esta forma: {"id","band" (5-6|7-8|9-10|11-12),"topics" (1-2 de: Animales, Dinosaurios, Espacio, Fútbol, Princesas y reyes, Superhéroes, Piratas, Coches, Cocina, Ciencia, Dragones, Robots, Naturaleza y medioambiente, Música, Misterios y detectives, ¿Sabías que...?),"hero" (niño|niña|neutro),"title","paragraphs","questions" (5: {"q","options","answer" (índice desde 0),"why"}),"english"}. Longitud: 5-6 años, 350-550 palabras; 7-8, 380-600; 9-10 y 11-12, 450-650. Opciones: 3 por pregunta en 5-6 y 7-8 años, 4 en 9-10 y 11-12. 2 preguntas de detalle, 2 de inferencia, 1 de vocabulario o idea principal. Posición de la correcta variada. Cada lectura debe incluir 3-4 palabras en inglés marcadas con [en:english|español] y listadas en english. Lenguaje adaptado a la edad. Contenido positivo y apto para niños. En ¿Sabías que...? utiliza datos reales y contrastados con fuentes fiables.
+> Genera N lecturas en español de España para niños, en JSON con esta forma: {"id","band" (5-6|7-8|9-10|11-12),"topics" (1-2 de: Animales, Dinosaurios, Espacio, Fútbol, Princesas y reyes, Superhéroes, Piratas, Coches, Cocina, Ciencia, Dragones, Robots, Naturaleza y medioambiente, Música, Misterios y detectives, ¿Sabías que...?),"hero" (niño|niña|neutro),"title","paragraphs","questions" (5: {"q","options","answer" (índice desde 0),"why"}),"english","sources" (referencias cuando el tema sea ¿Sabías que...?)}. Longitud: 5-6 años, 350-550 palabras; 7-8, 380-600; 9-10 y 11-12, 450-650. Opciones: 3 por pregunta en 5-6 y 7-8 años, 4 en 9-10 y 11-12. 2 preguntas de detalle, 2 de inferencia, 1 de vocabulario o idea principal. Posición de la correcta variada. Cada lectura debe incluir 3-4 palabras en inglés marcadas con [en:english|español] y listadas en english. Lenguaje adaptado a la edad. Contenido positivo y apto para niños. En ¿Sabías que...? utiliza datos reales y contrastados con fuentes fiables; incluye `sources` como una lista de objetos `{"name":"Fuente","url":"https://..."}`. El validador exige al menos una referencia con URL HTTPS para cada lectura de esta categoría. Las referencias son editoriales y no se muestran en la vista infantil.
 
 Después ejecuta `python3 validate.py` para comprobar el formato.
 
