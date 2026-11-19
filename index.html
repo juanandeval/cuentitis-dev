@@ -180,9 +180,9 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <svg class="mascot" viewBox="0 0 120 120" role="img" aria-label="Cuentitis, la mascota"><use href="#mascot-sym"/></svg>
     <div><h1>Cuentitis <span class="devtag" aria-label="Versión de desarrollo">DEV</span></h1><p>Elige lo que más te gusta y te preparamos una lectura solo para ti.</p></div>
   </div>
-  <div class="card"><h2 class="hd"><span>Elige las 3 cosas que más te gustan <span class="count" id="cnt"></span></span><button class="info" data-info="likes" aria-label="Más información"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></h2><p class="hint" style="margin:-.2em 0 12px">La primera que elijas será la principal.</p><div class="likes-grid" id="likes"></div></div>
+  <div class="card"><h2 class="hd"><span>¿Qué tema te gusta más?</span><button class="info" data-info="likes" aria-label="Más información"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></h2><p class="hint" style="margin:-.2em 0 12px">Elige un tema favorito. ¡Podrás cambiarlo cuando quieras!</p><div class="likes-grid" id="likes"></div></div>
   <button class="big" id="go" disabled>✨ ¡Crear mi lectura!</button>
-  <p class="hint center" id="gohint">Elige 3 gustos.</p>
+  <p class="hint center" id="gohint">Elige tu tema favorito para empezar.</p>
 </section>
 
 <section id="loading" hidden class="card center">
@@ -286,9 +286,8 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <svg class="mascot" viewBox="0 0 120 120" aria-hidden="true"><use href="#mascot-sym"/></svg>
     <div class="emoji">📚✨</div>
     <h2 id="noMoreStoriesTitle">¡Te has leído todos estos cuentos!</h2>
-    <p>Ya no quedan cuentos nuevos para tu edad y los gustos que has elegido.</p>
-    <p>Prueba a cambiar algún gusto o pídenos más historias.</p>
-    <button class="big pri" id="changeStoryLikes" type="button">🎨 Cambiar mis gustos</button>
+    <p>¡Has leído todas las lecturas disponibles para tu edad!</p>
+    <p>Pide a un adulto que reinicie tus cuentos desde Información para familias o solicita nuevas historias.</p>
     <button class="big" id="requestMoreStories" type="button">✉️ Solicitar más cuentos</button>
     <p class="hint" id="moreStoriesStatus" role="status"></p>
     <button class="link" id="closeNoMoreStories" type="button">Ahora no</button>
@@ -334,7 +333,7 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
   <div class="ai"><b>🤖 Contenido creado con inteligencia artificial.</b> Todas las lecturas y preguntas están generadas con IA (Claude, de Anthropic). Han pasado comprobaciones automáticas de formato, longitud, puntuación y una doble comprobación para que el contenido esté adaptado a la edad por otra IA, en este caso, Gemini; aun así, pueden contener errores o frases mejorables.</div>
   <h3>Cómo funciona</h3>
   <ul>
-    <li>La primera vez, la familia introduce la fecha de nacimiento. Cuentitis calcula la edad automáticamente y selecciona lecturas del tramo correspondiente. Después se eligen 3 gustos: el primero que se marca es el tema principal y los otros dos aparecen como detalles.</li>
+    <li>La primera vez, la familia introduce la fecha de nacimiento. Cuentitis calcula la edad automáticamente y selecciona lecturas del tramo correspondiente. Después se elige un tema favorito para orientar las lecturas.</li>
     <li>Cuando llega un cumpleaños, aparece una felicitación. Al aceptarla, Cuentitis actualiza la edad y adapta las lecturas al nuevo tramo automáticamente.</li>
     <li>Se le propone una lectura adaptada a su edad. Al llegar al final del texto se activa el botón «Ya me lo he leído».</li>
     <li>Después responde 5 preguntas tipo test sobre lo que ha leído.</li>
@@ -342,8 +341,8 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
   </ul>
   <h3>Qué ofrece</h3>
   <ul>
-    <li><b id="nRead">Varias</b> lecturas originales de unas 350 a 500 palabras, en cuatro tramos de edad: 5-6, 7-8, 9-10 y 11-12 años.</li>
-    <li>12 temas para elegir: animales, dinosaurios, espacio, fútbol, princesas y reyes, superhéroes, piratas, coches, cocina, ciencia, dragones y robots.</li>
+    <li><b id="nRead">50</b> lecturas originales de entre 350 y 650 palabras, adaptadas a cuatro tramos de edad: 5-6, 7-8, 9-10 y 11-12 años.</li>
+    <li>16 temas para elegir: animales, dinosaurios, espacio, fútbol, princesas y reyes, superhéroes, piratas, coches, cocina, ciencia, dragones, robots, naturaleza y medioambiente, música, misterios y detectives, y ¿Sabías que...?</li>
     <li>Frases y vocabulario adaptados a cada edad: más sencillos en los pequeños y más ricos en los mayores.</li>
     <li>En cada lectura, 3 o 4 palabras básicas aparecen en inglés en lugar de en español (por ejemplo, table o sleep) y están resaltadas. Al pulsarlas se ve su traducción y se escucha su pronunciación, si el dispositivo lo permite. Al final del texto se repasan todas.</li>
     <li>Preguntas sobre datos del texto, deducciones, vocabulario e idea principal, con 3 opciones hasta los 8 años y 4 desde los 9.</li>
@@ -401,7 +400,12 @@ async function loadLatestCommit(){
   }
 }
 const $=id=>document.getElementById(id);
-const LIKES=[["🐶","Animales"],["🦖","Dinosaurios"],["🚀","Espacio"],["⚽","Fútbol"],["👑","Princesas y reyes"],["🦸","Superhéroes"],["🏴‍☠️","Piratas"],["🚗","Coches"],["🍰","Cocina"],["🔬","Ciencia"],["🐉","Dragones"],["🤖","Robots"]];
+const LIKES=[
+ ["🐶","Animales"],["🦖","Dinosaurios"],["🚀","Espacio"],["⚽","Fútbol"],
+ ["👑","Princesas y reyes"],["🦸","Superhéroes"],["🏴‍☠️","Piratas"],["🚗","Coches"],
+ ["🍰","Cocina"],["🔬","Ciencia"],["🐉","Dragones"],["🤖","Robots"],
+ ["🌳","Naturaleza y medioambiente"],["🎵","Música"],["🕵️","Misterios y detectives"],["🧠","¿Sabías que...?"]
+];
 const POINTS=10;
 const BADGES=[
  {id:"first",e:"🌱",n:"Primera lectura",d:"Supera tu primer test",f:s=>s.passes>=1},
@@ -639,12 +643,13 @@ function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$
 /* ---------- Inicio ---------- */
 function drawHome(){
   $("agePill").hidden=!st.age;$("ageNum").textContent=st.age||"";
-  $("likes").innerHTML="";LIKES.forEach(([emoji,name])=>{
-    const on=st.likes.includes(name),isMain=on&&st.likes[0]===name;
+  $("likes").innerHTML="";
+  LIKES.forEach(([emoji,name])=>{
+    const selected=st.likes[0]===name;
     const button=document.createElement("button");
     button.type="button";
     button.className="chip";
-    if(isMain)button.classList.add("main");
+    if(selected)button.classList.add("main");
     const icon=document.createElement("span");
     icon.className="like-emoji";
     icon.textContent=emoji;
@@ -653,22 +658,19 @@ function drawHome(){
     label.className="like-name";
     label.textContent=name;
     button.append(icon,label);
-    if(isMain){
-      const principal=document.createElement("small");
-      principal.textContent="Principal";
-      button.appendChild(principal);
+    if(selected){
+      const tag=document.createElement("small");
+      tag.textContent="Elegido";
+      button.appendChild(tag);
     }
-    button.setAttribute("aria-pressed",String(on));
-    button.setAttribute("aria-label",name+(isMain?", tema principal":""));
-    button.disabled=!on&&st.likes.length>=3;
-    button.onclick=()=>{
-      st.likes=on?st.likes.filter(x=>x!==name):[...st.likes,name];
-      drawHome();
-    };
+    button.setAttribute("aria-pressed",String(selected));
+    button.setAttribute("aria-label",name+(selected?", tema elegido":""));
+    button.onclick=()=>{st.likes=[name];drawHome()};
     $("likes").appendChild(button);
   });
-  $("cnt").textContent="("+st.likes.length+"/3)";
-  const ok=st.likes.length>=3;$("go").disabled=!ok;$("gohint").hidden=!!ok;
+  const ok=st.likes.length===1;
+  $("go").disabled=!ok;
+  $("gohint").hidden=ok;
 }
 function drawBadges(boxId,starsId,newOnes){
   $(starsId).textContent="⭐ "+stats.points+" puntos · "+stats.passes+(stats.passes===1?" lectura superada":" lecturas superadas");
@@ -720,16 +722,11 @@ function updateSeenCount(){
 }
 function pickReading(bank,likes,age){
   const seen=loadSeenStories();
-  const agePool=bank.filter(r=>r.band===band(age));
-  const relevant=agePool.filter(r=>(r.topics||[]).some(topic=>likes.includes(topic)));
-  const available=relevant.filter(r=>!seen.includes(r.id));
+  const available=bank.filter(r=>r.band===band(age)&&!seen.includes(r.id));
   if(!available.length)return null;
-  const score=r=>{
-    const topics=r.topics||[];
-    return (topics.includes(likes[0])?100:0)+
-      likes.slice(1).reduce((sum,topic)=>sum+(topics.includes(topic)?20:0),0)+Math.random();
-  };
-  return available.map(r=>[score(r),r]).sort((a,b)=>b[0]-a[0])[0][1];
+  const preferred=available.filter(r=>(r.topics||[]).includes(likes[0]));
+  const pool=preferred.length?preferred:available;
+  return pool[Math.floor(Math.random()*pool.length)];
 }
 async function generate(){
   show("loading");
@@ -748,7 +745,7 @@ async function generate(){
       return;
     }
     if(!Array.isArray(data.paragraphs)||!Array.isArray(data.questions)||data.questions.length<5)throw new Error("La lectura llegó incompleta.");
-    story={id:data.id,topics:[picks[0]],title:String(data.title||"Tu lectura"),paragraphs:data.paragraphs.map(String),questions:data.questions.slice(0,5),english:Array.isArray(data.english)?data.english:[]};
+    story={id:data.id,topics:Array.isArray(data.topics)?data.topics:[picks[0]],title:String(data.title||"Tu lectura"),paragraphs:data.paragraphs.map(String),questions:data.questions.slice(0,5),english:Array.isArray(data.english)?data.english:[]};
     failedBefore=false;
     startReading();
   }catch(e){
@@ -872,11 +869,6 @@ $("ageModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthdayModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthForm").addEventListener("submit",saveBirthDate);
 $("acceptBirthday").onclick=acceptBirthday;
-$("changeStoryLikes").onclick=()=>{
-  $("noMoreStoriesModal").close();
-  drawHome();
-  show("home");
-};
 $("closeNoMoreStories").onclick=()=>$("noMoreStoriesModal").close();
 $("requestMoreStories").onclick=async()=>{
   const button=$("requestMoreStories"),status=$("moreStoriesStatus");
@@ -989,7 +981,7 @@ $("fbForm").addEventListener("submit",async e=>{
 });
 $("pclose").onclick=()=>$("parentModal").close();
 $("parentModal").addEventListener("click",e=>{if(e.target===$("parentModal"))$("parentModal").close()});
-const INFO={likes:{t:"Gustos y tema principal",b:"Elige 3 gustos. El primero que marques será el tema principal de la lectura (se pone en verde) y los otros dos aparecerán como detalles secundarios de la historia. Si quitas el primero, el siguiente pasa a ser el principal. Así los textos se centran en lo que más le gusta al niño y son más fáciles de seguir."}};
+const INFO={likes:{t:"Tu tema favorito",b:"Elige un solo tema. Cuentitis buscará primero lecturas nuevas relacionadas con ese tema. Cuando ya las hayas leído, te ofrecerá otras historias que todavía no hayas leído de tu edad. Así podrás seguir descubriendo cuentos sin repetirlos."}};
 document.querySelectorAll(".info").forEach(b=>b.onclick=()=>{const i=INFO[b.dataset.info];$("ititle").textContent=i.t;$("ibody").textContent=i.b;$("infoModal").showModal()});
 $("iclose").onclick=()=>$("infoModal").close();
 $("infoModal").addEventListener("click",e=>{if(e.target===$("infoModal"))$("infoModal").close()});
