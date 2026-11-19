@@ -261,6 +261,30 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
   </div>
 </dialog>
 
+<dialog id="noMoreStoriesModal" aria-labelledby="noMoreStoriesTitle">
+  <div class="center">
+    <svg class="mascot" viewBox="0 0 120 120" aria-hidden="true"><use href="#mascot-sym"/></svg>
+    <div class="emoji">📚✨</div>
+    <h2 id="noMoreStoriesTitle">¡Te has leído todos estos cuentos!</h2>
+    <p>Ya no quedan cuentos nuevos para tu edad y los gustos que has elegido.</p>
+    <p>Prueba a cambiar algún gusto o pídenos más historias.</p>
+    <button class="big pri" id="changeStoryLikes" type="button">🎨 Cambiar mis gustos</button>
+    <button class="big" id="requestMoreStories" type="button">✉️ Solicitar más cuentos</button>
+    <p class="hint" id="moreStoriesStatus" role="status"></p>
+    <button class="link" id="closeNoMoreStories" type="button">Ahora no</button>
+  </div>
+</dialog>
+
+<dialog id="resetSeenModal" aria-labelledby="resetSeenTitle">
+  <div class="center">
+    <div class="emoji">🔄</div>
+    <h2 id="resetSeenTitle">¿Volvemos a empezar?</h2>
+    <p>Los cuentos que ya has leído volverán a estar disponibles. Tus puntos e insignias se conservarán.</p>
+    <button class="big pri" id="confirmResetSeen" type="button">Sí, reiniciar cuentos</button>
+    <button class="link" id="cancelResetSeen" type="button">Cancelar</button>
+  </div>
+</dialog>
+
 <dialog id="fbModal" aria-labelledby="fbtitle">
   <div class="mhead"><h2 id="fbtitle">💬 Envíanos tus comentarios</h2><button class="chip" id="fbclose" aria-label="Cerrar">✕</button></div>
   <p>Cuentitis está en fase beta. Cuéntanos qué mejorarías o qué ha fallado. Este formulario es para adultos.</p>
@@ -307,6 +331,10 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
   </ul>
   <h3>Edad</h3>
   <p>Edad calculada: <b id="ageNow"></b>. <button class="flink" id="ageChange">Cambiar fecha de nacimiento</button></p>
+  <h3>Cuentos leídos</h3>
+  <p>En este dispositivo se han leído <b id="seenCount">0</b> cuentos. Las historias ya leídas no vuelven a aparecer.</p>
+  <button class="flink" id="resetSeen">Reiniciar cuentos vistos</button>
+  <p class="hint">Esto permite volver a leer las historias desde el principio. No borra puntos ni premios.</p>
   <h3>Privacidad</h3>
   <ul>
     <li>No hay cuentas. La fecha de nacimiento se guarda únicamente en el almacenamiento local del navegador de este dispositivo y no se envía a ningún servidor.</li>
@@ -604,13 +632,36 @@ function checkNew(bank){
     try{localStorage.setItem("lector_known",JSON.stringify(ids))}catch(e){}
     $("newTag").hidden=true};
 }
-function pickReading(bank,likes,age,gender){
-  let seen=[];try{seen=JSON.parse(localStorage.getItem("lector_seen")||"[]")}catch(e){}
-  let pool=bank.filter(r=>r.band===band(age));if(!pool.length)pool=bank;
-  const sc=r=>{let s=Math.random(),t=r.topics||[];if(t.includes(likes[0]))s+=8;likes.slice(1).forEach(l=>{if(t.includes(l))s+=2});if(!seen.includes(r.id))s+=5;return s};
-  const best=pool.map(r=>[sc(r),r]).sort((x,y)=>y[0]-x[0])[0][1];
-  try{localStorage.setItem("lector_seen",JSON.stringify([...seen.filter(x=>x!==best.id),best.id].slice(-60)))}catch(e){}
-  return best}
+function loadSeenStories(){
+  try{
+    const value=JSON.parse(localStorage.getItem("lector_seen")||"[]");
+    return Array.isArray(value)?[...new Set(value.filter(x=>typeof x==="string"))]:[];
+  }catch(e){return []}
+}
+function saveSeenStories(ids){
+  try{localStorage.setItem("lector_seen",JSON.stringify([...new Set(ids)]));return true}catch(e){return false}
+}
+function markStorySeen(id){
+  if(!id)return;
+  saveSeenStories([...loadSeenStories(),id]);
+}
+function updateSeenCount(){
+  const el=$("seenCount");
+  if(el)el.textContent=String(loadSeenStories().length);
+}
+function pickReading(bank,likes,age){
+  const seen=loadSeenStories();
+  const agePool=bank.filter(r=>r.band===band(age));
+  const relevant=agePool.filter(r=>(r.topics||[]).some(topic=>likes.includes(topic)));
+  const available=relevant.filter(r=>!seen.includes(r.id));
+  if(!available.length)return null;
+  const score=r=>{
+    const topics=r.topics||[];
+    return (topics.includes(likes[0])?100:0)+
+      likes.slice(1).reduce((sum,topic)=>sum+(topics.includes(topic)?20:0),0)+Math.random();
+  };
+  return available.map(r=>[score(r),r]).sort((a,b)=>b[0]-a[0])[0][1];
+}
 async function generate(){
   show("loading");
   const msgs=["Buscando tu lectura…","Buscando personajes geniales…","Preparando preguntas…","Puliendo las últimas palabras…"];let m=0;
@@ -619,8 +670,16 @@ async function generate(){
     await new Promise(r=>setTimeout(r,700));
     const bank=await loadBank();const picks=[...st.likes];
     const data=pickReading(bank,picks,st.age);
-    if(!data||!Array.isArray(data.paragraphs)||!Array.isArray(data.questions)||data.questions.length<5)throw new Error("La lectura llegó incompleta.");
-    story={topics:[picks[0]],title:String(data.title||"Tu lectura"),paragraphs:data.paragraphs.map(String),questions:data.questions.slice(0,5),english:Array.isArray(data.english)?data.english:[]};
+    if(!data){
+      $("moreStoriesStatus").textContent="";
+      $("requestMoreStories").disabled=false;
+      $("requestMoreStories").textContent="✉️ Solicitar más cuentos";
+      show("home");
+      $("noMoreStoriesModal").showModal();
+      return;
+    }
+    if(!Array.isArray(data.paragraphs)||!Array.isArray(data.questions)||data.questions.length<5)throw new Error("La lectura llegó incompleta.");
+    story={id:data.id,topics:[picks[0]],title:String(data.title||"Tu lectura"),paragraphs:data.paragraphs.map(String),questions:data.questions.slice(0,5),english:Array.isArray(data.english)?data.english:[]};
     failedBefore=false;
     startReading();
   }catch(e){
@@ -668,7 +727,7 @@ window.addEventListener("scroll",()=>{
 },{passive:true});
 $("smaller").onclick=()=>{fs=Math.max(-3,fs-1);applyFont()};
 $("bigger").onclick=()=>{fs=Math.min(5,fs+1);applyFont()};
-$("done").onclick=()=>{qi=0;right=0;showQ();show("quiz")};
+$("done").onclick=()=>{markStorySeen(story&&story.id);qi=0;right=0;showQ();show("quiz")};
 
 /* ---------- Test ---------- */
 function showQ(){
@@ -727,13 +786,69 @@ $("mclose").onclick=()=>$("modal").close();
 $("infoBtn").onclick=()=>{
   const dob=birthDate?new Date(birthDate+"T12:00:00").toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"}):"sin indicar";
   $("ageNow").textContent=st.age?st.age+" años · nacimiento: "+dob:"sin indicar";
+  updateSeenCount();
   $("parentModal").showModal();
 };
 $("ageChange").onclick=()=>{$("parentModal").close();openAge()};
+$("resetSeen").onclick=()=>$("resetSeenModal").showModal();
+$("cancelResetSeen").onclick=()=>$("resetSeenModal").close();
+$("confirmResetSeen").onclick=()=>{
+  saveSeenStories([]);
+  updateSeenCount();
+  $("resetSeenModal").close();
+  $("parentModal").close();
+};
+$("resetSeenModal").addEventListener("cancel",e=>e.preventDefault());
 $("ageModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthdayModal").addEventListener("cancel",e=>e.preventDefault());
 $("birthForm").addEventListener("submit",saveBirthDate);
 $("acceptBirthday").onclick=acceptBirthday;
+$("changeStoryLikes").onclick=()=>{
+  $("noMoreStoriesModal").close();
+  drawHome();
+  show("home");
+};
+$("closeNoMoreStories").onclick=()=>$("noMoreStoriesModal").close();
+$("requestMoreStories").onclick=async()=>{
+  const button=$("requestMoreStories"),status=$("moreStoriesStatus");
+  button.disabled=true;
+  status.textContent="Enviando la petición…";
+  const message=[
+    "Solicitud de nuevas lecturas para Cuentitis.",
+    "Tramo de edad: "+band(st.age),
+    "Gustos elegidos: "+st.likes.join(", "),
+    "Cuentos leídos en este dispositivo: "+loadSeenStories().length,
+    "La petición se ha realizado desde la versión de desarrollo."
+  ].join("\n");
+  try{
+    const response=await fetch(FORM_ENDPOINT,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({
+        _subject:"Cuentitis: solicitud de más cuentos",
+        _template:"table",
+        _captcha:"false",
+        Tipo:"Solicitud de nuevos cuentos",
+        Mensaje:message,
+        Correo:"Solicitud desde la aplicación"
+      })
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok||result.success===false||result.success==="false")throw new Error(result.message||("código "+response.status));
+    status.textContent="¡Petición enviada! Gracias por ayudarnos a crear más cuentos. 💜";
+    button.textContent="✓ Petición enviada";
+  }catch(error){
+    status.textContent="No se ha podido enviar automáticamente. Puedes escribirnos por correo:";
+    const link=document.createElement("a");
+    link.href="mailto:cuentitis.app@gmail.com?subject="+encodeURIComponent("Cuentitis: solicitud de más cuentos")+"&body="+encodeURIComponent(message);
+    link.textContent="Enviar petición por correo";
+    link.style.display="block";
+    link.style.marginTop="8px";
+    status.appendChild(link);
+    button.disabled=false;
+  }
+};
+$("noMoreStoriesModal").addEventListener("cancel",e=>e.preventDefault());
 // Comentarios beta: reenvío a correo con FormSubmit. Se usa su código aleatorio en lugar del correo, para no mostrarlo en la página.
 // Opción alternativa: clave de Web3Forms (web3forms.com). Si se rellena, se usa en lugar de FormSubmit.
 const W3_KEY="";
