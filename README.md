@@ -45,4 +45,4 @@ La web las muestra resaltadas. Al pulsarlas aparece un aviso con la traducción 
 - El glosario debe coincidir carácter por carácter con las parejas de las etiquetas; incluye las formas plurales o de género usadas en el relato.
 - Evita verbos conjugados: utiliza infinitivos o formas adecuadas (`[en:asleep|dormido]`).
 - Nivel: 5-6 años, colores, animales y objetos; 7-8, casa, comida y naturaleza; 9-10 y 11-12, palabras cotidianas algo más largas.
-- `validate.py` comprueba que el número de marcas coincida con la lista `english`, y cuenta las palabras como si siguieran en español.
+- `validate.py` comprueba que cada pareja de las etiquetas coincida exactamente con `english`, detecta sufijos fuera de los corchetes y exige opciones completas, respuestas válidas y explicaciones `why`.
