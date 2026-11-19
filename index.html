@@ -89,7 +89,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .fsz{display:flex;gap:6px}
 dialog{overflow:auto}
 .foot{max-width:860px;margin:0 auto;padding:4px 16px 36px;text-align:center;color:var(--soft);font-size:.85rem}
-@media (max-width:640px){.foot .sep{display:none}.foot .g{display:block}}
+.commit-meta{font-size:.8rem;opacity:.9}
+.commit-link{color:var(--pri);font-weight:800;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+@media (max-width:640px){.foot .sep{display:none}.foot .g{display:block}.foot .commit-meta{margin-top:4px}}
 .en{font:inherit;font-weight:700;color:var(--pri);background:var(--chip);border:0;border-bottom:2px dashed var(--pri);border-radius:6px 6px 0 0;padding:0 4px;margin:0;cursor:pointer}
 .en:active{transform:scale(.97)}
 .en.gl{font-size:1rem;border:2px dashed var(--pri);border-radius:999px;padding:6px 14px;white-space:nowrap}
@@ -217,7 +219,13 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
 </section>
 
 </main>
-<footer class="foot"><span class="g">Cuentitis · versión beta · Contenido creado con IA</span><span class="sep"> · </span><span class="g">Ayúdame a mejorarlo: <button class="flink" id="fbOpen">💬 Enviar comentarios</button></span></footer>
+<footer class="foot">
+  <span class="g">Cuentitis · versión beta · Contenido creado con IA</span>
+  <span class="sep"> · </span>
+  <span class="g">Ayúdame a mejorarlo: <button class="flink" id="fbOpen">💬 Enviar comentarios</button></span>
+  <span class="sep"> · </span>
+  <span class="g commit-meta">Último commit: <a id="latestCommitLink" class="commit-link" href="https://github.com/juanandeval/cuentitis-dev/commits/main" target="_blank" rel="noopener noreferrer">ver historial</a></span>
+</footer>
 
 <dialog id="ageModal" aria-labelledby="agetitle">
   <div class="center">
@@ -362,6 +370,39 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
 <div id="appToast" class="app-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
 
 <script>
+async function loadLatestCommit(){
+  const link=$("latestCommitLink");
+  if(!link)return;
+  const historyUrl="https://github.com/juanandeval/cuentitis-dev/commits/main";
+  link.href=historyUrl;
+  try{
+    const response=await fetch("https://api.github.com/repos/juanandeval/cuentitis-dev/commits?sha=main&per_page=1",{
+      headers:{Accept:"application/vnd.github+json"}
+    });
+    if(!response.ok)throw new Error("GitHub API: "+response.status);
+    const commits=await response.json();
+    const latest=Array.isArray(commits)?commits[0]:null;
+    if(!latest||!latest.sha)throw new Error("No se encontró el último commit");
+    const dateValue=latest.commit?.committer?.date||latest.commit?.author?.date;
+    const date=dateValue?new Date(dateValue):null;
+    const dateText=date&&!Number.isNaN(date.getTime())
+      ?" · "+new Intl.DateTimeFormat("es-ES",{day:"numeric",month:"short",year:"numeric"}).format(date)
+      :"";
+    const shortSha=latest.sha.slice(0,7);
+    const message=String(latest.commit?.message||"").split("\n")[0];
+    link.href=latest.html_url||historyUrl;
+    link.textContent="#"+shortSha+dateText;
+    link.title=(message?message+" · ":"")+"Abrir este commit en GitHub";
+    link.setAttribute("aria-label","Último commit "+shortSha+(dateText?dateText.replace(" · "," · "):"")+". "+(message||"Ver cambios")+"");
+  }catch(error){
+    // Si GitHub no responde, el enlace al historial completo sigue disponible.
+    link.href=historyUrl;
+    link.textContent="ver historial";
+    link.title="Consultar el historial de cambios de Cuentitis DEV";
+    link.setAttribute("aria-label","Ver historial de cambios de Cuentitis DEV");
+  }
+}
+
 "use strict";
 const $=id=>document.getElementById(id);
 const LIKES=[["🐶","Animales"],["🦖","Dinosaurios"],["🚀","Espacio"],["⚽","Fútbol"],["👑","Princesas y reyes"],["🦸","Superhéroes"],["🏴‍☠️","Piratas"],["🚗","Coches"],["🍰","Cocina"],["🔬","Ciencia"],["🐉","Dragones"],["🤖","Robots"]];
@@ -933,6 +974,7 @@ loadBank().then(b=>{$("nRead").textContent=b.length;checkNew(b)}).catch(()=>{});
 $("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").close()});
 loadBirthProfile();
 drawHome();
+loadLatestCommit();
 if(!birthDate)openAge();
 else if(birthdayPendingAge!==null)openBirthday();
 </script>
