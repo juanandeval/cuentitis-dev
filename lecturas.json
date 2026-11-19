@@ -86,7 +86,7 @@
       },
       {
         "en": "friend",
-        "es": "amigo"
+        "es": "amiga"
       }
     ]
   },
@@ -727,12 +727,12 @@
         "es": "lluvia"
       },
       {
-        "en": "sleep",
-        "es": "dormir"
+        "en": "asleep",
+        "es": "dormido"
       },
       {
-        "en": "friend",
-        "es": "amigo"
+        "en": "friends",
+        "es": "amigos"
       }
     ]
   },
@@ -918,8 +918,8 @@
     ],
     "english": [
       {
-        "en": "sandwich",
-        "es": "bocadillo"
+        "en": "sandwiches",
+        "es": "bocadillos"
       },
       {
         "en": "notebook",
@@ -1112,8 +1112,8 @@
     ],
     "english": [
       {
-        "en": "star",
-        "es": "estrella"
+        "en": "stars",
+        "es": "estrellas"
       },
       {
         "en": "sky",
@@ -1217,7 +1217,7 @@
       },
       {
         "en": "teacher",
-        "es": "profesor"
+        "es": "profesora"
       },
       {
         "en": "football",
@@ -1408,8 +1408,8 @@
         "es": "verde"
       },
       {
-        "en": "duck",
-        "es": "pato"
+        "en": "ducks",
+        "es": "patos"
       },
       {
         "en": "sad",
@@ -1498,8 +1498,8 @@
         "es": "silla"
       },
       {
-        "en": "book",
-        "es": "libro"
+        "en": "books",
+        "es": "libros"
       },
       {
         "en": "notebook",
@@ -1787,8 +1787,8 @@
         "es": "jardín"
       },
       {
-        "en": "bird",
-        "es": "pájaro"
+        "en": "birds",
+        "es": "pájaros"
       },
       {
         "en": "water",
@@ -1880,8 +1880,8 @@
         "es": "grande"
       },
       {
-        "en": "star",
-        "es": "estrella"
+        "en": "stars",
+        "es": "estrellas"
       }
     ]
   },
@@ -2062,8 +2062,8 @@
         "es": "rey"
       },
       {
-        "en": "sleep",
-        "es": "dormir"
+        "en": "asleep",
+        "es": "dormido"
       },
       {
         "en": "castle",
@@ -2157,8 +2157,8 @@
     ],
     "english": [
       {
-        "en": "map",
-        "es": "mapa"
+        "en": "maps",
+        "es": "mapas"
       },
       {
         "en": "sky",
@@ -2166,7 +2166,7 @@
       },
       {
         "en": "captain",
-        "es": "capitán"
+        "es": "capitana"
       },
       {
         "en": "sleep",
@@ -2456,7 +2456,7 @@
     "english": [
       {
         "en": "teacher",
-        "es": "profesor"
+        "es": "profesora"
       },
       {
         "en": "grandfather",
@@ -2464,7 +2464,7 @@
       },
       {
         "en": "engineer",
-        "es": "ingeniero"
+        "es": "ingeniera"
       }
     ]
   },
@@ -2478,7 +2478,7 @@
     "hero": "niña",
     "title": "Tina y el caracol que iba deprisa",
     "paragraphs": [
-      "Tina vivía en una casa con un [en:garden|jardín] lleno de flores. Le gustaba mirar las hormigas, las mariposas y los [en:small|pequeños] bichos que se escondían bajo las [en:leaf|hoja]s. Su abuelo le había regalado una lupa y una libreta. Cada mañana salía al jardín para descubrir algo nuevo. Un día encontró un caracol junto a una maceta. Tenía una concha marrón con rayas doradas y dos antenas muy largas. Tina se agachó para verlo mejor, pero tuvo cuidado de no tocarlo.",
+      "Tina vivía en una casa con un [en:garden|jardín] lleno de flores. Le gustaba mirar las hormigas, las mariposas y los [en:small|pequeños] bichos que se escondían bajo las [en:leaves|hojas]. Su abuelo le había regalado una lupa y una libreta. Cada mañana salía al jardín para descubrir algo nuevo. Un día encontró un caracol junto a una maceta. Tenía una concha marrón con rayas doradas y dos antenas muy largas. Tina se agachó para verlo mejor, pero tuvo cuidado de no tocarlo.",
       "—Hola, caracol —susurró Tina—. ¿Adónde vas tan temprano? El caracol no contestó, claro. Pero Tina vio que avanzaba muy rápido para ser un caracol. Dejó una línea brillante detrás de él y llegó hasta una piedra en pocos minutos. Tina abrió mucho los ojos. ¡Aquel animal parecía tener mucha prisa! Lo llamó Rayo y decidió seguirlo con cuidado, sin pisar las plantas ni mover las piedras del camino.",
       "Rayo pasó junto a una flor amarilla, rodeó una regadera y subió por una hoja grande. Después se quedó quieto. Tina pensó que estaba cansado, pero entonces vio algo pequeño debajo de la hoja. Eran tres caracolitos. Uno tenía la concha clara y los otros dos eran casi iguales. Tina sonrió. Rayo no corría por jugar. Estaba buscando a sus pequeños. La niña esperó un momento y vio cómo los caracolitos se acercaban despacio a su familia.",
       "Tina fue a buscar a su abuelo. Él se agachó para mirar y explicó que los caracoles necesitan lugares húmedos para no secarse. Por eso Rayo había elegido aquel rincón, donde la tierra estaba fresca. El abuelo también le enseñó que los caracoles dejan un rastro de baba que les ayuda a deslizarse. Tina apuntó todo en su libreta y dibujó una concha con rayas. Quería recordar lo que había aprendido aquel día.",
@@ -2543,12 +2543,12 @@
         "es": "jardín"
       },
       {
-        "en": "leaf",
-        "es": "hoja"
-      },
-      {
         "en": "small",
         "es": "pequeños"
+      },
+      {
+        "en": "leaves",
+        "es": "hojas"
       }
     ]
   },
@@ -2561,7 +2561,7 @@
     "hero": "niño",
     "title": "Pablo y la tortilla voladora",
     "paragraphs": [
-      "El sábado, Pablo quiso preparar el desayuno para su familia. Su padre estaba leyendo en el sofá y su hermana Clara aún dormía. Pablo se puso un delantal azul y colocó un [en:bowl|cuenco] sobre la mesa. Quería hacer una tortilla francesa, porque era fácil y le encantaban los [en:egg|huevo]s. Su padre le dijo que podía ayudarle, pero Pablo respondió que ya era un cocinero mayor. Había visto muchas recetas y estaba seguro de que todo saldría bien.",
+      "El sábado, Pablo quiso preparar el desayuno para su familia. Su padre estaba leyendo en el sofá y su hermana Clara aún dormía. Pablo se puso un delantal azul y colocó un [en:bowl|cuenco] sobre la mesa. Quería hacer una tortilla francesa, porque era fácil y le encantaban los [en:eggs|huevos]. Su padre le dijo que podía ayudarle, pero Pablo respondió que ya era un cocinero mayor. Había visto muchas recetas y estaba seguro de que todo saldría bien.",
       "Primero sacó dos huevos de la nevera. Los rompió con mucho cuidado y los echó en el cuenco. Después añadió un poco de leche y los batió con un tenedor. La mezcla quedó amarilla y espumosa. Pablo puso una sartén en el fuego, siempre con su padre al lado, y esperó a que se calentara. Cuando la mezcla empezó a cuajar, Pablo quiso darle la vuelta como había visto en la televisión.",
       "Sujetó el mango, movió la sartén y lanzó la tortilla hacia arriba. ¡Pero la tortilla subió más de lo esperado! Pasó por encima de su cabeza, dio una vuelta en el aire y aterrizó sobre el [en:hat|gorro] del padre. Durante un segundo nadie dijo nada. Luego Pablo soltó una carcajada. Su padre se miró en el espejo y vio una tortilla redonda encima de su cabeza, como si fuera un sombrero amarillo.",
       "Clara apareció en la puerta, todavía medio dormida, y preguntó si había llegado un plato nuevo a la familia. El padre se quitó la tortilla con cuidado y la puso otra vez en el plato. No se había caído al suelo, pero estaba un poco doblada. Pablo pensó que el desayuno estaba perdido. Sin embargo, su padre sonrió y dijo que las mejores recetas a veces tienen una sorpresa.",
@@ -2626,8 +2626,8 @@
         "es": "cuenco"
       },
       {
-        "en": "egg",
-        "es": "huevo"
+        "en": "eggs",
+        "es": "huevos"
       },
       {
         "en": "hat",
@@ -2817,7 +2817,7 @@
     "paragraphs": [
       "En el barrio de Sofía había una [en:street|calle] donde las farolas se apagaban siempre unos minutos antes de las diez. Al principio, los vecinos pensaron que se trataba de una avería, pero el electricista revisó la instalación y no encontró ningún problema. Una noche, Sofía observó que las luces parpadeaban justo cuando pasaba un coche blanco con una pegatina de una estrella en la luna trasera. Le llamó la atención que ocurriera casi a la misma hora.",
       "Su curiosidad pudo más que el sueño. Durante tres tardes tomó notas desde la ventana, sin salir de casa ni acercarse a la carretera. Apuntó la hora, el color de los vehículos y si las farolas se apagaban. El coche blanco apareció las tres veces, aunque no siempre a la misma velocidad. Sofía sospechó que podía existir una relación, pero sabía que una coincidencia no demostraba una causa. Decidió preguntar a alguien que conociera los sistemas eléctricos.",
-      "Al día siguiente comentó sus observaciones con su vecino Andrés, que trabajaba como técnico de mantenimiento. Él le explicó que algunas farolas antiguas tienen sensores y sistemas de control que pueden reaccionar ante interferencias eléctricas. También le recordó que no debía investigar sola en la calle ni tocar ningún equipo eléctrico. Andrés le propuso revisar los [en:record|registro]s de mantenimiento y hablar con la empresa encargada de las instalaciones.",
+      "Al día siguiente comentó sus observaciones con su vecino Andrés, que trabajaba como técnico de mantenimiento. Él le explicó que algunas farolas antiguas tienen sensores y sistemas de control que pueden reaccionar ante interferencias eléctricas. También le recordó que no debía investigar sola en la calle ni tocar ningún equipo eléctrico. Andrés le propuso revisar los [en:records|registros] de mantenimiento y hablar con la empresa encargada de las instalaciones.",
       "En el registro aparecía una revisión pendiente de un transformador cercano. Además, el coche blanco pertenecía a una empresa que instalaba equipos de radio y aparcaba junto a aquel transformador para descargar herramientas. Cuando Andrés habló con la empresa, descubrió que uno de sus aparatos de prueba emitía una señal que interfería con el controlador de las farolas. No era una avería de las luces ni un fallo del coche. El problema aparecía cuando el equipo estaba encendido cerca del transformador.",
       "La empresa cambió el procedimiento de trabajo y el técnico revisó el sistema para asegurarse de que todo funcionaba bien. Durante la semana siguiente, Sofía continuó observando la calle. Las farolas permanecieron encendidas todas las noches. En lugar de celebrar que había descubierto al culpable, preparó un pequeño informe con sus datos, las horas y la explicación de Andrés. Lo llevó al colegio para compartirlo con su clase.",
       "Su profesora destacó que Sofía había seguido un método parecido al de una investigación científica: observar, registrar, formular una hipótesis y buscar [en:evidence|pruebas]. También señaló que había sido importante no sacar conclusiones precipitadas. Ver el coche y el apagón a la vez sugería una relación, pero no demostraba que uno causara el otro. Sofía comprendió que investigar exige comprobar las ideas con cuidado y cambiar de opinión cuando aparecen nuevos datos.",
@@ -2886,8 +2886,8 @@
         "es": "calle"
       },
       {
-        "en": "record",
-        "es": "registro"
+        "en": "records",
+        "es": "registros"
       },
       {
         "en": "evidence",
@@ -2907,7 +2907,7 @@
     "paragraphs": [
       "Durante las vacaciones, Diego pasó unos días en una casa rural junto a un [en:forest|bosque]. La primera noche vio decenas de luces pequeñas que aparecían y desaparecían entre los árboles. Su tía le explicó que eran [en:fireflies|luciérnagas], unos insectos capaces de producir luz mediante una reacción química en su cuerpo. Diego quiso fotografiarlas, pero cada vez que encendía la linterna, las luces parecían alejarse. Aquello despertó su curiosidad.",
       "Al día siguiente encontró un cartel que anunciaba una actividad para observar animales nocturnos. La organizaba una asociación local que cuidaba el bosque. Diego se apuntó con su tía y conoció a Nora, una bióloga que estudiaba las luciérnagas. Ella les pidió que caminaran en silencio, no las tocaran y evitaran usar luces intensas. Explicó que las señales luminosas sirven para que los adultos se encuentren y se reproduzcan.",
-      "Al llegar a un claro, Nora señaló una zona donde brillaban muchas luciérnagas. Sin embargo, en el borde del sendero apenas se veía ninguna. La bióloga mostró un mapa del bosque y explicó que el claro conservaba plantas, humedad y rincones [en:dark|oscuro]s. En cambio, cerca de la carretera se habían instalado focos que iluminaban toda la noche. Aquella luz artificial podía confundir a los insectos y dificultar que se comunicaran.",
+      "Al llegar a un claro, Nora señaló una zona donde brillaban muchas luciérnagas. Sin embargo, en el borde del sendero apenas se veía ninguna. La bióloga mostró un mapa del bosque y explicó que el claro conservaba plantas, humedad y rincones [en:dark|oscuros]. En cambio, cerca de la carretera se habían instalado focos que iluminaban toda la noche. Aquella luz artificial podía confundir a los insectos y dificultar que se comunicaran.",
       "Diego preguntó si podían hacer algo. Nora respondió que la asociación había propuesto crear un pequeño refugio sin iluminación, pero necesitaban el permiso del ayuntamiento y la colaboración de los vecinos. También estaban plantando especies autóctonas para recuperar la vegetación y mantener zonas húmedas. No se trataba de atraer insectos con comida, sino de conservar las condiciones que necesitaban para vivir. Diego entendió que proteger un lugar requiere conocer primero sus necesidades.",
       "En los días siguientes, Diego ayudó a preparar carteles para explicar cómo observar animales nocturnos sin molestarlos. Dibujó una luciérnaga junto a una linterna apagada y escribió: «La mejor foto a veces es la que guardas en la memoria». Su tía le ayudó a colocar los carteles en el centro de visitantes. Varias familias se detuvieron a leerlos y preguntaron cómo podían colaborar con la asociación.",
       "Un mes después, la asociación recibió permiso para apagar dos focos durante unas horas y estudiar el efecto. Los voluntarios compararon los registros de varias noches. En la zona más oscura observaron más señales luminosas, aunque Nora aclaró que hacían falta muchas mediciones para saber si el cambio se debía solo a la iluminación. Diego se alegró de que su pequeño trabajo formara parte de una investigación real.",
@@ -2981,7 +2981,7 @@
       },
       {
         "en": "dark",
-        "es": "oscuro"
+        "es": "oscuros"
       }
     ]
   },
@@ -3087,7 +3087,7 @@
     "title": "Marcos y la ruta de los árboles marcados",
     "paragraphs": [
       "El verano en que Marcos cumplió doce años, su pueblo organizó una ruta para revisar los árboles de un [en:trail|sendero] que atravesaba la sierra. El recorrido se había diseñado años atrás para conectar varias fuentes y refugios, pero algunas señales estaban dañadas y ciertos tramos se habían cerrado por desprendimientos. Marcos se apuntó como voluntario junto a su prima Elena y un grupo de vecinos. No imaginaba que una simple tarea de orientación terminaría convirtiéndose en una investigación sobre la memoria del paisaje.",
-      "Al comienzo del camino encontraron [en:marks|marcas] de pintura azul en varios troncos. Algunas eran círculos, otras tenían una línea vertical y otras parecían una letra V. El guía explicó que no eran señales oficiales de la ruta actual. Podían ser marcas antiguas de los equipos [en:team|cuadrilla]es, aunque nadie sabía con certeza qué significaban. Marcos fotografió cada una y anotó su ubicación aproximada en un mapa, procurando no tocar la corteza ni acercarse a los bordes del sendero.",
+      "Al comienzo del camino encontraron [en:marks|marcas] de pintura azul en varios troncos. Algunas eran círculos, otras tenían una línea vertical y otras parecían una letra V. El guía explicó que no eran señales oficiales de la ruta actual. Podían ser marcas antiguas de los equipos [en:teams|cuadrillas], aunque nadie sabía con certeza qué significaban. Marcos fotografió cada una y anotó su ubicación aproximada en un mapa, procurando no tocar la corteza ni acercarse a los bordes del sendero.",
       "En el refugio de la fuente encontraron un cuaderno protegido dentro de una caja metálica. Sus páginas estaban amarillentas, pero aún se podían leer varias fechas y observaciones. El documento pertenecía a una cuadrilla que había trabajado allí más de veinte años antes. Registraba árboles afectados por una plaga, zonas donde el suelo retenía agua y lugares donde se habían plantado especies nuevas. Las marcas azules parecían corresponder a distintos tipos de seguimiento.",
       "El grupo decidió consultar a una técnica forestal del municipio antes de sacar conclusiones. Ella confirmó que las marcas podían pertenecer a un antiguo sistema de inventario, pero advirtió que los códigos cambiaban entre campañas. Para interpretarlos necesitaban comparar el cuaderno con otros registros. También les explicó que no debían retirar ramas ni hacer nuevas marcas: cualquier intervención debía estar autorizada para no dañar los árboles ni confundir a quienes trabajan actualmente en el monte.",
       "Durante los días siguientes, Marcos y Elena ayudaron a ordenar las fotografías por zonas. Descubrieron que los árboles con un círculo azul aparecían junto a anotaciones sobre humedad, mientras que las marcas en forma de V coincidían con lugares donde se habían plantado ejemplares jóvenes. Sin embargo, algunas señales no encajaban. La técnica les explicó que una marca aislada no bastaba para identificar un árbol o conocer su estado actual: el bosque había cambiado y los datos antiguos debían interpretarse con prudencia.",
@@ -3157,12 +3157,12 @@
         "es": "sendero"
       },
       {
-        "en": "team",
-        "es": "cuadrilla"
-      },
-      {
         "en": "marks",
         "es": "marcas"
+      },
+      {
+        "en": "teams",
+        "es": "cuadrillas"
       }
     ]
   },
@@ -3181,7 +3181,7 @@
       "—¿Y todas se convierten en árboles? —preguntó la niña. El abuelo sonrió y negó despacio. Una semilla necesita encontrar un buen lugar. También necesita agua, luz y espacio para crecer. Algunas caen sobre piedras o caminos y no pueden desarrollarse.",
       "Vega recogió otra semilla y la guardó en una bolsita. En casa llenó una maceta con tierra húmeda. Hizo un agujerito con el dedo y colocó la semilla. Después la cubrió con un poco de tierra. Puso la maceta cerca de una ventana luminosa.",
       "Cada mañana, Vega comprobaba la tierra con cuidado. Si estaba seca, añadía un poco de agua. Pasaron varios días y no ocurrió nada. La niña pensó que quizá la semilla estaba dormida. El abuelo le recordó que las plantas necesitan tiempo.",
-      "Una mañana apareció un tallo verde muy pequeño. Vega llamó a toda la familia para enseñarlo. Nadie quiso tocarlo, porque era delicado. La niña dibujó su primer brote en un cuaderno. Escribió debajo: «Una semilla puede empezar un viaje»",
+      "Una mañana apareció un tallo verde muy pequeño. Vega llamó a toda la familia para enseñarlo. Nadie quiso tocarlo, porque era delicado. La niña dibujó su primer brote en un cuaderno. Escribió debajo: «Una semilla puede empezar un viaje».",
       "Con las semanas, el tallo creció y aparecieron dos [en:leaves|hojas]. Vega aprendió que cuidar una planta significa observarla. También aprendió que no debía arrancar flores del parque. Los árboles y las plantas dan refugio a muchos animales. Ahora, cuando veía una semilla viajar, imaginaba dónde podría crecer.",
       "Vega también aprendió a mirar el parque sin llevarse nada. Dejó las semillas que encontró para que otros animales pudieran alimentarse. Cuando volvió al mes siguiente, vio más brotes cerca de la maceta. Comprendió que cada planta forma parte de un lugar compartido."
     ],
@@ -3434,7 +3434,7 @@
     "title": "¿Sabías que el pulpo tiene tres corazones?",
     "paragraphs": [
       "En una visita al acuario, Dani se quedó mirando un pulpo. Tenía ocho brazos largos y se movía despacio. A veces cambiaba de color y se escondía. La guía explicó que era un animal muy curioso. Entonces Dani hizo una pregunta sorprendente.",
-      "—¿Los pulpos tienen un corazón como nosotros? —preguntó. La guía sonrió y contó un secreto. Los pulpos tienen tres [en:heart|corazones], no uno. Dani abrió mucho los ojos y quiso saber cómo funcionaban.",
+      "—¿Los pulpos tienen un corazón como nosotros? —preguntó. La guía sonrió y contó un secreto. Los pulpos tienen tres [en:hearts|corazones], no uno. Dani abrió mucho los ojos y quiso saber cómo funcionaban.",
       "Dos corazones ayudan a mover la sangre hacia las branquias. Allí la sangre recibe oxígeno del [en:water|agua]. Después vuelve al otro corazón, que la impulsa al cuerpo. Así el animal puede llevar oxígeno a sus partes. Los tres corazones trabajan juntos.",
       "Dani dibujó tres círculos en su cuaderno. La guía le explicó otra curiosidad del pulpo. Su sangre es [en:blue|azulada], no roja como la nuestra. Esto se debe a una sustancia que transporta oxígeno. Contiene cobre y se llama hemocianina.",
       "El niño miró al pulpo con más atención. Uno de sus brazos exploraba una roca pequeña. Otro brazo parecía tocar el cristal. La guía explicó que sus brazos tienen muchas ventosas. Con ellas pueden sujetar objetos y notar el entorno.",
@@ -3497,8 +3497,8 @@
     ],
     "english": [
       {
-        "en": "heart",
-        "es": "corazón"
+        "en": "hearts",
+        "es": "corazones"
       },
       {
         "en": "water",
@@ -3589,16 +3589,16 @@
     ],
     "english": [
       {
-        "en": "soil",
-        "es": "tierra"
-      },
-      {
         "en": "leaves",
         "es": "hojas"
       },
       {
         "en": "rain",
         "es": "lluvia"
+      },
+      {
+        "en": "soil",
+        "es": "tierra"
       }
     ]
   },
@@ -3676,16 +3676,16 @@
     ],
     "english": [
       {
-        "en": "rhythm",
-        "es": "ritmo"
-      },
-      {
         "en": "song",
         "es": "canción"
       },
       {
         "en": "street",
         "es": "calle"
+      },
+      {
+        "en": "rhythm",
+        "es": "ritmo"
       }
     ]
   },
@@ -3701,13 +3701,13 @@
       "En la biblioteca del colegio habían preparado una exposición de faros. Había mapas, fotografías y una maqueta con una [en:light|luz] pequeña. Cada pocos minutos, la luz parpadeaba y luego se apagaba. A Leo le pareció extraño, porque la maqueta debía permanecer encendida.",
       "El encargado revisó el interruptor y volvió a encenderla. La luz brilló durante un rato, pero volvió a parpadear. Leo pidió permiso para investigar. Sabía que no debía desmontar nada sin ayuda. Primero decidió observar cuándo ocurría el problema.",
       "Anotó que la luz se apagaba cuando alguien movía la mesa. Cuando nadie tocaba la maqueta, podía seguir encendida varios minutos. Su amiga Inés miró el cable y vio que estaba doblado cerca de la base. Aquella podía ser una [en:clue|pista] importante.",
-      "El encargado desconectó la maqueta antes de revisarla. Con cuidado, comprobó que las [en:battery|pilas] estaban colocadas correctamente. Una de ellas se movía un poco dentro del compartimento. Al cambiar la posición, la luz volvió a encenderse.",
+      "El encargado desconectó la maqueta antes de revisarla. Con cuidado, comprobó que las [en:batteries|pilas] estaban colocadas correctamente. Una de ellas se movía un poco dentro del compartimento. Al cambiar la posición, la luz volvió a encenderse.",
       "Pero todavía faltaba entender por qué se apagaba. La tapa del compartimento no sujetaba bien las pilas. Cuando la mesa se movía, una pila perdía contacto con una pieza metálica. Por eso la electricidad dejaba de llegar a la bombilla.",
       "El encargado colocó una tapa nueva y cerró el compartimento. Después movió suavemente la mesa para comprobar el arreglo. La luz permaneció encendida y dejó de parpadear. Leo añadió la solución a su cuaderno de detective.",
       "En la exposición, Leo explicó el misterio a sus compañeros. No había un fantasma ni una señal secreta desde el faro. Había una conexión que se interrumpía al moverse las pilas. La observación había ayudado más que una adivinanza.",
       "Antes de salir, Inés escribió una regla para futuros casos. Primero hay que observar lo que ocurre y anotar las pistas. Después conviene comprobar una posible explicación con ayuda adulta. Los dos descubrieron que investigar también exige cuidado y paciencia.",
       "Leo guardó la libreta junto a las fotografías de la exposición. En la última página escribió una frase para recordar el caso: «Una pista sirve cuando podemos comprobarla». Inés añadió que nunca debían tocar cables ni aparatos eléctricos sin permiso. El encargado felicitó a los dos por investigar con responsabilidad.",
-      "Leo guardó las fotografías junto a su libreta. En la última página escribió que una pista debe poder comprobarse. Inés añadió que nunca debían tocar cables sin permiso. Los dos querían investigar con cuidado."
+      "Al día siguiente, la bibliotecaria colocó junto a la maqueta una tarjeta con la explicación. Varios visitantes se detuvieron a leerla y pudieron entender por qué la luz se apagaba. Leo e Inés se alegraron: su investigación serviría para que otras personas aprendieran a resolver pequeños misterios con cuidado."
     ],
     "questions": [
       {
@@ -3767,12 +3767,12 @@
         "es": "luz"
       },
       {
-        "en": "battery",
-        "es": "pila"
-      },
-      {
         "en": "clue",
         "es": "pista"
+      },
+      {
+        "en": "batteries",
+        "es": "pilas"
       }
     ]
   },
@@ -3791,7 +3791,7 @@
       "Venus gira muy [en:slowly|despacio]. Tarda unos 243 días terrestres en completar una rotación. En cambio, tarda unos 225 días terrestres en recorrer su [en:orbit|órbita] alrededor del Sol. Por eso su rotación completa dura más que su año.",
       "Martina dibujó una flecha alrededor de Venus y otra alrededor del Sol. Utilizó dos colores para no confundir los movimientos. La profesora añadió que Venus gira en sentido contrario al de la mayoría de los planetas. Allí el Sol saldría por el oeste y se pondría por el este.",
       "Los compañeros quisieron saber si podrían vivir allí. La profesora explicó que Venus es extremadamente caliente. Tiene una atmósfera muy densa que atrapa mucho calor. Su superficie alcanza temperaturas capaces de fundir el plomo. No sería un lugar seguro para las personas.",
-      "Martina terminó la ficha con una comparación sencilla. Una rotación de Venus tarda 243 días de la Tierra. Su viaje alrededor del Sol dura 225 días terrestres. Así se entiende que su día sea más largo que su año.",
+      "Martina terminó la ficha comparando ambos movimientos. En Venus, completar un giro sobre sí mismo lleva más tiempo que recorrer toda su órbita alrededor del Sol. Así se entiende que su día sea más largo que su año.",
       "Al presentar el trabajo, Martina explicó que un día no significa siempre lo mismo en todos los planetas. Depende de cuánto tarda cada uno en girar. La clase aprendió a distinguir rotación y órbita. También descubrió que el Sistema Solar está lleno de sorpresas.",
       "La profesora les pidió comparar los dos movimientos con los de la Tierra. Nuestro planeta tarda unas veinticuatro horas en girar sobre sí mismo. Su viaje alrededor del Sol dura aproximadamente 365 días. Martina añadió esos datos para mostrar que cada planeta tiene su propio calendario."
     ],
@@ -3853,12 +3853,12 @@
         "es": "planeta"
       },
       {
-        "en": "orbit",
-        "es": "órbita"
-      },
-      {
         "en": "slowly",
         "es": "despacio"
+      },
+      {
+        "en": "orbit",
+        "es": "órbita"
       }
     ],
     "sources": [
@@ -3886,7 +3886,7 @@
       "Durante las semanas siguientes, Alba y sus compañeros registraron lo que veían. Llegaron abejas pequeñas, una mariposa blanca y varios escarabajos; también aparecieron brotes nuevos después de una lluvia. No todos los días había la misma actividad, y eso era normal.",
       "Al terminar el trimestre, compararon las temperaturas y las observaciones. El patio aún tenía zonas calientes, pero la parte plantada ofrecía más sombra y vida. La clase comprendió que un refugio natural necesita tiempo, diversidad y cuidados. No se construye con una sola acción.",
       "Alba presentó los resultados a otras clases. Les explicó que no debían tocar nidos ni capturar insectos. Bastaba con observarlos desde una distancia segura. El proyecto había cambiado un rincón del colegio y también la forma de mirar el entorno.",
-      "La clase colocó un cartel para explicar el proyecto a las familias. Indicaba que las plantas debían elegirse según el clima y el agua disponible. También pedía observar sin capturar animales; alba comprendió que proteger la biodiversidad empieza con decisiones responsables.",
+      "La clase colocó un cartel para explicar el proyecto a las familias. Indicaba que las plantas debían elegirse según el clima y el agua disponible. También pedía observar sin capturar animales; Alba comprendió que proteger la biodiversidad empieza con decisiones responsables.",
       "El ayuntamiento ofreció mantener las plantas durante el verano. La clase preparó turnos de riego y una guía de observación. También anotó qué especies atraían más insectos. Alba comprendió que cuidar un espacio natural requiere planificación, seguimiento y colaboración."
     ],
     "questions": [
@@ -3929,7 +3929,7 @@
           "Para que el agua pudiera filtrarse",
           "Para que el cemento se secara",
           "Para que no crecieran plantas",
-          null
+          "Para colocar allí una mesa de observación"
         ],
         "answer": 0,
         "why": "La zona permeable permite que el agua entre en el terreno."
@@ -3940,7 +3940,7 @@
           "Un refugio natural se crea de inmediato",
           "Solo los árboles grandes ayudan al patio",
           "La biodiversidad necesita tiempo, variedad y cuidados",
-          null
+          "Basta con regar una vez para mantenerlo"
         ],
         "answer": 2,
         "why": "El proyecto mostró cambios graduales que requerían mantenimiento."
@@ -3948,16 +3948,16 @@
     ],
     "english": [
       {
+        "en": "soil",
+        "es": "suelo"
+      },
+      {
         "en": "shade",
         "es": "sombra"
       },
       {
         "en": "flowers",
         "es": "flores"
-      },
-      {
-        "en": "soil",
-        "es": "suelo"
       }
     ]
   },
@@ -4023,7 +4023,7 @@
           "Que tocar deprisa siempre es mejor",
           "Que debe mantener la precisión aunque cambie el tempo",
           "Que no hace falta contar",
-          null
+          "Que todos deben seguir el mismo volumen"
         ],
         "answer": 1,
         "why": "La velocidad no sustituye al control del patrón."
@@ -4034,7 +4034,7 @@
           "Una forma de recordar y compartir la música escrita",
           "Una lista de instrumentos caros",
           "Un dibujo sin relación con los sonidos",
-          null
+          "Una instrucción para tocar sin escuchar a los demás"
         ],
         "answer": 0,
         "why": "Los símbolos permiten representar duraciones y sonidos."
@@ -4071,7 +4071,7 @@
       "Quedaba averiguar qué había dentro de la caja de sonido. El guía la apagó y abrió el compartimento de mantenimiento. Allí había un altavoz con un imán en su interior. No era una avería de la brújula, sino una interferencia provocada por otro objeto.",
       "Irene escribió la explicación en una tarjeta; la brújula no había perdido el norte para siempre. Estaba respondiendo a un campo magnético cercano. Al alejarla del altavoz, recuperaba su orientación habitual; el misterio tenía una explicación científica.",
       "Antes de terminar, el guía recordó que una brújula puede verse afectada por objetos metálicos o imantados. Por eso conviene usarla lejos de altavoces, imanes y algunos dispositivos. También hay que esperar a que la aguja deje de moverse antes de leerla.",
-      "Irene se llevó una pregunta nueva a casa; ¿Podrían comprobar qué otros objetos alteraban una brújula? El guía les recomendó hacerlo con una brújula sencilla y bajo supervisión adulta. No debían acercarla a aparatos importantes ni desmontar ningún dispositivo.",
+      "Irene se llevó una pregunta nueva a casa; ¿podrían comprobar qué otros objetos alteraban una brújula? El guía les recomendó hacerlo con una brújula sencilla y bajo supervisión adulta. No debían acercarla a aparatos importantes ni desmontar ningún dispositivo.",
       "En su cuaderno, Irene dibujó la aguja y el altavoz. Escribió que una buena investigación compara situaciones y busca explicaciones. No basta con decir que algo es mágico o está roto. Hay que reunir pruebas y comprobarlas con cuidado.",
       "Antes de marcharse, Irene resumió el procedimiento en cuatro pasos. Observar, formular una explicación, hacer una prueba y anotar el resultado. El guía añadió que una prueba debe cambiar una sola cosa cada vez. Así resulta más sencillo descubrir qué provoca el efecto observado.",
       "Irene presentó el caso en clase y explicó por qué la prueba era importante. Si hubieran acercado varios objetos a la vez, no sabrían cuál alteraba la aguja. Al probar uno cada vez, pudieron relacionar el cambio con el imán del altavoz."
@@ -4116,7 +4116,7 @@
           "Porque desaparecía la interferencia cercana",
           "Porque el norte se había movido",
           "Porque la brújula se calentaba",
-          null
+          "Porque la aguja había perdido su magnetismo al apagar la caja"
         ],
         "answer": 0,
         "why": "Al alejar el altavoz, su campo magnético dejaba de alterar la aguja."
@@ -4127,7 +4127,7 @@
           "Aceptó la primera suposición",
           "Comparó situaciones y comprobó una explicación",
           "Desmontó la brújula sin permiso",
-          null
+          "Esperó a que el problema desapareciera sin recoger datos"
         ],
         "answer": 1,
         "why": "Observó, anotó y realizó pruebas con ayuda del guía."
@@ -4209,7 +4209,7 @@
           "La contaminación y la pérdida de hábitat",
           "La nieve de las montañas",
           "La falta de luz del Sol",
-          null
+          "El exceso de agua dulce y las corrientes de los canales"
         ],
         "answer": 0,
         "why": "El texto menciona contaminación y pérdida de zonas adecuadas."
@@ -4220,7 +4220,7 @@
           "Para convertirlo en pez",
           "Para comprender cómo regenera tejidos",
           "Para enseñarle a caminar fuera del agua",
-          null
+          "Comprobar si puede vivir fuera del agua durante largos periodos"
         ],
         "answer": 1,
         "why": "Su capacidad puede ayudar a investigar la reparación de tejidos."
@@ -4326,12 +4326,12 @@
     ],
     "english": [
       {
-        "en": "shade",
-        "es": "sombra"
-      },
-      {
         "en": "surface",
         "es": "superficie"
+      },
+      {
+        "en": "shade",
+        "es": "sombra"
       },
       {
         "en": "rainwater",
@@ -4419,16 +4419,16 @@
     ],
     "english": [
       {
+        "en": "recording",
+        "es": "grabaciones"
+      },
+      {
         "en": "wave",
-        "es": "onda"
+        "es": "ondas"
       },
       {
         "en": "pitch",
         "es": "tono"
-      },
-      {
-        "en": "recording",
-        "es": "grabación"
       }
     ]
   },
@@ -4521,7 +4521,7 @@
       },
       {
         "en": "evidence",
-        "es": "prueba"
+        "es": "pruebas"
       }
     ]
   },
