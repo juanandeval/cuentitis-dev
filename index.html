@@ -226,12 +226,18 @@ main{position:relative}
 .hero-note span{color:#ef9a12}
 .mascot-sprite{
  display:inline-block;flex:none;width:128px;height:128px;aspect-ratio:1;
- background-image:url("./assets/cuentitis-mascot-poses.webp");background-repeat:no-repeat;background-size:300% 300%;
+ background-repeat:no-repeat;background-size:contain;background-position:center;
  filter:drop-shadow(0 10px 8px rgba(71,34,105,.12))
 }
-.pose-welcome{background-position:0 0}.pose-curious{background-position:50% 0}.pose-surprised{background-position:100% 0}
-.pose-reading{background-position:0 50%}.pose-proud{background-position:50% 50%}.pose-dream{background-position:100% 50%}
-.pose-book{background-position:0 100%}.pose-celebrate{background-position:50% 100%}.pose-explore{background-position:100% 100%}
+.pose-welcome{background-image:url("./assets/mascots/welcome.svg")}
+.pose-curious{background-image:url("./assets/mascots/curious.svg")}
+.pose-surprised{background-image:url("./assets/mascots/surprised.svg")}
+.pose-reading{background-image:url("./assets/mascots/reading.svg")}
+.pose-proud{background-image:url("./assets/mascots/proud.svg")}
+.pose-dream{background-image:url("./assets/mascots/dreaming.svg")}
+.pose-book{background-image:url("./assets/mascots/book.svg")}
+.pose-celebrate{background-image:url("./assets/mascots/celebrate.svg")}
+.pose-explore{background-image:url("./assets/mascots/curious.svg")}
 .logo-mascot{width:56px;height:56px;filter:none}
 .hero-mascot{position:relative;z-index:1;width:clamp(170px,22vw,230px);height:clamp(170px,22vw,230px);margin-right:12px}
 .story-companion,.quiz-companion{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 14px;color:var(--soft);font-weight:900;font-size:.88rem}
