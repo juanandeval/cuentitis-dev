@@ -27,6 +27,11 @@ for r in data:
     if len(marks)!=len(eng): bad(i,"las marcas [en:…|…] no coinciden con la lista english")
     if len(eng)>5: note(i,"más de 5 palabras en inglés")
     if any(not e.get("es") for e in eng): bad(i,"palabra en inglés sin significado")
+    if "¿Sabías que...?" in r.get("topics",[]):
+        refs=r.get("sources",[])
+        if not refs: bad(i,"las lecturas de ¿Sabías que...? necesitan fuentes")
+        if any(not str(src.get("url","")).startswith("https://") for src in refs):
+            bad(i,"fuente de ¿Sabías que...? sin URL segura")
     lo,hi,smin,smax=LIM[b]
     if not lo<=n<=hi: note(i,f"{n} palabras (tramo {b}: {lo}-{hi})")
     narr=[s for p in ps if not p.startswith("—") for s in sentences(p)]
