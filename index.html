@@ -97,6 +97,10 @@ dialog{overflow:auto}
 #gloss:empty{margin:0}
 #gloss h3{font-size:1.1rem;margin:0 0 8px}
 #tip{position:absolute;z-index:40;background:var(--card);color:var(--ink);border:2px solid var(--pri);border-radius:14px;padding:8px 12px;box-shadow:0 6px 18px rgba(0,0,0,.2);font-size:1rem;max-width:80vw;white-space:nowrap}
+.app-toast{position:fixed;z-index:1200;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));width:max-content;max-width:min(92vw,520px);padding:16px 22px;border:2px solid var(--ok);border-radius:20px;background:var(--okbg);color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.2);font-size:1.05rem;font-weight:900;line-height:1.35;text-align:center;opacity:0;transform:translate(-50%,12px);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
+.app-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+.app-toast[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.app-toast{transition:none}}
 #fbStatus a{color:var(--pri);font-weight:600}
 .flink{background:none;border:0;padding:8px 4px;font:inherit;font-weight:600;color:var(--pri);text-decoration:underline;cursor:pointer}
 .fld{margin:12px 0}
@@ -355,6 +359,7 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
 </dialog>
 
 <div id="tip" role="status" hidden></div>
+<div id="appToast" class="app-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
 
 <script>
 "use strict";
@@ -827,14 +832,29 @@ $("requestMoreStories").onclick=async()=>{
       Mensaje:message,
       Correo:"Solicitud desde la aplicación"
     });
-    status.textContent="¡Petición enviada! Gracias por ayudarnos a crear más cuentos. 💜";
-    button.textContent="✓ Petición enviada";
+    $("noMoreStoriesModal").close();
+    showAppToast("¡Solicitud enviada! Gracias por ayudarnos a crear más cuentos. 💜");
   }catch(error){
     status.textContent=formSubmitErrorMessage(error);
     button.disabled=false;
   }
 };
 $("noMoreStoriesModal").addEventListener("cancel",e=>e.preventDefault());
+// Notificación breve tras cerrar los formularios enviados correctamente.
+let appToastTimer=0,appToastHideTimer=0;
+function showAppToast(message){
+  const toast=$("appToast");
+  clearTimeout(appToastTimer);
+  clearTimeout(appToastHideTimer);
+  toast.textContent="✓ "+message;
+  toast.hidden=false;
+  requestAnimationFrame(()=>toast.classList.add("is-visible"));
+  appToastTimer=setTimeout(()=>{
+    toast.classList.remove("is-visible");
+    appToastHideTimer=setTimeout(()=>{toast.hidden=true},220);
+  },3800);
+}
+
 // Envío único de comentarios y solicitudes mediante FormSubmit.
 const FORM_ENDPOINT="https://formsubmit.co/ajax/3632c44e51a2675f462a3dd8cec86b0c";
 
@@ -895,7 +915,8 @@ $("fbForm").addEventListener("submit",async e=>{
     if(mail)fields.email=mail;
     await sendWithFormSubmit(fields);
     form.reset();
-    status.textContent="¡Gracias! Tu comentario se ha enviado. 💜";
+    $("fbModal").close();
+    showAppToast("¡Mensaje enviado! Gracias por ayudarnos. 💜");
   }catch(error){
     status.textContent=formSubmitErrorMessage(error);
   }finally{
