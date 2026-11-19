@@ -889,7 +889,8 @@ $("fbForm").addEventListener("submit",async e=>{
       Tipo:tipo,
       Mensaje:msg,
       Navegador:navigator.userAgent,
-      Pantalla:innerWidth+"x"+innerHeight
+      Pantalla:innerWidth+"x"+innerHeight,
+      _honey:form.elements._honey.value
     };
     if(mail)fields.email=mail;
     await sendWithFormSubmit(fields);
