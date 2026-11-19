@@ -370,6 +370,8 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
 <div id="appToast" class="app-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
 
 <script>
+"use strict";
+
 async function loadLatestCommit(){
   const link=$("latestCommitLink");
   if(!link)return;
@@ -402,8 +404,6 @@ async function loadLatestCommit(){
     link.setAttribute("aria-label","Ver historial de cambios de Cuentitis DEV");
   }
 }
-
-"use strict";
 const $=id=>document.getElementById(id);
 const LIKES=[["🐶","Animales"],["🦖","Dinosaurios"],["🚀","Espacio"],["⚽","Fútbol"],["👑","Princesas y reyes"],["🦸","Superhéroes"],["🏴‍☠️","Piratas"],["🚗","Coches"],["🍰","Cocina"],["🔬","Ciencia"],["🐉","Dragones"],["🤖","Robots"]];
 const POINTS=10;
