@@ -74,7 +74,16 @@ h1{font-size:clamp(1.9rem,5vw,2.8rem)}
 .hd{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .chip{text-align:center}
 .chip small{display:block;font-size:.62rem;font-weight:800;line-height:1;margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-#likes .chip{height:52px;padding-top:0;padding-bottom:0;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;white-space:nowrap}
+/* Cuadrícula de gustos: tarjetas grandes y táctiles, inspiradas en los retos. */
+#likes.likes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#likes .chip{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;min-width:0;min-height:126px;padding:14px 8px;border:2px solid var(--line);border-radius:22px;background:var(--chip);color:var(--ink);font:inherit;font-weight:800;line-height:1.15;text-align:center;white-space:normal;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#likes .like-emoji{display:block;font-size:clamp(2.1rem,4vw,2.8rem);line-height:1.1}
+#likes .like-name{display:block;font-size:clamp(.88rem,1.5vw,1.02rem);overflow-wrap:anywhere}
+#likes .chip[aria-pressed="true"]{background:var(--pri);border-color:var(--pri);color:var(--priink);box-shadow:0 4px 0 rgba(43,42,76,.14)}
+#likes .chip.main[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff;box-shadow:0 4px 0 rgba(31,166,106,.2)}
+#likes .chip small{display:block;margin:0;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.24);font-size:.65rem;font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:.04em}
+#likes .chip:disabled{opacity:.36;filter:grayscale(.25);box-shadow:none}
+@media(max-width:540px){#likes.likes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#likes .chip{min-height:112px;border-radius:19px}#likes .like-emoji{font-size:2.35rem}}
 .chip.main[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--priink)}
 .info{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;border-radius:50%;border:2px solid var(--line);background:var(--chip);color:var(--pri);font:inherit;font-size:1.3rem;font-weight:800;line-height:1;cursor:pointer;padding:0}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:var(--bg);border-bottom:2px solid var(--line)}
@@ -172,7 +181,7 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
     <svg class="mascot" viewBox="0 0 120 120" role="img" aria-label="Cuentitis, la mascota"><use href="#mascot-sym"/></svg>
     <div><h1>Cuentitis <span class="devtag" aria-label="Versión de desarrollo">DEV</span></h1><p>Elige lo que más te gusta y te preparamos una lectura solo para ti.</p></div>
   </div>
-  <div class="card"><h2 class="hd"><span>Elige las 3 cosas que más te gustan <span class="count" id="cnt"></span></span><button class="info" data-info="likes" aria-label="Más información"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></h2><p class="hint" style="margin:-.2em 0 12px">La primera que elijas será la principal.</p><div class="row" id="likes"></div></div>
+  <div class="card"><h2 class="hd"><span>Elige las 3 cosas que más te gustan <span class="count" id="cnt"></span></span><button class="info" data-info="likes" aria-label="Más información"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></h2><p class="hint" style="margin:-.2em 0 12px">La primera que elijas será la principal.</p><div class="likes-grid" id="likes"></div></div>
   <button class="big" id="go" disabled>✨ ¡Crear mi lectura!</button>
   <p class="hint center" id="gohint">Elige 3 gustos.</p>
 </section>
@@ -643,7 +652,34 @@ function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$
 /* ---------- Inicio ---------- */
 function drawHome(){
   $("agePill").hidden=!st.age;$("ageNum").textContent=st.age||"";
-  $("likes").innerHTML="";LIKES.forEach(([e,n])=>{const on=st.likes.includes(n);const b=document.createElement("button");b.className="chip";b.classList.add("chip");const isMain=on&&st.likes[0]===n;if(isMain)b.classList.add("main");b.textContent=e+" "+n;if(isMain){const s=document.createElement("small");s.textContent="principal";b.appendChild(s)}b.setAttribute("aria-pressed",on);b.disabled=!on&&st.likes.length>=3;b.onclick=()=>{st.likes=on?st.likes.filter(x=>x!==n):[...st.likes,n];drawHome()};$("likes").appendChild(b)});
+  $("likes").innerHTML="";LIKES.forEach(([emoji,name])=>{
+    const on=st.likes.includes(name),isMain=on&&st.likes[0]===name;
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="chip";
+    if(isMain)button.classList.add("main");
+    const icon=document.createElement("span");
+    icon.className="like-emoji";
+    icon.textContent=emoji;
+    icon.setAttribute("aria-hidden","true");
+    const label=document.createElement("span");
+    label.className="like-name";
+    label.textContent=name;
+    button.append(icon,label);
+    if(isMain){
+      const principal=document.createElement("small");
+      principal.textContent="Principal";
+      button.appendChild(principal);
+    }
+    button.setAttribute("aria-pressed",String(on));
+    button.setAttribute("aria-label",name+(isMain?", tema principal":""));
+    button.disabled=!on&&st.likes.length>=3;
+    button.onclick=()=>{
+      st.likes=on?st.likes.filter(x=>x!==name):[...st.likes,name];
+      drawHome();
+    };
+    $("likes").appendChild(button);
+  });
   $("cnt").textContent="("+st.likes.length+"/3)";
   const ok=st.likes.length>=3;$("go").disabled=!ok;$("gohint").hidden=!!ok;
 }
