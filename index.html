@@ -301,7 +301,7 @@ dialog::backdrop{background:rgba(20,18,43,.6)}
       <textarea id="fbMsg" name="mensaje" rows="5" required maxlength="2000"></textarea></div>
     <div class="fld"><label for="fbMail">Tu correo (opcional, solo si quieres que te responda)</label>
       <input id="fbMail" name="email" type="email" maxlength="120" autocomplete="email"></div>
-    <input type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
     <p class="hint">Junto al comentario se envía el tipo de navegador y de pantalla, para ayudar a reproducir los errores. Por favor, no escribas datos de los niños.</p>
     <button class="big pri" id="fbSend" type="submit">Enviar comentario</button>
     <p id="fbStatus" role="status" class="hint"></p>
@@ -821,63 +821,85 @@ $("requestMoreStories").onclick=async()=>{
     "La petición se ha realizado desde la versión de desarrollo."
   ].join("\n");
   try{
-    const response=await fetch(FORM_ENDPOINT,{
-      method:"POST",
-      headers:{"Content-Type":"application/json","Accept":"application/json"},
-      body:JSON.stringify({
-        _subject:"Cuentitis: solicitud de más cuentos",
-        _template:"table",
-        _captcha:"false",
-        Tipo:"Solicitud de nuevos cuentos",
-        Mensaje:message,
-        Correo:"Solicitud desde la aplicación"
-      })
+    await sendWithFormSubmit({
+      _subject:"Cuentitis: solicitud de más cuentos",
+      Tipo:"Solicitud de nuevos cuentos",
+      Mensaje:message,
+      Correo:"Solicitud desde la aplicación"
     });
-    const result=await response.json().catch(()=>({}));
-    if(!response.ok||result.success===false||result.success==="false")throw new Error(result.message||("código "+response.status));
     status.textContent="¡Petición enviada! Gracias por ayudarnos a crear más cuentos. 💜";
     button.textContent="✓ Petición enviada";
   }catch(error){
-    status.textContent="No se ha podido enviar automáticamente. Puedes escribirnos por correo:";
-    const link=document.createElement("a");
-    link.href="mailto:cuentitis.app@gmail.com?subject="+encodeURIComponent("Cuentitis: solicitud de más cuentos")+"&body="+encodeURIComponent(message);
-    link.textContent="Enviar petición por correo";
-    link.style.display="block";
-    link.style.marginTop="8px";
-    status.appendChild(link);
+    status.textContent=formSubmitErrorMessage(error);
     button.disabled=false;
   }
 };
 $("noMoreStoriesModal").addEventListener("cancel",e=>e.preventDefault());
-// Comentarios beta: reenvío a correo con FormSubmit. Se usa su código aleatorio en lugar del correo, para no mostrarlo en la página.
-// Opción alternativa: clave de Web3Forms (web3forms.com). Si se rellena, se usa en lugar de FormSubmit.
-const W3_KEY="";
+// Envío único de comentarios y solicitudes mediante FormSubmit.
 const FORM_ENDPOINT="https://formsubmit.co/ajax/3632c44e51a2675f462a3dd8cec86b0c";
+
+async function sendWithFormSubmit(fields){
+  const payload=Object.assign({
+    _template:"table",
+    _url:window.location.href,
+    _honey:""
+  },fields);
+  const response=await fetch(FORM_ENDPOINT,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify(payload)
+  });
+  let result={};
+  try{result=await response.json()}catch(e){}
+  const accepted=result&&(
+    result.success===true||
+    result.success==="true"||
+    result.success===1
+  );
+  if(!response.ok||!accepted){
+    throw new Error((result&&result.message)||("FormSubmit no confirmó el envío (código "+response.status+")."));
+  }
+  return result;
+}
+function formSubmitErrorMessage(error){
+  const message=String(error&&error.message||"");
+  if(/activat/i.test(message)){
+    return "FormSubmit necesita activación. Revisa tu correo y la carpeta de spam; busca el mensaje de FormSubmit y pulsa el enlace de activación. Después vuelve a probar.";
+  }
+  return "No se ha podido enviar. Comprueba la conexión y vuelve a intentarlo. "+message;
+}
 $("fbOpen").onclick=()=>{$("fbStatus").textContent="";$("fbModal").showModal()};
 $("fbclose").onclick=()=>$("fbModal").close();
 $("fbModal").addEventListener("click",e=>{if(e.target===$("fbModal"))$("fbModal").close()});
 $("fbForm").addEventListener("submit",async e=>{
   e.preventDefault();
-  const f=e.target;if(f.elements.web.value)return;
-  const btn=$("fbSend");btn.disabled=true;$("fbStatus").textContent="Enviando…";
+  const form=e.target;
+  const button=$("fbSend"),status=$("fbStatus");
+  const tipo=form.tipo.value,msg=form.mensaje.value.trim(),mail=form.email.value.trim();
+  if(!msg){
+    status.textContent="Escribe un comentario antes de enviarlo.";
+    form.mensaje.focus();
+    return;
+  }
+  button.disabled=true;
+  status.textContent="Enviando…";
   try{
-    const tipo=f.tipo.value,msg=f.mensaje.value.trim(),mail=f.email.value.trim(),nav=navigator.userAgent,pant=innerWidth+"x"+innerHeight;
-    const r=W3_KEY
-      ? await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
-          body:JSON.stringify(Object.assign({access_key:W3_KEY,subject:"Cuentitis beta: "+tipo,from_name:"Cuentitis beta",
-            message:"Tipo: "+tipo+"\n\n"+msg+"\n\nCorreo del usuario: "+(mail||"(no indicado)")+"\nNavegador: "+nav+"\nPantalla: "+pant},mail?{email:mail}:{}))})
-      : await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
-          body:JSON.stringify({_subject:"Cuentitis beta: "+tipo,_template:"table",_captcha:"false",Tipo:tipo,Mensaje:msg,Correo:mail||"(no indicado)",Navegador:nav,Pantalla:pant})});
-    const j=await r.json().catch(()=>({}));
-    if(!r.ok||j.success===false||j.success==="false")throw new Error(j.message||("código "+r.status));
-    f.reset();$("fbStatus").textContent="¡Gracias! Tu comentario se ha enviado.";
-  }catch(err){
-    const det=(err instanceof TypeError)?"error de conexión o bloqueo del navegador":err.message;
-    const st=$("fbStatus");st.textContent="No se ha podido enviar ("+det+"). ";
-    const a=document.createElement("a");
-    a.href="mailto:cuentitis.app@gmail.com?subject="+encodeURIComponent("Cuentitis beta: "+f.tipo.value)+"&body="+encodeURIComponent(f.mensaje.value);
-    a.textContent="Enviar con mi aplicación de correo";st.appendChild(a);
-  }finally{btn.disabled=false}
+    const fields={
+      _subject:"Cuentitis beta: "+tipo,
+      Tipo:tipo,
+      Mensaje:msg,
+      Navegador:navigator.userAgent,
+      Pantalla:innerWidth+"x"+innerHeight
+    };
+    if(mail)fields.email=mail;
+    await sendWithFormSubmit(fields);
+    form.reset();
+    status.textContent="¡Gracias! Tu comentario se ha enviado. 💜";
+  }catch(error){
+    status.textContent=formSubmitErrorMessage(error);
+  }finally{
+    button.disabled=false;
+  }
 });
 $("pclose").onclick=()=>$("parentModal").close();
 $("parentModal").addEventListener("click",e=>{if(e.target===$("parentModal"))$("parentModal").close()});
