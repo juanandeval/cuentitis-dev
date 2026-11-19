@@ -3509,5 +3509,345 @@
         "es": "azulada"
       }
     ]
+  },
+  {
+    "id": "naturaleza-78-001",
+    "band": "7-8",
+    "topics": [
+      "Naturaleza y medioambiente"
+    ],
+    "hero": "niño",
+    "title": "El huerto que aprendió a guardar la lluvia",
+    "paragraphs": [
+      "En el colegio de Mateo había un pequeño huerto. Cuando llovía mucho, el agua corría por el suelo y se llevaba la tierra. Después, las plantas parecían tener sed aunque hubiera llovido. La clase decidió investigar qué estaba pasando y cómo podía mejorar.",
+      "La profesora llevó una bandeja con tierra seca y otra con tierra cubierta de hojas. Vertió la misma cantidad de agua sobre las dos. En la primera, el agua corrió enseguida por la superficie. En la segunda, las hojas frenaron el movimiento y dejaron que entrara poco a poco.",
+      "—Las hojas forman una cubierta —explicó—. En un huerto podemos usar hojas secas limpias para proteger la tierra. Esa cubierta ayuda a conservar la humedad y evita que el suelo quede descubierto. También puede convertirse en alimento para pequeños organismos cuando se descompone.",
+      "Mateo propuso recoger hojas del patio. La profesora recordó que debían usar solo las que ya estaban caídas. No arrancarían hojas verdes ni ramas de los árboles. Después extendieron una capa fina alrededor de las plantas, dejando libre el tallo.",
+      "También colocaron un recipiente grande bajo el canalón del cobertizo. Así podían recoger parte del agua de lluvia para regar después. La profesora explicó que nunca debían beber esa agua. Servía para las plantas, y el recipiente debía permanecer tapado para evitar accidentes.",
+      "Unos días más tarde llegó una tormenta. Mateo observó cómo el agua caía del tejado hacia el recipiente. En el huerto, la cubierta de hojas mantenía la tierra protegida. Había menos barro sobre el camino y las plantas no quedaron tumbadas.",
+      "Cuando volvió el sol, la clase comparó las dos zonas del huerto. La tierra cubierta seguía húmeda durante más tiempo. La tierra descubierta estaba más seca y tenía pequeñas grietas. Los niños anotaron sus observaciones para saber qué cambios funcionaban mejor.",
+      "Al final, decidieron cuidar el huerto durante todo el curso. Revisarían el recipiente después de cada lluvia y retirarían cualquier hoja podrida en exceso. Mateo comprendió que ahorrar agua también significa cuidar el suelo. A veces, una solución pequeña ayuda mucho al entorno."
+    ],
+    "questions": [
+      {
+        "q": "¿Qué problema tenía el huerto cuando llovía mucho?",
+        "options": [
+          "El agua arrastraba la tierra",
+          "Las plantas crecían demasiado rápido",
+          "El recipiente se llenaba de arena"
+        ],
+        "answer": 0,
+        "why": "El agua corría por la superficie y se llevaba la tierra."
+      },
+      {
+        "q": "¿Qué ocurrió con la tierra cubierta de hojas?",
+        "options": [
+          "Se volvió de piedra",
+          "Conservó mejor la humedad",
+          "Se quedó sin nutrientes al instante"
+        ],
+        "answer": 1,
+        "why": "La cubierta frenó el agua y ayudó a mantener la tierra húmeda."
+      },
+      {
+        "q": "¿Para qué servía el recipiente bajo el canalón?",
+        "options": [
+          "Para guardar agua de lluvia para regar",
+          "Para que bebieran los niños",
+          "Para lavar los zapatos"
+        ],
+        "answer": 0,
+        "why": "Recogía agua que después podían usar para las plantas."
+      },
+      {
+        "q": "¿Por qué dejaron libre el tallo al poner hojas?",
+        "options": [
+          "Para que recibiera luz de una lámpara",
+          "Para que no quedara cubierto por la capa",
+          "Para que los insectos no lo vieran"
+        ],
+        "answer": 1,
+        "why": "La cubierta se extendió alrededor de las plantas, no sobre el tallo."
+      },
+      {
+        "q": "¿Qué aprendió Mateo?",
+        "options": [
+          "Que cuidar el suelo ayuda a aprovechar el agua",
+          "Que las plantas no necesitan agua",
+          "Que la lluvia siempre estropea los huertos"
+        ],
+        "answer": 0,
+        "why": "La cubierta protegía el suelo y conservaba la humedad."
+      }
+    ],
+    "english": [
+      {
+        "en": "soil",
+        "es": "tierra"
+      },
+      {
+        "en": "leaves",
+        "es": "hojas"
+      },
+      {
+        "en": "rain",
+        "es": "lluvia"
+      }
+    ]
+  },
+  {
+    "id": "musica-78-001",
+    "band": "7-8",
+    "topics": [
+      "Música"
+    ],
+    "hero": "niña",
+    "title": "La melodía que encontró el barrio",
+    "paragraphs": [
+      "Clara tenía que preparar una pequeña actuación para la fiesta del barrio. Quería tocar una canción con sus amigos, pero cada uno tenía una idea distinta. A Hugo le gustaban los tambores, a Sara le gustaba cantar y a Clara le encantaba la flauta.",
+      "En el primer ensayo todos tocaron a la vez. El tambor sonaba muy fuerte y la flauta apenas se escuchaba. Sara empezó a cantar antes de tiempo. Cuando terminaron, se miraron sorprendidos. Había muchos sonidos, pero todavía no parecía una canción.",
+      "Clara propuso escuchar los sonidos de la calle. Se sentaron junto a la ventana y guardaron silencio. Oyeron una bicicleta, un pájaro, pasos sobre las losas y una persiana. Cada sonido tenía una duración y un ritmo diferentes.",
+      "La profesora de música les explicó que el ritmo organiza los sonidos en el tiempo. También les enseñó a contar cuatro pulsos sin correr. Hugo podía marcar el pulso con un tambor suave. Sara entraría después y Clara tocaría la melodía al final.",
+      "Decidieron comenzar con cuatro golpes tranquilos. Sara esperaría hasta la señal de la profesora. Después cantaría una frase corta, y Clara la repetiría con la flauta. Hugo debía mantener el mismo ritmo aunque los demás cambiaran de sonido.",
+      "El segundo ensayo salió mucho mejor. Sin embargo, al llegar al final, Hugo aceleró sin darse cuenta. La canción terminó antes de que Clara acabara su frase. La profesora les pidió que escucharan el pulso y no solo su propio instrumento.",
+      "Practicar fue más fácil cuando todos se miraban. Sara levantaba la mano para avisar de su entrada. Clara respiraba antes de tocar, y Hugo contaba en voz baja. La melodía empezó a sonar como una conversación entre amigos.",
+      "El día de la fiesta tocaron en el patio. Los vecinos reconocieron el ritmo y algunos acompañaron con palmas. No utilizaron los sonidos de la calle tal como eran, pero les sirvieron de inspiración. Clara descubrió que una canción también puede nacer de escuchar el mundo."
+    ],
+    "questions": [
+      {
+        "q": "¿Qué instrumentos o partes quería aportar cada amigo?",
+        "options": [
+          "Hugo el tambor, Sara la voz y Clara la flauta",
+          "Hugo la flauta, Sara el tambor y Clara la voz",
+          "Todos querían tocar el piano"
+        ],
+        "answer": 0,
+        "why": "Cada uno tenía una preferencia distinta."
+      },
+      {
+        "q": "¿Por qué el primer ensayo no parecía una canción?",
+        "options": [
+          "Porque no tenían letra escrita",
+          "Porque todos tocaban sin organizarse",
+          "Porque la flauta estaba rota"
+        ],
+        "answer": 1,
+        "why": "Entraron a destiempo y el tambor tapaba otros sonidos."
+      },
+      {
+        "q": "¿Qué es el ritmo según la profesora?",
+        "options": [
+          "El color de un instrumento",
+          "El volumen de una canción",
+          "La organización de los sonidos en el tiempo"
+        ],
+        "answer": 2,
+        "why": "La profesora explicó que el ritmo organiza los sonidos en el tiempo."
+      },
+      {
+        "q": "¿Qué ayudó a que el segundo ensayo mejorara?",
+        "options": [
+          "Mirarse y escuchar el pulso común",
+          "Tocar cada vez más deprisa",
+          "Dejar de contar"
+        ],
+        "answer": 0,
+        "why": "La coordinación permitió que cada parte entrara en su momento."
+      },
+      {
+        "q": "¿Qué inspiró la canción?",
+        "options": [
+          "Un cuento de piratas",
+          "Los sonidos cotidianos del barrio",
+          "Una película de miedo"
+        ],
+        "answer": 1,
+        "why": "Escucharon sonidos de la calle antes de componer."
+      }
+    ],
+    "english": [
+      {
+        "en": "rhythm",
+        "es": "ritmo"
+      },
+      {
+        "en": "song",
+        "es": "canción"
+      },
+      {
+        "en": "street",
+        "es": "calle"
+      }
+    ]
+  },
+  {
+    "id": "misterios-78-001",
+    "band": "7-8",
+    "topics": [
+      "Misterios y detectives"
+    ],
+    "hero": "niño",
+    "title": "El caso de la maqueta que parpadeaba",
+    "paragraphs": [
+      "En la biblioteca del colegio habían preparado una exposición de faros. Había mapas, fotografías y una maqueta con una luz pequeña. Cada pocos minutos, la luz parpadeaba y luego se apagaba. A Leo le pareció extraño, porque la maqueta debía permanecer encendida.",
+      "El encargado revisó el interruptor y volvió a encenderla. La luz brilló durante un rato, pero volvió a parpadear. Leo pidió permiso para investigar. Sabía que no debía desmontar nada sin ayuda. Primero decidió observar cuándo ocurría el problema.",
+      "Anotó que la luz se apagaba cuando alguien movía la mesa. Cuando nadie tocaba la maqueta, podía seguir encendida varios minutos. Su amiga Inés miró el cable y vio que estaba doblado cerca de la base. Aquella podía ser una pista importante.",
+      "El encargado desconectó la maqueta antes de revisarla. Con cuidado, comprobó que las pilas estaban colocadas correctamente. Una de ellas se movía un poco dentro del compartimento. Al cambiar la posición, la luz volvió a encenderse.",
+      "Pero todavía faltaba entender por qué se apagaba. La tapa del compartimento no sujetaba bien las pilas. Cuando la mesa se movía, una pila perdía contacto con una pieza metálica. Por eso la electricidad dejaba de llegar a la bombilla.",
+      "El encargado colocó una tapa nueva y cerró el compartimento. Después movió suavemente la mesa para comprobar el arreglo. La luz permaneció encendida y dejó de parpadear. Leo añadió la solución a su cuaderno de detective.",
+      "En la exposición, Leo explicó el misterio a sus compañeros. No había un fantasma ni una señal secreta desde el faro. Había una conexión que se interrumpía al moverse las pilas. La observación había ayudado más que una adivinanza.",
+      "Antes de salir, Inés escribió una regla para futuros casos. Primero hay que observar lo que ocurre y anotar las pistas. Después conviene comprobar una posible explicación con ayuda adulta. Los dos descubrieron que investigar también exige cuidado y paciencia."
+    ],
+    "questions": [
+      {
+        "q": "¿Qué hacía la luz de la maqueta?",
+        "options": [
+          "Cambiaba de color",
+          "Parpadeaba y se apagaba",
+          "Giraba por la sala"
+        ],
+        "answer": 1,
+        "why": "La luz se encendía y se apagaba cada cierto tiempo."
+      },
+      {
+        "q": "¿Cuándo se apagaba con más frecuencia?",
+        "options": [
+          "Cuando alguien movía la mesa",
+          "Cuando se abría un libro",
+          "Cuando entraba luz del sol"
+        ],
+        "answer": 0,
+        "why": "Leo observó que el movimiento de la mesa provocaba el problema."
+      },
+      {
+        "q": "¿Qué descubrieron dentro del compartimento?",
+        "options": [
+          "Que faltaba una bombilla",
+          "Que había agua",
+          "Que una pila se movía y perdía contacto"
+        ],
+        "answer": 2,
+        "why": "La pila dejaba de tocar la pieza metálica."
+      },
+      {
+        "q": "¿Por qué la luz dejaba de funcionar?",
+        "options": [
+          "Porque se interrumpía la conexión eléctrica",
+          "Porque el faro necesitaba aceite",
+          "Porque la mesa estaba demasiado limpia"
+        ],
+        "answer": 0,
+        "why": "Al perder contacto una pila, la electricidad no llegaba a la bombilla."
+      },
+      {
+        "q": "¿Qué método siguieron Leo e Inés?",
+        "options": [
+          "Adivinar sin mirar",
+          "Observar, anotar y comprobar",
+          "Desmontar todo rápidamente"
+        ],
+        "answer": 1,
+        "why": "Primero reunieron pistas y después comprobaron la explicación con el encargado."
+      }
+    ],
+    "english": [
+      {
+        "en": "light",
+        "es": "luz"
+      },
+      {
+        "en": "battery",
+        "es": "pila"
+      },
+      {
+        "en": "clue",
+        "es": "pista"
+      }
+    ]
+  },
+  {
+    "id": "sabias-78-001",
+    "band": "7-8",
+    "topics": [
+      "¿Sabías que...?"
+    ],
+    "hero": "niña",
+    "title": "¿Sabías que un día en Venus dura más que su año?",
+    "paragraphs": [
+      "En clase, la profesora pidió a los alumnos que eligieran un planeta. A Martina le tocó Venus, el segundo planeta desde el Sol. Quería preparar una ficha para la pared, pero encontró un dato que parecía imposible. En Venus, un día dura más que un año.",
+      "Martina pensó que alguien se había equivocado. En la Tierra, un día dura unas veinticuatro horas y un año tarda unos doce meses. La profesora le explicó que los planetas tienen dos movimientos diferentes. Uno es girar sobre sí mismos y otro es viajar alrededor del Sol.",
+      "El tiempo que tarda un planeta en dar una vuelta sobre sí mismo se llama periodo de rotación. El tiempo que necesita para completar una vuelta alrededor del Sol es su año. No todos los planetas hacen esos movimientos a la misma velocidad.",
+      "Venus gira muy despacio. Tarda unos 243 días terrestres en completar una rotación. En cambio, tarda unos 225 días terrestres en recorrer su órbita alrededor del Sol. Por eso su rotación completa dura más que su año.",
+      "Martina dibujó una flecha alrededor de Venus y otra alrededor del Sol. Utilizó dos colores para no confundir los movimientos. La profesora añadió que Venus gira en sentido contrario al de la mayoría de los planetas. Allí el Sol saldría por el oeste y se pondría por el este.",
+      "Los compañeros quisieron saber si podrían vivir allí. La profesora explicó que Venus es extremadamente caliente. Tiene una atmósfera muy densa que atrapa mucho calor. Su superficie alcanza temperaturas capaces de fundir el plomo. No sería un lugar seguro para las personas.",
+      "Martina terminó la ficha con una comparación sencilla. Una rotación de Venus tarda 243 días de la Tierra. Su viaje alrededor del Sol dura 225 días terrestres. Así se entiende que su día sea más largo que su año.",
+      "Al presentar el trabajo, Martina explicó que un día no significa siempre lo mismo en todos los planetas. Depende de cuánto tarda cada uno en girar. La clase aprendió a distinguir rotación y órbita. También descubrió que el Sistema Solar está lleno de sorpresas."
+    ],
+    "questions": [
+      {
+        "q": "¿Qué planeta investigó Martina?",
+        "options": [
+          "Marte",
+          "Venus",
+          "Júpiter"
+        ],
+        "answer": 1,
+        "why": "A Martina le tocó investigar Venus."
+      },
+      {
+        "q": "¿Qué es la rotación de un planeta?",
+        "options": [
+          "Dar una vuelta alrededor del Sol",
+          "Cambiar de color",
+          "Girar sobre sí mismo"
+        ],
+        "answer": 2,
+        "why": "La rotación es el giro del planeta sobre sí mismo."
+      },
+      {
+        "q": "¿Cuánto tarda Venus en completar una rotación?",
+        "options": [
+          "Unos 243 días terrestres",
+          "Unos 24 días terrestres",
+          "Unos 12 meses terrestres"
+        ],
+        "answer": 0,
+        "why": "La ficha de NASA indica unos 243 días terrestres."
+      },
+      {
+        "q": "¿Cuánto tarda Venus en recorrer su órbita alrededor del Sol?",
+        "options": [
+          "Unos 365 días",
+          "Unos 225 días terrestres",
+          "Unos 243 años"
+        ],
+        "answer": 1,
+        "why": "Su año dura unos 225 días terrestres."
+      },
+      {
+        "q": "¿Por qué un día en Venus es más largo que su año?",
+        "options": [
+          "Porque está más lejos del Sol",
+          "Porque no tiene atmósfera",
+          "Porque gira sobre sí mismo más despacio de lo que tarda en completar su órbita"
+        ],
+        "answer": 2,
+        "why": "La rotación dura 243 días y la órbita 225 días."
+      }
+    ],
+    "english": [
+      {
+        "en": "planet",
+        "es": "planeta"
+      },
+      {
+        "en": "orbit",
+        "es": "órbita"
+      },
+      {
+        "en": "slowly",
+        "es": "despacio"
+      }
+    ]
   }
 ]
