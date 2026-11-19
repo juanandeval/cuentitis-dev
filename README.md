@@ -16,6 +16,13 @@ Pide a Claude lecturas nuevas con este prompt y pega el resultado dentro del arr
 
 Después ejecuta `python3 validate.py` para comprobar el formato.
 
+## Identidad visual y mascota (DEV)
+La interfaz utiliza la identidad visual de Cuentitis: libro morado aventurero, marcapáginas y detalles naranjas, estrella dorada, fondos crema y lavanda.
+- Paleta de referencia: morado `#6926B9`, lavanda `#F0E5FF`, naranja `#FF901F`, dorado `#FFD044`, crema `#FFF9F1` y tinta `#351653`.
+- Tipografías: Fredoka para títulos y elementos expresivos; Nunito para lectura y textos de interfaz.
+- El favicon vive en `favicon.svg`.
+- Las poses 3D principales se guardan en `assets/mascots3d/`; las variantes vectoriales ligeras están en `assets/mascots/`. La interfaz alterna poses según el momento (bienvenida, curiosidad, lectura, sorpresa, orgullo, sueño, exploración y celebración).
+
 ## Cómo elige la lectura
 El niño elige un solo tema favorito. Cuentitis intenta ofrecer primero una lectura inédita de ese tema dentro de su tramo de edad. Cuando ya se han leído todas las lecturas de ese tema, continúa con otras lecturas inéditas de la misma edad. No repite ninguna lectura hasta que una persona adulta reinicie el historial desde Información para familias. La selección y el historial se guardan en el navegador.
 
