@@ -589,6 +589,182 @@ body.home-active footer.foot{min-height:42px;background:linear-gradient(180deg,r
 @media(prefers-reduced-motion:reduce){
  .hero-mascot.is-moving{animation:none!important}
 }
+
+/* ================= Hero ilustrado · referencia tablet ================= */
+body.home-active main{padding-top:0}
+body.home-active #home{gap:0}
+.home-header{
+ min-height:clamp(62px,8svh,82px);height:clamp(62px,8svh,82px);
+ padding:0 clamp(28px,5.2vw,68px);gap:18px
+}
+.home-header .logo{gap:10px}
+.home-header .logo::before{
+ content:"";display:block;flex:none;width:34px;height:42px;
+ background:
+  linear-gradient(48deg,transparent 43%,#ffbc32 45% 57%,transparent 59%) 2px 0/22px 17px no-repeat,
+  linear-gradient(90deg,transparent 42%,#ffbc32 44% 58%,transparent 60%) 0 18px/30px 12px no-repeat,
+  linear-gradient(-48deg,transparent 43%,#ffbc32 45% 57%,transparent 59%) 7px 29px/20px 13px no-repeat
+}
+.home-header .logo .nm{font-size:clamp(2.1rem,4.8vw,3.35rem);letter-spacing:-.055em}
+.home-header .logo .brand-star{font-size:.65em;margin-left:3px}
+.home-header .devtag{align-self:center;margin-left:0;padding:3px 7px;font-size:.5rem}
+.home-header .hr{gap:clamp(9px,1.2vw,15px)}
+.home-header .header-action{
+ width:clamp(48px,5.2vw,60px);min-width:clamp(48px,5.2vw,60px);height:clamp(46px,5.1vw,58px);min-height:0;
+ border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);
+ color:#6626a7;box-shadow:0 4px 12px rgba(94,50,143,.13);font-size:1.2rem
+}
+.home-header .info-action svg{width:27px;height:27px}
+.home-header .reward-action{
+ min-width:clamp(116px,13vw,142px);width:auto;padding:0 12px;gap:9px;border-radius:999px;
+ background:rgba(255,255,255,.72)
+}
+.home-header .reward-action>span{font-size:1.75rem;line-height:1}
+.home-header .reward-action b{
+ min-width:64px;padding:4px 12px;border-radius:999px;background:#7027bd;color:#fff;
+ font-family:"Fredoka",sans-serif;font-size:1.06rem;font-weight:600;text-align:center
+}
+.home-header .agepill{
+ min-height:clamp(46px,5.1vw,58px);height:clamp(46px,5.1vw,58px);padding:0 16px;gap:9px;
+ border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.92);
+ color:#432064;box-shadow:0 4px 12px rgba(94,50,143,.13);font-size:1rem
+}
+.home-header .profile-avatar{width:29px;height:29px;color:#6f2bb6;flex:none}
+.home-header .agepill b{font-family:"Fredoka",sans-serif;font-size:1.12rem;font-weight:600;white-space:nowrap}
+.hero{
+ width:calc(100% + 4.4vw);margin:0 0 0 -2.2vw;padding:0;
+ overflow:hidden;border:0;border-radius:0;box-shadow:none;flex:1 1 auto;min-height:0;
+ background:
+  radial-gradient(ellipse at 12% 36%,rgba(216,190,255,.85),transparent 36%),
+  radial-gradient(ellipse at 86% 29%,rgba(255,230,196,.84),transparent 35%),
+  linear-gradient(112deg,#e9d3ff 0%,#fff8fb 46%,#ffefd9 100%)
+}
+:root[data-theme="dark"] .hero{
+ background:radial-gradient(ellipse at 12% 36%,rgba(125,83,166,.5),transparent 36%),
+ radial-gradient(ellipse at 86% 29%,rgba(140,94,71,.3),transparent 35%),linear-gradient(112deg,#30203f,#2b1b3d 55%,#47333f)
+}
+.hero::before{
+ width:clamp(250px,29vw,400px);height:clamp(250px,29vw,400px);right:8%;top:-65%;
+ background:rgba(255,255,255,.44)
+}
+.hero::after{
+ width:clamp(220px,26vw,340px);height:clamp(220px,26vw,340px);left:-6%;bottom:-74%;
+ background:rgba(255,255,255,.34)
+}
+.hero-stage{
+ width:100%;height:100%;flex:1 1 auto;min-height:0;position:relative;isolation:isolate;
+ grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+ align-items:stretch;gap:clamp(6px,1.2vw,18px);
+ padding:0 clamp(28px,5.2vw,68px) clamp(18px,3svh,34px)
+}
+.hero-visual{
+ grid-column:1;grid-row:1;align-self:stretch;align-items:flex-end;justify-content:center;
+ min-height:0;padding-bottom:clamp(24px,5svh,56px)
+}
+.hero-visual::before{
+ width:min(98%,390px);background:radial-gradient(circle,rgba(255,255,255,.82),rgba(234,211,255,.42) 61%,transparent 75%)
+}
+.hero-visual::after{
+ bottom:clamp(24px,4.5svh,48px);left:10%;width:80%;height:13%;
+ background:rgba(79,38,122,.18);filter:blur(16px)
+}
+.hero-books{position:absolute;z-index:0;bottom:clamp(15px,3svh,33px);left:4%;width:92%;height:clamp(76px,13svh,126px)}
+.hero-books i,.hero-books b{position:absolute;display:block;left:3%;width:94%;border-radius:11px 14px 13px 11px;box-shadow:0 9px 16px rgba(68,34,102,.15)}
+.hero-books i{
+ bottom:32%;height:43%;transform:rotate(-1deg);
+ background:linear-gradient(90deg,#f3a02f 0 5%,#268ea3 5% 90%,#f1c05b 90% 94%,#fff1d4 94%);
+ border-bottom:7px solid #1d718d
+}
+.hero-books i::after{
+ content:"";position:absolute;right:3%;top:7%;bottom:8%;width:18%;border-radius:3px;
+ background:repeating-linear-gradient(0deg,#ffeecb 0 3px,#e6c796 3px 4px)
+}
+.hero-books b{
+ bottom:0;height:35%;transform:rotate(1deg);
+ background:linear-gradient(90deg,#ed8b2e 0 6%,#e5a04c 6% 91%,#fff0d1 91% 96%,#b96c38 96%);
+ border-bottom:6px solid #b9642c
+}
+.hero-mascot{
+ position:relative;z-index:1;align-self:auto;margin:0 0 clamp(54px,9svh,88px);
+ width:clamp(250px,32vw,380px);height:clamp(250px,32vw,380px);
+ transform:translate3d(var(--mascot-x,0),var(--mascot-y,0),0) rotate(var(--mascot-r,0deg));
+ filter:drop-shadow(0 15px 13px rgba(71,34,105,.2))
+}
+.hero-topic-badge{
+ top:17%;right:4%;width:clamp(42px,5vw,58px);height:clamp(42px,5vw,58px);
+ border-radius:50%;font-size:clamp(1.45rem,2.4vw,1.8rem)
+}
+.hero-copy-wrap{
+ grid-column:2;grid-row:1;position:relative;z-index:2;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;min-width:0;min-height:0;padding-top:clamp(8px,2svh,24px)
+}
+.hero-copy{width:100%;max-width:720px;text-align:center}
+.hero h1{
+ margin:0 0 clamp(8px,1.6svh,18px);font-size:clamp(2.7rem,5.4vw,4.65rem);
+ line-height:1.04;letter-spacing:-.045em;color:#43146e
+}
+.hero p{
+ max-width:680px;margin:0 auto;color:#654879;font-size:clamp(1.12rem,2.1vw,1.55rem);
+ line-height:1.38;font-weight:750
+}
+.hero-open-book{width:min(100%,570px);height:clamp(125px,19svh,210px);margin-top:clamp(7px,1.6svh,18px);filter:drop-shadow(0 10px 10px rgba(92,50,128,.1))}
+.hero-open-book svg{display:block;width:100%;height:100%;overflow:visible}
+.hero-dragon,.hero-castle{
+ position:absolute;z-index:1;display:block;pointer-events:none
+}
+.hero-dragon{top:3%;left:43%;width:clamp(88px,12vw,145px);opacity:.72}
+.hero-dragon svg{width:100%;height:auto;filter:drop-shadow(0 3px 4px rgba(79,39,119,.1))}
+.hero-castle{top:2%;right:2.5%;width:clamp(100px,14vw,170px);opacity:.93}
+.hero-castle svg{width:100%;height:auto}
+.hero-clouds{
+ position:absolute;z-index:0;left:0;right:0;bottom:0;height:clamp(36px,7svh,74px);
+ background:
+  radial-gradient(ellipse 7% 72% at 2% 100%,#f2e7ff 98%,transparent 100%),
+  radial-gradient(ellipse 8% 86% at 12% 100%,#f3e9ff 98%,transparent 100%),
+  radial-gradient(ellipse 9% 72% at 25% 100%,#f2e8ff 98%,transparent 100%),
+  radial-gradient(ellipse 8% 85% at 39% 100%,#f9efff 98%,transparent 100%),
+  radial-gradient(ellipse 9% 75% at 54% 100%,#fff6ee 98%,transparent 100%),
+  radial-gradient(ellipse 9% 84% at 69% 100%,#fff3e5 98%,transparent 100%),
+  radial-gradient(ellipse 8% 72% at 84% 100%,#fff0df 98%,transparent 100%),
+  radial-gradient(ellipse 8% 85% at 98% 100%,#ffefd9 98%,transparent 100%);
+ pointer-events:none
+}
+body.home-active main{padding-top:0}
+@media(max-height:900px) and (min-width:701px){
+ .home-header{min-height:58px;height:58px}
+ .home-header .logo .nm{font-size:clamp(2rem,4.2vw,2.9rem)}
+ .home-header .header-action{width:46px;height:46px;min-width:46px}
+ .home-header .reward-action{min-width:110px}
+ .home-header .agepill{height:46px;min-height:46px}
+ .home-header .profile-avatar{width:25px;height:25px}
+ .hero-stage{padding-bottom:20px}
+ .hero-mascot{width:clamp(220px,30vw,320px);height:clamp(220px,30vw,320px);margin-bottom:64px}
+ .hero-open-book{height:clamp(105px,16svh,150px)}
+}
+@media(max-width:700px){
+ .hero{width:calc(100% + 26px);margin-left:-13px;padding:0 12px}
+ .home-header{padding:0 2px;min-height:50px;height:50px}
+ .home-header .logo::before{display:none}
+ .home-header .logo .nm{font-size:1.8rem}
+ .home-header .hr{gap:5px}
+ .home-header .header-action{width:36px;height:36px;min-width:36px}
+ .home-header .reward-action{min-width:68px;padding:0 7px;gap:4px}
+ .home-header .reward-action>span{font-size:1.25rem}
+ .home-header .reward-action b{min-width:34px;padding:3px 7px;font-size:.8rem}
+ .home-header .agepill{height:36px;min-height:36px;padding:0 7px;gap:5px;font-size:.8rem}
+ .home-header .profile-avatar{width:21px;height:21px}
+ .hero-stage{grid-template-columns:minmax(96px,.78fr) minmax(0,1.22fr);padding:0 0 34px;gap:0}
+ .hero-visual{padding-bottom:30px}
+ .hero-books{height:65px;bottom:12px}
+ .hero-mascot{width:clamp(110px,31vw,165px);height:clamp(110px,31vw,165px);margin-bottom:46px}
+ .hero-copy-wrap{padding:0 5px}
+ .hero h1{font-size:clamp(1.65rem,6.5vw,2.5rem)}
+ .hero p{font-size:clamp(.82rem,3.2vw,1rem)}
+ .hero-open-book{height:100px;margin-top:5px}
+ .hero-dragon{left:38%;top:0;width:64px}
+ .hero-castle{right:0;top:0;width:72px}
+ .hero-clouds{height:36px}
+}
 </style>
 </head>
 <body>
@@ -615,21 +791,99 @@ body.home-active footer.foot{min-height:42px;background:linear-gradient(180deg,r
         <span class="devtag" aria-label="Versión de desarrollo">DEV</span>
       </span>
       <div class="hr">
-        <button class="chip header-action" id="infoBtn" aria-label="Información para familias" title="Información">ℹ️</button>
+        <button class="chip header-action info-action" id="infoBtn" aria-label="Información para familias" title="Información">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 11v5M12 7.5h.01" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg>
+        </button>
         <button class="chip header-action reward-action" id="prizesBtn" aria-label="Mis premios" title="Mis premios"><span aria-hidden="true">⭐</span><b id="pointsNum">0</b></button>
-        <span class="agepill profile-pill" id="agePill" hidden><span aria-hidden="true">👤</span><b id="ageNum"></b><span>años</span></span>
+        <span class="agepill profile-pill" id="agePill" hidden>
+          <svg class="profile-avatar" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4.5 21c.3-4.2 3.2-7 7.5-7s7.2 2.8 7.5 7" fill="currentColor"/></svg>
+          <b><span id="ageNum"></span> años</b>
+        </span>
         <button class="chip newtag" id="newTag" hidden aria-label="Lecturas nuevas">🆕 <span id="newN"></span></button>
       </div>
     </header>
     <div class="hero-stage">
-      <div class="hero-copy">
-        <h1>¡Hola, aventurero!</h1>
-        <p>Tu compañero de aventuras lectoras. ¿Qué te apetece descubrir hoy?</p>
-      </div>
       <div class="hero-visual" id="heroVisual" data-mood="welcome">
+        <span class="hero-books" aria-hidden="true"><i></i><b></b></span>
         <span class="mascot-sprite pose-welcome hero-mascot" id="heroMascot" role="img" aria-label="La mascota de Cuentitis te da la bienvenida"></span>
         <span class="hero-topic-badge" id="heroTopicBadge" aria-hidden="true">✨</span>
       </div>
+
+      <div class="hero-copy-wrap">
+        <div class="hero-copy">
+          <h1>¡Hola, aventurero!</h1>
+          <p>Tu compañero de aventuras lectoras.<br>¿Qué te apetece descubrir hoy?</p>
+        </div>
+        <div class="hero-open-book" aria-hidden="true">
+          <svg viewBox="0 0 620 260" role="presentation" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="heroPage" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffdf1"/><stop offset=".72" stop-color="#ffedc9"/><stop offset="1" stop-color="#f5c77f"/></linearGradient>
+              <linearGradient id="heroCover" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a94bd5"/><stop offset="1" stop-color="#6425a8"/></linearGradient>
+              <linearGradient id="heroGlow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff8be" stop-opacity=".92"/><stop offset="1" stop-color="#fff8be" stop-opacity="0"/></linearGradient>
+              <filter id="heroBookShadow" x="-20%" y="-35%" width="140%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+            </defs>
+            <ellipse cx="310" cy="220" rx="235" ry="18" fill="#7d49ae" opacity=".15" filter="url(#heroBookShadow)"/>
+            <ellipse cx="310" cy="170" rx="210" ry="105" fill="url(#heroGlow)" opacity=".8"/>
+            <g fill="#ffd34d">
+              <path d="M71 122l7 17 18 7-18 7-7 18-7-18-18-7 18-7z"/>
+              <path d="M548 119l6 14 15 6-15 6-6 15-6-15-15-6 15-6z"/>
+              <path d="M160 48l5 11 12 5-12 5-5 12-5-12-12-5 12-5z"/>
+              <circle cx="470" cy="40" r="5"/><circle cx="121" cy="91" r="4"/>
+            </g>
+            <g opacity=".95">
+              <g transform="translate(116 57) rotate(-18)">
+                <path d="M-13 18Q-13 -4 0 -18Q13 -4 13 18Z" fill="#d78af2" stroke="#aa56d7" stroke-width="3"/>
+                <path d="M0 -15V21" stroke="#fff2ff" stroke-width="3"/>
+                <path d="M-10 17L-20 35 0 27 20 35 10 17" fill="#ff9e34"/>
+                <circle cy="-3" r="4" fill="#fff"/>
+              </g>
+              <g transform="translate(315 62)">
+                <path d="M0 12L-34 63H35Z" fill="#d89aef"/><path d="M0 12L4 63H35Z" fill="#b86add"/>
+                <path d="M-5 -5V64" stroke="#9b4dc9" stroke-width="4"/>
+                <path d="M-5 -2L-32 31H-5Z" fill="#f5d8ff"/>
+                <path d="M0 1L31 35H0Z" fill="#c47be3"/>
+                <path d="M-34 65Q0 76 37 65L27 78H-24Z" fill="#9e4ecb"/>
+                <path d="M-26 83Q0 90 28 83" fill="none" stroke="#ffcf59" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(480 46)">
+                <path d="M0 -28C-30 -28 -34 2 -17 19L-5 30H5L17 19C34 2 30 -28 0 -28Z" fill="#e3a0f1" stroke="#c475e4" stroke-width="3"/>
+                <path d="M-10 29L-5 42H5L10 29" fill="#9e53d0"/>
+                <path d="M0 -23V31" stroke="#fff4ff" stroke-width="3" opacity=".8"/>
+                <path d="M-4 43L-8 59M4 43L8 59" stroke="#a75bd4" stroke-width="2.5" stroke-linecap="round"/>
+              </g>
+            </g>
+            <path d="M45 165Q145 100 298 171Q310 180 310 198Q174 137 58 198Z" fill="url(#heroCover)" stroke="#6728a8" stroke-width="4"/>
+            <path d="M575 165Q475 100 322 171Q310 180 310 198Q446 137 562 198Z" fill="url(#heroCover)" stroke="#6728a8" stroke-width="4"/>
+            <path d="M57 153Q162 91 298 158Q307 164 310 181Q175 124 65 183Z" fill="url(#heroPage)" stroke="#edbd67" stroke-width="3"/>
+            <path d="M563 153Q458 91 322 158Q313 164 310 181Q445 124 555 183Z" fill="url(#heroPage)" stroke="#edbd67" stroke-width="3"/>
+            <path d="M68 160Q174 111 295 165M552 160Q446 111 325 165" fill="none" stroke="#fffef4" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+            <path d="M310 178V204" stroke="#e9ae4f" stroke-width="5" stroke-linecap="round"/>
+            <path d="M58 198Q182 158 310 210Q438 158 562 198" fill="none" stroke="#ffd15b" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <span class="hero-dragon" aria-hidden="true">
+        <svg viewBox="0 0 170 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 53Q36 35 57 43L68 27 51 5Q77 3 86 27Q96 12 121 14L106 38Q131 33 147 50L122 56Q112 74 89 69L76 90 66 72Q40 78 18 53Z" fill="#a77be6" opacity=".9"/>
+          <path d="M71 43Q78 30 88 32Q100 31 106 43L130 51 111 61 92 55 81 68 68 54Z" fill="#8d58cb"/>
+          <path d="M87 34L98 19 108 35M69 42L60 22 80 31" fill="#a77be6"/>
+          <circle cx="103" cy="39" r="2.5" fill="#fff"/>
+          <path d="M118 48L137 42 129 55" fill="#8d58cb"/>
+        </svg>
+      </span>
+      <span class="hero-castle" aria-hidden="true">
+        <svg viewBox="0 0 190 140" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 128Q48 94 93 111Q135 89 184 124Z" fill="#b9ddaa"/>
+          <path d="M29 124V70H66V124M71 124V46H118V124M121 124V68H160V124" fill="#f2c3a3" stroke="#dca47e" stroke-width="3"/>
+          <path d="M23 73L47 37 72 73ZM64 49L94 5 125 49ZM114 72L140 34 168 72Z" fill="#aa78d2" stroke="#9463c0" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M42 37V26L53 32 64 26V48M89 7V-2L101 5 112 -2V28M134 34V23L145 29 155 23V49" fill="#ffca4f" stroke="#eaa12d" stroke-width="2"/>
+          <path d="M82 124V95Q94 78 107 95V124Z" fill="#8751b7"/>
+          <g fill="#fff0c8"><rect x="39" y="84" width="9" height="15" rx="4"/><rect x="84" y="57" width="10" height="15" rx="5"/><rect x="130" y="82" width="9" height="15" rx="4"/></g>
+          <path d="M10 128Q95 113 180 128" fill="none" stroke="#8ab98d" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="hero-clouds" aria-hidden="true"></span>
     </div>
   </div>
 
