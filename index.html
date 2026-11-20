@@ -326,30 +326,241 @@ dialog::backdrop{background:rgba(49,20,75,.54);backdrop-filter:blur(4px)}
 @media(max-width:360px){.hero-mascot{width:100px;height:100px}.logo .nm{font-size:1.2rem}.top .chip{padding:5px 8px}}
 @media(prefers-reduced-motion:reduce){.mascot-sprite{animation:none!important}.big,.chip,.opt{transition:none}}
 
+
+/* ================= Inicio tablet · Cuentitis ================= */
+.home-header{
+ position:relative;top:auto;z-index:3;display:flex;align-items:center;justify-content:space-between;
+ width:100%;min-height:42px;padding:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none;
+ flex-wrap:nowrap
+}
+.home-header .logo{display:inline-flex;align-items:center;gap:9px;min-width:0;color:var(--deep)}
+.home-header .logo .nm{font-family:"Fredoka","Nunito",sans-serif;font-size:clamp(1.55rem,2.7vw,2.1rem);font-weight:700;letter-spacing:-.04em;white-space:nowrap}
+.home-header .brand-star{color:#ffb52e}
+.home-header .devtag{margin:0 0 0 2px;font-size:.58rem}
+.home-header .hr{display:flex;align-items:center;justify-content:flex-end;gap:clamp(5px,.8vw,10px);margin-left:auto;flex-wrap:nowrap}
+.home-header .header-action{
+ display:inline-flex;align-items:center;justify-content:center;min-width:42px;width:42px;height:42px;min-height:42px;
+ padding:0;border:1px solid rgba(112,68,152,.13);border-radius:15px;background:rgba(255,255,255,.78);
+ color:#552282;font-size:1.12rem;box-shadow:0 4px 12px rgba(87,43,133,.07)
+}
+.home-header .reward-action{width:auto;min-width:72px;padding:0 11px;gap:5px}
+.home-header .reward-action b{font-family:"Fredoka",sans-serif;font-size:.95rem;font-weight:600}
+.home-header .agepill{
+ display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 12px;
+ border:1px solid rgba(112,68,152,.13);border-radius:15px;background:rgba(255,255,255,.82);
+ color:#552282;font-size:.92rem;font-weight:800;box-shadow:0 4px 12px rgba(87,43,133,.07);white-space:nowrap
+}
+.home-header .agepill b{font-family:"Fredoka",sans-serif;font-size:1rem}
+.home-header .newtag{min-height:42px;padding:5px 10px;border-radius:14px}
+.hero{
+ position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:8px;
+ min-height:0;margin:0;padding:clamp(10px,1.5svh,20px) clamp(16px,3vw,42px);
+ border:1px solid rgba(255,255,255,.88);border-radius:clamp(22px,2.8vw,34px);
+ background:
+  radial-gradient(ellipse at 88% 20%,rgba(255,220,171,.62),transparent 34%),
+  radial-gradient(ellipse at 8% 88%,rgba(207,177,255,.62),transparent 42%),
+  linear-gradient(115deg,#eee0ff 0%,#fff8f5 58%,#fff0d9 100%);
+ box-shadow:var(--shadow)
+}
+:root[data-theme="dark"] .hero{
+ background:radial-gradient(ellipse at 88% 20%,rgba(146,95,76,.22),transparent 34%),
+ radial-gradient(ellipse at 8% 88%,rgba(130,91,174,.22),transparent 42%),linear-gradient(115deg,#382449,#2b1b3d 62%,#4b2c36)
+}
+.hero::before{width:clamp(180px,27vw,350px);height:clamp(180px,27vw,350px);right:10%;top:-70%;background:rgba(255,255,255,.42)}
+.hero::after{width:clamp(170px,22vw,300px);height:clamp(170px,22vw,300px);left:-10%;bottom:-80%;background:rgba(255,255,255,.3)}
+.hero-stage{
+ position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(190px,.88fr);
+ align-items:center;gap:clamp(8px,2vw,24px);flex:1 1 auto;min-height:0
+}
+.hero-copy{max-width:760px}
+.hero h1{margin:0 0 clamp(6px,1.1svh,13px);font-size:clamp(2.15rem,5.1vw,4.4rem);font-weight:700;letter-spacing:-.04em;line-height:1.04;color:#43146e}
+.hero p{max-width:740px;margin:0;color:#654879;font-size:clamp(1rem,1.75vw,1.35rem);font-weight:750;line-height:1.42}
+:root[data-theme="dark"] .hero h1{color:#fff}
+:root[data-theme="dark"] .hero p{color:#dfc9f0}
+.hero-visual{
+ position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;align-self:stretch;
+ width:100%;min-height:120px
+}
+.hero-visual::before{
+ content:"";position:absolute;z-index:-1;width:min(88%,280px);aspect-ratio:1;border-radius:50%;
+ background:radial-gradient(circle,rgba(255,255,255,.88),rgba(240,222,255,.46) 58%,rgba(255,255,255,0) 72%);
+ transition:background .4s ease
+}
+.hero-visual::after{
+ content:"";position:absolute;z-index:-1;bottom:10%;left:15%;width:70%;height:15%;border-radius:50%;
+ background:rgba(91,51,130,.13);filter:blur(13px)
+}
+.hero-visual[data-mood="nature"]::before{background:radial-gradient(circle,rgba(240,255,221,.88),rgba(210,236,198,.46) 58%,transparent 72%)}
+.hero-visual[data-mood="sky"]::before{background:radial-gradient(circle,rgba(224,245,255,.9),rgba(211,222,255,.5) 58%,transparent 72%)}
+.hero-visual[data-mood="energy"]::before{background:radial-gradient(circle,rgba(255,244,211,.92),rgba(255,219,183,.52) 58%,transparent 72%)}
+.hero-visual[data-mood="magic"]::before{background:radial-gradient(circle,rgba(255,237,255,.92),rgba(231,210,255,.54) 58%,transparent 72%)}
+.hero-mascot{
+ position:relative;z-index:1;width:clamp(150px,22svh,258px);height:clamp(150px,22svh,258px);margin:0;
+ transform:translate3d(var(--mascot-x,0),var(--mascot-y,0),0) rotate(var(--mascot-r,0deg));
+ transform-origin:50% 72%;transition:transform .62s cubic-bezier(.2,.82,.22,1),filter .3s ease;
+ will-change:transform
+}
+.hero-topic-badge{
+ position:absolute;z-index:2;top:12%;right:10%;display:grid;place-items:center;
+ width:clamp(38px,5.6svh,58px);height:clamp(38px,5.6svh,58px);border-radius:18px;
+ background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);
+ box-shadow:0 7px 18px rgba(75,39,112,.13);font-size:clamp(1.35rem,2.5svh,1.9rem);
+ transition:transform .45s cubic-bezier(.2,.82,.22,1),background .3s ease
+}
+.hero-visual[data-mood="nature"] .hero-topic-badge{background:#f1ffe6}
+.hero-visual[data-mood="sky"] .hero-topic-badge{background:#eaf7ff}
+.hero-visual[data-mood="energy"] .hero-topic-badge{background:#fff1d9}
+.hero-visual[data-mood="magic"] .hero-topic-badge{background:#faedff}
+.adventure-dock{display:flex;flex:0 0 auto;flex-direction:column;gap:clamp(6px,.85svh,10px);margin-top:auto}
+.adventure-dock .card{
+ margin:0;padding:clamp(9px,1.15svh,16px) clamp(12px,1.8vw,24px);
+ border-radius:clamp(20px,2.2vw,28px);background:linear-gradient(145deg,#fffefd,rgba(249,242,255,.96))
+}
+.adventure-dock .card h2{
+ margin:0 0 clamp(6px,.8svh,10px);font-size:clamp(1.12rem,2.1vw,1.62rem);line-height:1.08
+}
+.adventure-dock .section-title{gap:8px}
+.adventure-dock .section-icon{width:30px;height:30px;border-radius:10px;background:transparent;font-size:1.35rem}
+#likes.likes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(5px,.72vw,9px)}
+#likes .chip{
+ position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(2px,.45svh,5px);
+ width:100%;height:clamp(64px,8.8svh,120px);min-height:0;min-width:0;padding:5px 4px;
+ border:1.5px solid #e7d9f4;border-radius:clamp(13px,1.6vw,20px);
+ background:linear-gradient(160deg,#fff,#f8f1ff);color:#40205f;
+ box-shadow:0 3px 0 rgba(105,38,185,.06),0 7px 15px rgba(76,40,106,.05);
+ transition:transform .16s,border-color .16s,box-shadow .16s,background .16s
+}
+#likes .chip:hover{transform:translateY(-2px);border-color:#cba9ee;box-shadow:0 6px 0 rgba(105,38,185,.07),0 10px 18px rgba(76,40,106,.08)}
+#likes .like-emoji{
+ display:flex;align-items:center;justify-content:center;width:clamp(28px,4.4svh,52px);height:clamp(28px,4.4svh,52px);
+ flex:none;border-radius:14px;background:linear-gradient(145deg,#f2e5ff,#fff3df);
+ font-size:clamp(1.25rem,2.7svh,2.1rem);line-height:1;box-shadow:inset 0 1px 0 #fff
+}
+#likes .like-name{
+ display:block;max-width:100%;font-family:"Fredoka",sans-serif;
+ font-size:clamp(.72rem,1.12vw,1rem);font-weight:500;line-height:1.06;text-align:center;overflow-wrap:anywhere
+}
+#likes .chip small{
+ position:absolute;top:4px;right:5px;display:block;margin:0;padding:2px 6px;
+ border-radius:999px;background:#ffd65d;color:#5b2a00;font-size:clamp(.52rem,.65vw,.64rem);
+ font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:.02em
+}
+#likes .chip[aria-pressed="true"]{
+ color:#fff;background:linear-gradient(145deg,#8240d0,#6220ac);border-color:#5d20a3;
+ box-shadow:0 4px 0 #4a1882,0 9px 18px rgba(91,35,158,.18)
+}
+#likes .chip[aria-pressed="true"] .like-emoji{background:rgba(255,255,255,.17);box-shadow:none}
+.adventure-dock>.big{width:min(100%,560px);min-height:clamp(50px,5.3svh,66px);margin:0 auto;padding:8px 18px;font-size:clamp(1.05rem,1.7vw,1.28rem);border-radius:18px}
+.adventure-dock>.hint{margin:0;text-align:center;font-size:clamp(.68rem,.82vw,.82rem);line-height:1.1}
+body.home-active{
+ display:flex;flex-direction:column;width:100%;height:100vh;height:100svh;min-height:0;overflow:hidden
+}
+body.home-active main{
+ display:flex;flex:1 1 auto;flex-direction:column;min-height:0;width:100%;max-width:1480px;
+ margin:0 auto;padding:clamp(8px,1.15svh,18px) clamp(14px,2.2vw,34px) clamp(5px,.8svh,10px)
+}
+body.home-active #home{display:flex;flex:1 1 auto;flex-direction:column;min-height:0;gap:clamp(7px,1.05svh,14px)}
+body.home-active footer.foot{
+ display:flex;flex:0 0 auto;align-items:center;justify-content:center;flex-wrap:nowrap;gap:clamp(5px,.8vw,12px);
+ width:100%;max-width:none;min-height:42px;margin:0;padding:5px 14px calc(7px + env(safe-area-inset-bottom,0px));
+ background:rgba(242,231,255,.86);font-size:clamp(.64rem,.82vw,.82rem);line-height:1.15;white-space:nowrap
+}
+body.home-active footer .g{display:inline}
+body.home-active footer .commit-meta{font-size:.68em}
+body.home-active footer .flink{padding:2px 3px;font-size:inherit}
+@media(max-height:900px) and (min-width:701px){
+ body.home-active main{padding-top:7px;padding-bottom:5px}
+ body.home-active #home{gap:7px}
+ body.home-active .hero{min-height:150px;padding:9px 22px}
+ .home-header,.home-header .header-action,.home-header .agepill,.home-header .newtag{min-height:36px;height:36px}
+ .home-header .header-action{min-width:36px;width:36px}
+ #likes .chip{height:clamp(48px,6.7svh,66px);padding:3px}
+ #likes .like-emoji{width:clamp(24px,3.6svh,34px);height:clamp(24px,3.6svh,34px);font-size:clamp(1.05rem,2.4svh,1.55rem)}
+ #likes .like-name{font-size:clamp(.67rem,.95vw,.85rem)}
+ .adventure-dock .card{padding:8px 14px}
+ .adventure-dock .card h2{margin-bottom:6px;font-size:clamp(1rem,1.6vw,1.3rem)}
+ .adventure-dock>.big{min-height:48px}
+ body.home-active footer.foot{min-height:36px;padding:4px 10px 5px}
+}
+@media(max-width:700px){
+ body.home-active{height:auto;min-height:100svh;overflow:auto;display:block}
+ body.home-active main{display:block;flex:none;min-height:0;padding:14px 13px 8px}
+ body.home-active #home{display:block;min-height:0}
+ body.home-active .hero{min-height:0;margin:0 0 12px;padding:12px 14px;gap:8px}
+ .home-header{min-height:38px;gap:7px}
+ .home-header .logo .nm{font-size:1.45rem}
+ .home-header .devtag{display:none}
+ .home-header .hr{gap:4px}
+ .home-header .header-action,.home-header .agepill,.home-header .newtag{min-width:34px;width:auto;height:36px;min-height:36px;padding:0 8px;border-radius:12px}
+ .home-header .reward-action{min-width:58px}
+ .home-header .agepill{gap:4px}
+ .hero-stage{grid-template-columns:minmax(0,1fr) minmax(96px,34%);min-height:145px;gap:3px}
+ .hero h1{font-size:clamp(1.75rem,6.5vw,2.55rem);margin-bottom:7px}
+ .hero p{font-size:clamp(.86rem,3.3vw,1rem);line-height:1.28}
+ .hero-visual{min-height:120px}
+ .hero-mascot{width:clamp(100px,29vw,150px);height:clamp(100px,29vw,150px)}
+ .hero-topic-badge{width:34px;height:34px;top:8%;right:3%;border-radius:12px;font-size:1.2rem}
+ .adventure-dock{gap:10px}
+ .adventure-dock .card{margin:0;padding:14px 12px;border-radius:22px}
+ .adventure-dock .card h2{font-size:1.2rem}
+ #likes.likes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #likes .chip{height:auto;min-height:104px;padding:10px 6px;border-radius:18px;gap:5px}
+ #likes .like-emoji{width:46px;height:46px;font-size:1.8rem}
+ #likes .like-name{font-size:.93rem}
+ .adventure-dock>.big{min-height:54px}
+ .adventure-dock>.hint{font-size:.78rem}
+ body.home-active footer.foot{display:block;height:auto;min-height:0;padding:12px 14px 20px;text-align:center;white-space:normal;font-size:.8rem;line-height:1.5}
+ body.home-active footer .g{display:block}
+ body.home-active footer .sep{display:none}
+}
+@media(max-height:700px) and (min-width:701px){
+ body.home-active{height:auto;min-height:100svh;overflow:auto}
+ body.home-active main{min-height:0}
+ body.home-active .hero{min-height:170px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-mascot,.hero-topic-badge{transition:none!important}
+}
 </style>
 </head>
 <body>
 
-<header class="top"><span class="logo">
-  <span class="mascot-sprite pose-welcome logo-mascot" role="img" aria-label="Mascota de Cuentitis"></span>
-  <span class="brand-copy"><span class="nm">Cuentitis<span class="brand-star" aria-hidden="true">★</span></span><span class="brand-tagline">Tu compañero de aventuras lectoras</span></span>
-  <span class="devtag" aria-label="Versión de desarrollo">DEV</span>
-</span><div class="hr"><span class="agepill" id="agePill" hidden>🎂 <b id="ageNum"></b><span class="lbl"> años</span></span><button class="chip newtag" id="newTag" hidden aria-label="Lecturas nuevas">🆕 <span id="newN"></span></button><span class="fsz" id="fsz" hidden><button class="chip" id="smaller" aria-label="Letra más pequeña">A−</button><button class="chip" id="bigger" aria-label="Letra más grande">A+</button></span><button class="chip" id="infoBtn" aria-label="Información para familias">ℹ️<span class="lbl"> Info</span></button><button class="chip" id="prizesBtn" aria-label="Mis premios">🏅<span class="lbl"> Mis premios</span></button></div><div class="hbar" id="hbar" hidden aria-hidden="true"><i id="prog"></i></div></header>
 <main>
 
 <section id="home">
   <div class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow"><span aria-hidden="true">✨</span> UN MUNDO DE HISTORIAS</span>
-      <h1>¡Hola, aventurero!</h1>
-      <p>Tu compañero de aventuras lectoras te espera. ¿Qué te apetece descubrir hoy?</p>
-      <div class="hero-note"><span aria-hidden="true">⭐</span> Cada página es una nueva aventura</div>
+    <header class="top home-header" aria-label="Cabecera de Cuentitis">
+      <span class="logo">
+        <span class="nm">Cuentitis<span class="brand-star" aria-hidden="true">★</span></span>
+        <span class="devtag" aria-label="Versión de desarrollo">DEV</span>
+      </span>
+      <div class="hr">
+        <button class="chip header-action" id="infoBtn" aria-label="Información para familias" title="Información">ℹ️</button>
+        <button class="chip header-action reward-action" id="prizesBtn" aria-label="Mis premios" title="Mis premios"><span aria-hidden="true">⭐</span><b id="pointsNum">0</b></button>
+        <span class="agepill profile-pill" id="agePill" hidden><span aria-hidden="true">👤</span><b id="ageNum"></b><span>años</span></span>
+        <button class="chip newtag" id="newTag" hidden aria-label="Lecturas nuevas">🆕 <span id="newN"></span></button>
+      </div>
+    </header>
+    <div class="hero-stage">
+      <div class="hero-copy">
+        <h1>¡Hola, aventurero!</h1>
+        <p>Tu compañero de aventuras lectoras. ¿Qué te apetece descubrir hoy?</p>
+      </div>
+      <div class="hero-visual" id="heroVisual" data-mood="welcome">
+        <span class="mascot-sprite pose-welcome hero-mascot" id="heroMascot" role="img" aria-label="La mascota de Cuentitis te da la bienvenida"></span>
+        <span class="hero-topic-badge" id="heroTopicBadge" aria-hidden="true">✨</span>
+      </div>
     </div>
-    <span class="mascot-sprite pose-welcome hero-mascot" role="img" aria-label="La mascota de Cuentitis te da la bienvenida"></span>
   </div>
-  <div class="card"><h2 class="hd"><span class="section-title"><span class="section-icon" aria-hidden="true">📚</span>Elige tu aventura</span><button class="info" data-info="likes" aria-label="Más información"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></h2><p class="hint" style="margin:-.2em 0 12px">Escoge tu tema favorito. ¡Podrás cambiarlo cuando quieras!</p><div class="likes-grid" id="likes"></div></div>
-  <button class="big" id="go" disabled>✨ ¡Crear mi lectura!</button>
-  <p class="hint center" id="gohint">Elige tu tema favorito para empezar.</p>
+
+  <div class="adventure-dock">
+    <div class="card">
+      <h2 class="hd"><span class="section-title"><span class="section-icon" aria-hidden="true">📚</span>Elige tu aventura</span></h2>
+      <div class="likes-grid" id="likes"></div>
+    </div>
+    <button class="big" id="go" disabled>✨ ¡Crear mi lectura!</button>
+    <p class="hint center" id="gohint">Elige tu tema favorito para empezar.</p>
+  </div>
 </section>
 
 <section id="loading" hidden class="card center">
@@ -368,8 +579,12 @@ dialog::backdrop{background:rgba(49,20,75,.54);backdrop-filter:blur(4px)}
 </section>
 
 <section id="read" hidden>
+  <div class="hbar" id="hbar" hidden aria-hidden="true"><i id="prog"></i></div>
   <div class="card story">
-    <div class="story-companion"><span class="mascot-sprite pose-reading story-mascot" aria-hidden="true"></span><span>Lee a tu ritmo. ¡Estás de aventura!</span></div>
+    <div class="story-toolbar">
+      <div class="story-companion"><span class="mascot-sprite pose-reading story-mascot" aria-hidden="true"></span><span>Lee a tu ritmo. ¡Estás de aventura!</span></div>
+      <span class="fsz" id="fsz" hidden><button class="chip" id="smaller" aria-label="Letra más pequeña">A−</button><button class="chip" id="bigger" aria-label="Letra más grande">A+</button></span>
+    </div>
     <h2 id="title"></h2>
     <div id="text"></div>
     <div id="gloss"></div>
@@ -808,11 +1023,43 @@ function acceptBirthday(){
   show("home");
 }
 
-function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$(x).hidden=x!==id);$("hbar").hidden=id!=="read";$("fsz").hidden=id!=="read";window.scrollTo({top:0,behavior:"smooth"})}
+function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$(x).hidden=x!==id);document.body.classList.toggle("home-active",id==="home");$("hbar").hidden=id!=="read";$("fsz").hidden=id!=="read";window.scrollTo({top:0,behavior:"smooth"})}
+
+/* ---------- Escena del inicio: la mascota acompaña el tema elegido ---------- */
+const HERO_SCENES={
+ "Animales":{emoji:"🐾",pose:"pose-curious",x:"-13%",y:"5%",r:"-5deg",mood:"nature"},
+ "Dinosaurios":{emoji:"🦖",pose:"pose-surprised",x:"-9%",y:"-8%",r:"-3deg",mood:"nature"},
+ "Espacio":{emoji:"🚀",pose:"pose-explore",x:"15%",y:"-12%",r:"6deg",mood:"sky"},
+ "Fútbol":{emoji:"⚽",pose:"pose-proud",x:"13%",y:"9%",r:"7deg",mood:"energy"},
+ "Princesas y reyes":{emoji:"👑",pose:"pose-proud",x:"12%",y:"-8%",r:"4deg",mood:"magic"},
+ "Superhéroes":{emoji:"⚡",pose:"pose-celebrate",x:"-15%",y:"-7%",r:"-7deg",mood:"energy"},
+ "Piratas":{emoji:"🏴‍☠️",pose:"pose-explore",x:"14%",y:"8%",r:"7deg",mood:"magic"},
+ "Coches":{emoji:"🏎️",pose:"pose-surprised",x:"16%",y:"2%",r:"6deg",mood:"energy"},
+ "Cocina":{emoji:"🧁",pose:"pose-curious",x:"-12%",y:"8%",r:"-4deg",mood:"warm"},
+ "Ciencia":{emoji:"🧪",pose:"pose-explore",x:"12%",y:"-9%",r:"4deg",mood:"sky"},
+ "Dragones":{emoji:"🐉",pose:"pose-surprised",x:"-15%",y:"-10%",r:"-6deg",mood:"magic"},
+ "Robots":{emoji:"🤖",pose:"pose-proud",x:"15%",y:"-6%",r:"6deg",mood:"sky"},
+ "Naturaleza y medioambiente":{emoji:"🌿",pose:"pose-reading",x:"-14%",y:"10%",r:"-5deg",mood:"nature"},
+ "Música":{emoji:"🎵",pose:"pose-celebrate",x:"13%",y:"-10%",r:"5deg",mood:"warm"},
+ "Misterios y detectives":{emoji:"🔎",pose:"pose-curious",x:"-17%",y:"-3%",r:"-6deg",mood:"magic"},
+ "¿Sabías que...?":{emoji:"💡",pose:"pose-explore",x:"15%",y:"-10%",r:"5deg",mood:"sky"}
+};
+function updateHomeMascot(topic){
+  const scene=HERO_SCENES[topic]||null;
+  const mascot=$("heroMascot"),badge=$("heroTopicBadge"),visual=$("heroVisual");
+  mascot.className="mascot-sprite "+(scene?scene.pose:"pose-welcome")+" hero-mascot";
+  mascot.style.setProperty("--mascot-x",scene?scene.x:"0%");
+  mascot.style.setProperty("--mascot-y",scene?scene.y:"0%");
+  mascot.style.setProperty("--mascot-r",scene?scene.r:"0deg");
+  mascot.setAttribute("aria-label",scene?"La mascota se prepara para una aventura de "+topic:"La mascota de Cuentitis te da la bienvenida");
+  badge.textContent=scene?scene.emoji:"✨";
+  visual.dataset.mood=scene?scene.mood:"welcome";
+}
 
 /* ---------- Inicio ---------- */
 function drawHome(){
-  $("agePill").hidden=!st.age;$("ageNum").textContent=st.age||"";
+  $("agePill").hidden=!st.age;$("ageNum").textContent=st.age||"";$("pointsNum").textContent=stats.points||0;
+  updateHomeMascot(st.likes[0]||"");
   $("likes").innerHTML="";
   LIKES.forEach(([emoji,name])=>{
     const selected=st.likes[0]===name;
@@ -1162,6 +1409,7 @@ $("infoModal").addEventListener("click",e=>{if(e.target===$("infoModal"))$("info
 loadBank().then(b=>{$("nRead").textContent=b.length;checkNew(b)}).catch(()=>{});
 $("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").close()});
 loadBirthProfile();
+document.body.classList.add("home-active");
 drawHome();
 loadLatestCommit();
 if(!birthDate)openAge();
