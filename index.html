@@ -521,6 +521,12 @@ body.home-active footer .flink{padding:2px 3px;font-size:inherit}
 @media(prefers-reduced-motion:reduce){
  .hero-mascot,.hero-topic-badge{transition:none!important}
 }
+
+/* La barra de lectura ahora vive dentro de la vista de lectura, no en la cabecera. */
+.hbar{position:relative;left:auto;right:auto;bottom:auto;width:100%;height:6px;margin:0 0 12px;border-radius:999px;overflow:hidden}
+.story-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 8px}
+.story-toolbar .story-companion{margin:0 auto 0 0}
+.story-toolbar .fsz{flex:none}
 </style>
 </head>
 <body>
