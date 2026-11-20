@@ -776,6 +776,67 @@ body.home-active main{padding-top:0}
  .hero-dragon{top:2%}
  .hero-castle{top:2%}
 }
+
+/* ================= Hero raster original · fidelidad a la propuesta ================= */
+body.home-active main{padding-top:0}
+body.home-active #home{gap:0}
+#home .hero.hero-reference,
+#home .hero{
+ width:calc(100% + 4.4vw);margin:0 0 0 -2.2vw;padding:0;
+ flex:0 0 auto;min-height:0;overflow:visible;border:0;border-radius:0;box-shadow:none;
+ background:transparent
+}
+#home .hero-raster-shell{
+ position:relative;width:100%;aspect-ratio:1133/650;overflow:hidden;
+ background:#ead7ff;line-height:0
+}
+#homeReferenceImage{
+ display:block;width:100%;height:100%;object-fit:contain;object-position:center;
+}
+#home .hero-ref-hit{
+ position:absolute;display:block;margin:0;padding:0;border:0;background:transparent;
+ border-radius:999px;cursor:pointer;min-width:0;min-height:0;box-shadow:none;
+}
+#home .hero-ref-hit:focus-visible,
+#home .hero-ref-age:focus-visible{
+ outline:3px solid #ffbd36;outline-offset:2px
+}
+/* Hitbox sobre el botón de información dibujado en la ilustración. */
+#home .hero-ref-info{left:59.6%;top:1.6%;width:7.6%;height:9.8%}
+/* La estrella y la cápsula morada ya forman parte de la imagen; solo se actualiza la cifra. */
+#home .hero-ref-points{left:67.5%;top:1.5%;width:13.1%;height:9.5%}
+#home .hero-ref-points b{
+ position:absolute;left:56%;top:35%;width:41%;height:35%;display:flex;
+ align-items:center;justify-content:center;color:#fff;font-family:"Fredoka","Nunito",sans-serif;
+ font-size:clamp(10px,1.55vw,20px);font-weight:700;line-height:1
+}
+/* Avatar y cápsula están en la imagen; edad dinámica en la zona de texto. */
+#home .hero-ref-age{
+ position:absolute;left:88.1%;top:3%;width:10.2%;height:7%;
+ display:flex;align-items:center;justify-content:flex-start;
+ color:#351653;font-family:"Fredoka","Nunito",sans-serif;font-size:clamp(10px,1.55vw,20px);
+ line-height:1;white-space:nowrap;pointer-events:none
+}
+#home .hero-ref-age b{font-weight:700}
+#home .hero-ref-dev{
+ position:absolute;right:.9%;bottom:1.1%;padding:3px 7px;
+ border-radius:999px;background:rgba(83,26,142,.82);color:#fff;
+ font:700 9px/1 "Nunito",sans-serif;letter-spacing:.08em;box-shadow:0 2px 7px rgba(48,19,80,.15)
+}
+#home .hero-new-tag{margin:7px auto 0;min-height:28px}
+#home .hero-stage[hidden]{display:none!important}
+#home .adventure-dock{margin-top:auto}
+#home .adventure-dock>.card>h2{display:none!important}
+#home .adventure-dock>.card{margin-top:0}
+@media(max-width:700px){
+ #home .hero{width:calc(100% + 26px);margin-left:-13px}
+ #home .hero-ref-points b{font-size:clamp(9px,2.4vw,14px)}
+ #home .hero-ref-age{font-size:clamp(9px,2.2vw,14px)}
+ #home .hero-ref-dev{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ #home .hero-raster-shell{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
@@ -796,24 +857,15 @@ body.home-active main{padding-top:0}
 
 <section id="home">
   <div class="hero">
-    <header class="top home-header" aria-label="Cabecera de Cuentitis">
-      <span class="logo">
-        <span class="nm">Cuentitis<span class="brand-star" aria-hidden="true">★</span></span>
-        <span class="devtag" aria-label="Versión de desarrollo">DEV</span>
-      </span>
-      <div class="hr">
-        <button class="chip header-action info-action" id="infoBtn" aria-label="Información para familias" title="Información">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 11v5M12 7.5h.01" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg>
-        </button>
-        <button class="chip header-action reward-action" id="prizesBtn" aria-label="Mis premios" title="Mis premios"><span aria-hidden="true">⭐</span><b id="pointsNum">0</b></button>
-        <span class="agepill profile-pill" id="agePill" hidden>
-          <svg class="profile-avatar" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4.5 21c.3-4.2 3.2-7 7.5-7s7.2 2.8 7.5 7" fill="currentColor"/></svg>
-          <b><span id="ageNum"></span> años</b>
-        </span>
-        <button class="chip newtag" id="newTag" hidden aria-label="Lecturas nuevas">🆕 <span id="newN"></span></button>
-      </div>
-    </header>
-    <div class="hero-stage">
+    <div class="hero-raster-shell">
+      <img id="homeReferenceImage" src="./assets/hero/cuentitis-home.webp" alt="Cuentitis: una aventura de lectura con una mascota-libro, un castillo y un libro mágico abierto" width="1133" height="650" fetchpriority="high">
+      <button class="hero-ref-hit hero-ref-info" id="infoBtn" type="button" aria-label="Información para familias" title="Información"></button>
+      <button class="hero-ref-hit hero-ref-points" id="prizesBtn" type="button" aria-label="Mis premios" title="Mis premios"><b id="pointsNum">0</b></button>
+      <span class="hero-ref-age" id="agePill" hidden><b><span id="ageNum"></span> años</b></span>
+      <span class="hero-ref-dev" aria-label="Versión de desarrollo">DEV</span>
+    </div>
+    <button class="chip newtag hero-new-tag" id="newTag" hidden aria-label="Lecturas nuevas">🆕 <span id="newN"></span></button>
+    <div class="hero-stage" hidden aria-hidden="true">
       <div class="hero-visual" id="heroVisual" data-mood="welcome">
         <span class="hero-books" aria-hidden="true"><i></i><b></b></span>
         <span class="mascot-sprite pose-welcome hero-mascot" id="heroMascot" role="img" aria-label="La mascota de Cuentitis te da la bienvenida"></span>
