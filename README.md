@@ -21,7 +21,7 @@ La interfaz utiliza la identidad visual de Cuentitis: libro morado aventurero, m
 - Paleta de referencia: morado `#6926B9`, lavanda `#F0E5FF`, naranja `#FF901F`, dorado `#FFD044`, crema `#FFF9F1` y tinta `#351653`.
 - Tipografías: Fredoka para títulos y elementos expresivos; Nunito para lectura y textos de interfaz.
 - El favicon vive en `favicon.svg`.
-- Las poses 3D principales se guardan en `assets/mascots3d/`; las variantes vectoriales ligeras están en `assets/mascots/`. La interfaz alterna poses según el momento (bienvenida, curiosidad, lectura, sorpresa, orgullo, sueño, exploración y celebración).
+- Las poses 3D principales se guardan en `assets/mascots3d/`; las variantes vectoriales ligeras están en `assets/mascots/`. La pantalla de inicio está optimizada primero para tablet: el selector de los 16 temas queda anclado en la parte inferior, sobre el pie, y el hero adapta su altura. Al elegir un tema, la mascota cambia de pose, se desplaza suavemente y muestra el símbolo de esa aventura.
 
 ## Cómo elige la lectura
 El niño elige un solo tema favorito. Cuentitis intenta ofrecer primero una lectura inédita de ese tema dentro de su tramo de edad. Cuando ya se han leído todas las lecturas de ese tema, continúa con otras lecturas inéditas de la misma edad. No repite ninguna lectura hasta que una persona adulta reinicie el historial desde Información para familias. La selección y el historial se guardan en el navegador.
