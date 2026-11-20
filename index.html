@@ -527,9 +527,83 @@ body.home-active footer .flink{padding:2px 3px;font-size:inherit}
 .story-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 8px}
 .story-toolbar .story-companion{margin:0 auto 0 0}
 .story-toolbar .fsz{flex:none}
+
+/* ================= Ajuste final de dirección visual · Cuentitis ================= */
+.app-top{
+ position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
+ background:rgba(255,253,255,.94);border:0;border-bottom:1px solid var(--line);
+ box-shadow:0 5px 22px rgba(76,35,116,.07);backdrop-filter:blur(14px)
+}
+.app-top .logo{gap:8px;color:var(--deep)}
+.app-top .logo .nm{font-family:"Fredoka","Nunito",sans-serif;font-size:1.42rem;font-weight:700;white-space:nowrap}
+.app-top .hr{gap:8px}
+.app-top .header-action{display:inline-flex;align-items:center;justify-content:center;min-width:42px;width:42px;height:42px;min-height:42px;padding:0;border:1px solid var(--line);border-radius:14px;background:var(--lav);color:var(--deep);font-size:1.1rem}
+.app-top .reward-action{width:auto;min-width:72px;padding:0 11px;gap:5px}
+.app-top .reward-action b{font-family:"Fredoka",sans-serif;font-size:.95rem;font-weight:600}
+.app-top .agepill{display:inline-flex;align-items:center;gap:6px;min-height:42px;padding:0 12px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--deep);font-size:.92rem;white-space:nowrap}
+.app-top .agepill b{font-family:"Fredoka",sans-serif;font-size:1rem}
+.hero{flex:1 1 220px;min-height:0}
+.hero-stage{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)}
+.hero-visual{grid-column:1;grid-row:1}
+.hero-copy{grid-column:2;grid-row:1;justify-self:center;width:100%;max-width:720px;text-align:center}
+.hero h1{font-size:clamp(2.1rem,5vw,4.15rem)}
+.hero p{max-width:680px;margin:0 auto;font-size:clamp(1rem,1.75vw,1.34rem)}
+.hero-mascot{width:clamp(155px,23svh,290px);height:clamp(155px,23svh,290px)}
+.hero-visual::before{width:min(92%,310px);background:radial-gradient(circle,rgba(255,255,255,.94),rgba(234,214,255,.56) 58%,transparent 74%)}
+.hero-visual::after{bottom:9%;left:12%;width:76%;height:13%;background:rgba(91,51,130,.17);filter:blur(15px)}
+.hero-topic-badge{top:10%;right:7%;width:clamp(38px,5.2svh,60px);height:clamp(38px,5.2svh,60px);border-radius:50%;font-size:clamp(1.3rem,2.6svh,1.85rem)}
+.hero-mascot.is-moving{animation:mascot-arrive .68s cubic-bezier(.2,.82,.22,1) both}
+@keyframes mascot-arrive{
+ 0%{opacity:.55;transform:translate3d(0,18px,0) rotate(-7deg) scale(.84)}
+ 62%{opacity:1;transform:translate3d(var(--mascot-x),calc(var(--mascot-y) - 9px),0) rotate(var(--mascot-r)) scale(1.06)}
+ 100%{opacity:1;transform:translate3d(var(--mascot-x),var(--mascot-y),0) rotate(var(--mascot-r)) scale(1)}
+}
+.adventure-dock{margin-top:auto}
+.adventure-dock>.hint{display:none!important}
+#likes .chip small{display:none!important}
+body.home-active footer.foot .commit-meta{display:none}
+body.home-active footer.foot{min-height:42px;background:linear-gradient(180deg,rgba(246,237,255,.78),rgba(239,226,255,.96));border-radius:22px 22px 0 0}
+@media(max-height:900px) and (min-width:701px){
+ .hero{flex:1 1 0;min-height:0}
+ .hero-stage{min-height:0}
+ .hero-mascot{width:clamp(145px,21svh,220px);height:clamp(145px,21svh,220px)}
+}
+@media(max-width:700px){
+ .app-top{position:sticky;padding:7px 10px}
+ .app-top .logo .nm{font-size:1.3rem}
+ .app-top .hr{gap:4px}
+ .app-top .header-action,.app-top .agepill{min-width:34px;width:auto;height:36px;min-height:36px;padding:0 8px;border-radius:12px}
+ .app-top .reward-action{min-width:56px}
+ .hero-stage{grid-template-columns:minmax(94px,34%) minmax(0,1fr)}
+ .hero-visual{grid-column:1;grid-row:1}
+ .hero-copy{grid-column:2;grid-row:1;text-align:left}
+ .hero h1{font-size:clamp(1.7rem,6.2vw,2.45rem)}
+ .hero p{margin:0;font-size:clamp(.84rem,3.2vw,.98rem)}
+}
+@media(max-width:380px){
+ .home-header .logo .nm{font-size:1.25rem}
+ .home-header .header-action,.home-header .agepill,.home-header .newtag{min-width:31px;width:auto;padding:0 6px}
+ .home-header .reward-action{min-width:51px}
+ .home-header .logo .devtag{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-mascot.is-moving{animation:none!important}
+}
 </style>
 </head>
 <body>
+
+<header class="top app-top" id="appTop" hidden aria-label="Navegación de Cuentitis">
+  <span class="logo">
+    <span class="nm">Cuentitis<span class="brand-star" aria-hidden="true">★</span></span>
+    <span class="devtag" aria-label="Versión de desarrollo">DEV</span>
+  </span>
+  <div class="hr">
+    <span class="agepill" id="appAgePill" hidden><span aria-hidden="true">👤</span><b id="appAgeNum"></b><span>años</span></span>
+    <button class="chip header-action" id="appInfoBtn" aria-label="Información para familias" title="Información">ℹ️</button>
+    <button class="chip header-action reward-action" id="appPrizesBtn" aria-label="Mis premios" title="Mis premios"><span aria-hidden="true">⭐</span><b id="appPointsNum">0</b></button>
+  </div>
+</header>
 
 <main>
 
@@ -565,7 +639,6 @@ body.home-active footer .flink{padding:2px 3px;font-size:inherit}
       <div class="likes-grid" id="likes"></div>
     </div>
     <button class="big" id="go" disabled>✨ ¡Crear mi lectura!</button>
-    <p class="hint center" id="gohint">Elige tu tema favorito para empezar.</p>
   </div>
 </section>
 
@@ -619,7 +692,7 @@ body.home-active footer .flink{padding:2px 3px;font-size:inherit}
 
 </main>
 <footer class="foot">
-  <span class="g">Cuentitis · versión beta · Contenido creado con IA</span>
+  <span class="g">Cuentitis · versión beta</span>
   <span class="sep"> · </span>
   <span class="g">Ayúdame a mejorarlo: <button class="flink" id="fbOpen">💬 Enviar comentarios</button></span>
   <span class="sep"> · </span>
@@ -1029,7 +1102,7 @@ function acceptBirthday(){
   show("home");
 }
 
-function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$(x).hidden=x!==id);document.body.classList.toggle("home-active",id==="home");$("hbar").hidden=id!=="read";$("fsz").hidden=id!=="read";window.scrollTo({top:0,behavior:"smooth"})}
+function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$(x).hidden=x!==id);document.body.classList.toggle("home-active",id==="home");$("appTop").hidden=id==="home";$("hbar").hidden=id!=="read";$("fsz").hidden=id!=="read";window.scrollTo({top:0,behavior:"smooth"})}
 
 /* ---------- Escena del inicio: la mascota acompaña el tema elegido ---------- */
 const HERO_SCENES={
@@ -1050,9 +1123,11 @@ const HERO_SCENES={
  "Misterios y detectives":{emoji:"🔎",pose:"pose-curious",x:"-17%",y:"-3%",r:"-6deg",mood:"magic"},
  "¿Sabías que...?":{emoji:"💡",pose:"pose-explore",x:"15%",y:"-10%",r:"5deg",mood:"sky"}
 };
+let lastHomeMascotTopic=null;
 function updateHomeMascot(topic){
   const scene=HERO_SCENES[topic]||null;
   const mascot=$("heroMascot"),badge=$("heroTopicBadge"),visual=$("heroVisual");
+  const topicChanged=topic!==lastHomeMascotTopic;
   mascot.className="mascot-sprite "+(scene?scene.pose:"pose-welcome")+" hero-mascot";
   mascot.style.setProperty("--mascot-x",scene?scene.x:"0%");
   mascot.style.setProperty("--mascot-y",scene?scene.y:"0%");
@@ -1060,11 +1135,20 @@ function updateHomeMascot(topic){
   mascot.setAttribute("aria-label",scene?"La mascota se prepara para una aventura de "+topic:"La mascota de Cuentitis te da la bienvenida");
   badge.textContent=scene?scene.emoji:"✨";
   visual.dataset.mood=scene?scene.mood:"welcome";
+  if(scene&&topicChanged){
+    mascot.classList.remove("is-moving");
+    void mascot.offsetWidth;
+    mascot.classList.add("is-moving");
+  }else{
+    mascot.classList.remove("is-moving");
+  }
+  lastHomeMascotTopic=topic;
 }
 
 /* ---------- Inicio ---------- */
 function drawHome(){
   $("agePill").hidden=!st.age;$("ageNum").textContent=st.age||"";$("pointsNum").textContent=stats.points||0;
+  $("appAgePill").hidden=!st.age;$("appAgeNum").textContent=st.age||"";$("appPointsNum").textContent=stats.points||0;
   updateHomeMascot(st.likes[0]||"");
   $("likes").innerHTML="";
   LIKES.forEach(([emoji,name])=>{
@@ -1081,11 +1165,6 @@ function drawHome(){
     label.className="like-name";
     label.textContent=name;
     button.append(icon,label);
-    if(selected){
-      const tag=document.createElement("small");
-      tag.textContent="Elegido";
-      button.appendChild(tag);
-    }
     button.setAttribute("aria-pressed",String(selected));
     button.setAttribute("aria-label",name+(selected?", tema elegido":""));
     button.onclick=()=>{st.likes=[name];drawHome()};
@@ -1093,7 +1172,6 @@ function drawHome(){
   });
   const ok=st.likes.length===1;
   $("go").disabled=!ok;
-  $("gohint").hidden=ok;
 }
 function drawBadges(boxId,starsId,newOnes){
   $(starsId).textContent="⭐ "+stats.points+" puntos · "+stats.passes+(stats.passes===1?" lectura superada":" lecturas superadas");
@@ -1274,14 +1352,18 @@ function goHome(){drawHome();show("home")}
 document.querySelectorAll("[data-home]").forEach(b=>b.onclick=goHome);
 $("retryGen").onclick=generate;
 $("go").onclick=generate;
-$("prizesBtn").onclick=()=>{drawBadges("badgesHome","starsHome",[]);$("modal").showModal()};
-$("mclose").onclick=()=>$("modal").close();
-$("infoBtn").onclick=()=>{
+function openPrizes(){drawBadges("badgesHome","starsHome",[]);$("modal").showModal()}
+function openFamilyInfo(){
   const dob=birthDate?new Date(birthDate+"T12:00:00").toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"}):"sin indicar";
   $("ageNow").textContent=st.age?st.age+" años · nacimiento: "+dob:"sin indicar";
   updateSeenCount();
   $("parentModal").showModal();
-};
+}
+$("prizesBtn").onclick=openPrizes;
+$("appPrizesBtn").onclick=openPrizes;
+$("mclose").onclick=()=>$("modal").close();
+$("infoBtn").onclick=openFamilyInfo;
+$("appInfoBtn").onclick=openFamilyInfo;
 $("ageChange").onclick=()=>{$("parentModal").close();openAge()};
 $("resetSeen").onclick=()=>$("resetSeenModal").showModal();
 $("cancelResetSeen").onclick=()=>$("resetSeenModal").close();
