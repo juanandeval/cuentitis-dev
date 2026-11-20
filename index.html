@@ -765,6 +765,17 @@ body.home-active main{padding-top:0}
  .hero-castle{right:0;top:0;width:72px}
  .hero-clouds{height:36px}
 }
+
+/* Correcciones de proporción para el hero integrado. */
+.hero-stage{height:auto}
+@media(max-height:900px) and (min-width:701px){
+ .hero-stage{height:auto}
+ .hero-mascot{width:clamp(150px,27svh,245px);height:clamp(150px,27svh,245px);margin-bottom:clamp(18px,4svh,40px)}
+ .hero-open-book{height:clamp(105px,16svh,150px)}
+ .hero-copy-wrap{padding-top:6px}
+ .hero-dragon{top:2%}
+ .hero-castle{top:2%}
+}
 </style>
 </head>
 <body>
