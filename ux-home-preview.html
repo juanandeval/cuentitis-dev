@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#6926B9">
+<!-- DEV TAG: quitar [DEV] del título y las etiquetas .devtag antes de pasar esta versión a producción/main. -->
+<title>Cuentitis DEV · Nueva propuesta UX</title>
+<style>
+:root{--bg:#FFF9F1;--card:#FFFFFF;--ink:#351653;--soft:#765B8B;--pri:#6926B9;--priink:#FFFFFF;--acc:#FF901F;--ok:#229B6C;--okbg:#E3F7ED;--bad:#D94B57;--badbg:#FCE6E8;--line:#E8D9F4;--chip:#F0E5FF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#20152E;--card:#2B1C3B;--ink:#FFF7EE;--soft:#CDB9DE;--pri:#B176ED;--priink:#20152E;--acc:#FFAB4D;--ok:#59D6A0;--okbg:#193A2F;--bad:#FF8990;--badbg:#49232C;--line:#513B63;--chip:#362547;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#20152E;--card:#2B1C3B;--ink:#FFF7EE;--soft:#CDB9DE;--pri:#B176ED;--priink:#20152E;--acc:#FFAB4D;--ok:#59D6A0;--okbg:#193A2F;--bad:#FF8990;--badbg:#49232C;--line:#513B63;--chip:#362547;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito","Trebuchet MS","Segoe UI",system-ui,sans-serif;font-size:18px;line-height:1.5;min-height:100vh}
+main{max-width:860px;margin:0 auto;padding:18px 16px 4px}
+h1,h2,h3{line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(1.9rem,5vw,2.8rem)}
+.hero{display:flex;align-items:center;justify-content:center;gap:14px;padding:2px 0 0;text-align:left}
+.hero h1{font-size:clamp(1.6rem,4.5vw,2.3rem);margin:0}
+.hero p{color:var(--soft);font-size:1rem;margin:.1em 0 0;max-width:420px}
+.mascot{width:84px;height:84px;flex:none;animation:bob 3.2s ease-in-out infinite}
+.mascot.sm{width:34px;height:34px;animation:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.mascot{animation:none}}
+@media (max-width:420px){.mascot{width:64px;height:64px}.mascot.sm{width:30px;height:30px}.hero{gap:10px}}
+.card{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:20px;margin:16px 0}
+.card h2{font-size:1.25rem}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:2px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;min-height:48px;transition:transform .1s}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed="true"]{background:var(--pri);color:var(--priink);border-color:var(--pri)}
+.chip:disabled{opacity:.45;cursor:not-allowed}
+.ages .chip{width:58px;height:58px;padding:0;font-size:1.3rem;border-radius:18px}
+.big{display:block;width:100%;border:0;border-radius:20px;background:var(--acc);color:#2b1600;font:inherit;font-weight:800;font-size:1.25rem;padding:16px 20px;min-height:58px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.big:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.big:disabled{opacity:.45;cursor:not-allowed}
+.big.pri{background:var(--pri);color:var(--priink)}
+.hint{color:var(--soft);font-size:.95rem;margin:.6em 0 0}
+.count{font-weight:800;color:var(--pri)}
+[hidden]{display:none!important}
+/* lectura */
+.story h2{font-size:clamp(1.5rem,4vw,2.2rem);text-align:center}
+.story p{margin:0 0 1em;font-size:var(--fs,1.2rem);line-height:var(--lh,1.8)}
+.story .tools{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
+.bar{height:12px;border-radius:99px;background:var(--chip);overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+/* quiz */
+.q{font-size:1.3rem;font-weight:800;margin-bottom:14px}
+.opt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:14px 16px;margin:0 0 10px;font:inherit;font-size:1.1rem;cursor:pointer;min-height:56px}
+.opt:hover:not(:disabled){border-color:var(--pri)}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.exp{border-radius:16px;padding:12px 14px;margin:6px 0 14px;background:var(--chip)}
+/* resultado y premios */
+.center{text-align:center}
+.emoji{font-size:4rem;line-height:1}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.badge{border:2px solid var(--line);border-radius:20px;padding:14px 10px;text-align:center;background:var(--card)}
+.badge b{display:block;font-size:2.4rem;line-height:1.1}
+.badge span{display:block;font-weight:800;font-size:.95rem}
+.badge small{display:block;color:var(--soft);font-size:.8rem}
+.badge.off{opacity:.45;filter:grayscale(1)}
+.badge.new{border-color:var(--acc);animation:pop .6s ease}
+#agetitle:focus{outline:none}
+.pts{display:inline-block;margin:8px 0 10px;padding:10px 20px;border-radius:22px;background:var(--acc);color:#2b1600;font-weight:800;font-size:clamp(1.1rem,4.6vw,1.5rem);line-height:1.2;animation:pop .6s ease}
+@keyframes pop{0%{transform:scale(.6)}70%{transform:scale(1.1)}100%{transform:scale(1)}}
+.spin{width:64px;height:64px;border-radius:50%;border:8px solid var(--chip);border-top-color:var(--pri);margin:10px auto;animation:r 1s linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin,.badge.new,.pts{animation:none}}
+.stars{font-size:1.4rem;font-weight:800}
+.link{background:none;border:0;color:var(--pri);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:10px}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.chip{text-align:center}
+.chip small{display:block;font-size:.62rem;font-weight:800;line-height:1;margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+/* Cuadrícula de gustos: tarjetas grandes y táctiles, inspiradas en los retos. */
+#likes.likes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#likes .chip{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;min-width:0;min-height:126px;padding:14px 8px;border:2px solid var(--line);border-radius:22px;background:var(--chip);color:var(--ink);font:inherit;font-weight:800;line-height:1.15;text-align:center;white-space:normal;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#likes .like-emoji{display:block;font-size:clamp(2.1rem,4vw,2.8rem);line-height:1.1}
+#likes .like-name{display:block;font-size:clamp(.88rem,1.5vw,1.02rem);overflow-wrap:anywhere}
+#likes .chip[aria-pressed="true"]{background:var(--pri);border-color:var(--pri);color:var(--priink);box-shadow:0 4px 0 rgba(43,42,76,.14)}
+#likes .chip.main[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff;box-shadow:0 4px 0 rgba(31,166,106,.2)}
+#likes .chip small{display:block;margin:0;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.24);font-size:.65rem;font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:.04em}
+#likes .chip:disabled{opacity:.36;filter:grayscale(.25);box-shadow:none}
+@media(max-width:540px){#likes.likes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#likes .chip{min-height:112px;border-radius:19px}#likes .like-emoji{font-size:2.35rem}}
+.chip.main[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--priink)}
+.info{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;border-radius:50%;border:2px solid var(--line);background:var(--chip);color:var(--pri);font:inherit;font-size:1.3rem;font-weight:800;line-height:1;cursor:pointer;padding:0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:var(--bg);border-bottom:2px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:1.15rem}
+.hr{display:flex;align-items:center;gap:8px}
+.agepill{display:inline-flex;align-items:center;gap:3px;padding:0 4px;color:var(--soft);font-weight:700;font-size:.95rem;white-space:nowrap;cursor:default;user-select:none}
+.agepill b{color:var(--ink);font-weight:800}
+@media (max-width:480px){.logo .nm{display:none}}
+@media (max-width:380px){.top{padding:8px 10px;gap:6px}.hr{gap:5px}.top .chip{padding:6px 10px}.fsz{gap:4px}.fsz .chip{width:40px;padding:0}}
+.top{flex-wrap:wrap}
+.fsz{display:flex;gap:6px}
+dialog{overflow:auto}
+.foot{max-width:860px;margin:0 auto;padding:4px 16px 36px;text-align:center;color:var(--soft);font-size:.85rem}
+.commit-meta{font-size:.8rem;opacity:.75;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.02em}
+@media (max-width:640px){.foot .sep{display:none}.foot .g{display:block}.foot .commit-meta{margin-top:4px}}
+.en{font:inherit;font-weight:700;color:var(--pri);background:var(--chip);border:0;border-bottom:2px dashed var(--pri);border-radius:6px 6px 0 0;padding:0 4px;margin:0;cursor:pointer}
+.en:active{transform:scale(.97)}
+.en.gl{font-size:1rem;border:2px dashed var(--pri);border-radius:999px;padding:6px 14px;white-space:nowrap}
+#gloss{margin:14px 0 24px}
+#gloss:empty{margin:0}
+#gloss h3{font-size:1.1rem;margin:0 0 8px}
+#tip{position:absolute;z-index:40;background:var(--card);color:var(--ink);border:2px solid var(--pri);border-radius:14px;padding:8px 12px;box-shadow:0 6px 18px rgba(0,0,0,.2);font-size:1rem;max-width:80vw;white-space:nowrap}
+.app-toast{position:fixed;z-index:1200;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));width:max-content;max-width:min(92vw,520px);padding:16px 22px;border:2px solid var(--ok);border-radius:20px;background:var(--okbg);color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.2);font-size:1.05rem;font-weight:900;line-height:1.35;text-align:center;opacity:0;transform:translate(-50%,12px);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
+.app-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+.app-toast[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.app-toast{transition:none}}
+#fbStatus a{color:var(--pri);font-weight:600}
+.flink{background:none;border:0;padding:8px 4px;font:inherit;font-weight:600;color:var(--pri);text-decoration:underline;cursor:pointer}
+.fld{margin:12px 0}
+.fld label{display:block;font-weight:700;margin-bottom:4px}
+.fld select,.fld textarea,.fld input{width:100%;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
+.fld textarea{resize:vertical}
+/* Selector horizontal táctil: tres ruedas con el valor activo centrado. */
+.birth-wheel-set{display:grid;gap:12px;max-width:540px;margin:18px auto 8px}
+.birth-wheel-row{min-width:0;padding:10px 10px 12px;background:var(--chip);border:2px solid var(--line);border-radius:20px;text-align:left}
+.birth-picker-label{display:block;margin:0 0 7px;font-weight:900;font-size:1rem}
+.birth-wheel-shell{position:relative;overflow:hidden;border-radius:16px;background:var(--card)}
+.birth-wheel-shell::before,.birth-wheel-shell::after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:24px;pointer-events:none}
+.birth-wheel-shell::before{left:0;background:linear-gradient(90deg,var(--card),transparent)}
+.birth-wheel-shell::after{right:0;background:linear-gradient(270deg,var(--card),transparent)}
+.birth-wheel{position:relative;display:flex;align-items:center;gap:8px;width:100%;overflow-x:auto;overflow-y:hidden;padding:7px calc(50% - (var(--wheel-item-width)/2));scroll-snap-type:x mandatory;scroll-padding-inline:50%;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x;scrollbar-width:none}
+.birth-wheel::-webkit-scrollbar{display:none}
+.birth-wheel.days{--wheel-item-width:58px}
+.birth-wheel.months{--wheel-item-width:126px}
+.birth-wheel.years{--wheel-item-width:78px}
+.birth-wheel-item{display:flex;flex:0 0 var(--wheel-item-width);align-items:center;justify-content:center;min-width:0;min-height:66px;padding:8px 5px;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;font-size:1.12rem;font-weight:900;text-align:center;white-space:nowrap;cursor:pointer;scroll-snap-align:center;touch-action:pan-x;-webkit-tap-highlight-color:transparent;transition:transform .08s,border-color .1s,background .1s}
+.birth-wheel.months .birth-wheel-item{font-size:1rem}
+.birth-wheel-item:active{transform:scale(.96)}
+.birth-wheel-item[aria-pressed="true"]{border:3px solid var(--ok);background:var(--okbg);color:var(--ink);box-shadow:0 3px 0 rgba(31,166,106,.18);transform:scale(1.04)}
+.birth-wheel-hint{margin:6px auto 12px;text-align:center}
+@media(min-width:600px){.birth-wheel-set{gap:14px}.birth-wheel-row{padding:12px 14px 14px}.birth-wheel-item{min-height:72px;font-size:1.2rem}.birth-wheel.months .birth-wheel-item{font-size:1.08rem}}
+@media(max-width:380px){.birth-wheel-set{gap:9px}.birth-wheel-row{padding:8px 7px 10px}.birth-picker-label{font-size:.9rem}.birth-wheel{gap:6px;padding-top:6px;padding-bottom:6px}.birth-wheel.days{--wheel-item-width:52px}.birth-wheel.months{--wheel-item-width:112px}.birth-wheel.years{--wheel-item-width:70px}.birth-wheel-item{min-height:58px;font-size:1rem;border-radius:14px}.birth-wheel.months .birth-wheel-item{font-size:.94rem}.birth-wheel-shell::before,.birth-wheel-shell::after{width:16px}}
+dialog h3{font-size:1.05rem;margin:1.1em 0 .3em}
+dialog ul{margin:.2em 0 0;padding-left:1.2em}
+dialog li{margin:.35em 0}
+.ai{background:var(--chip);border-radius:16px;padding:12px 14px;margin:12px 0}
+.top .chip{min-height:44px;padding:6px 14px}
+.fsz .chip{width:46px;padding:0;font-size:1rem}
+@media (max-width:420px){.top .lbl{display:none}}
+.hbar{position:absolute;left:0;right:0;bottom:-2px;height:6px;background:var(--chip)}
+.hbar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.chip.newtag{background:var(--acc);border-color:var(--acc);color:#2b1600;min-height:44px;padding:6px 12px;font-size:.9rem}
+#ibody{white-space:pre-line}
+dialog{width:min(640px,94vw);max-height:86vh;border:2px solid var(--line);border-radius:24px;background:var(--card);color:var(--ink);padding:20px}
+dialog::backdrop{background:rgba(20,18,43,.6)}
+.mhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.mhead h2{margin:0}
+/* DEV TAG: eliminar este estilo y las etiquetas .devtag antes de pasar a producción/main. */
+.devtag{display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;padding:3px 8px;border:1px solid rgba(43,22,0,.18);border-radius:999px;background:var(--acc);color:#2b1600;font-size:.62em;font-weight:900;letter-spacing:.08em;line-height:1.35}
+@media (min-width:700px){body{font-size:20px}main{padding:28px 24px 4px}.card{padding:28px}}
+
+/* ================= Cuentitis · universo visual ================= */
+:root{
+ --bg:#fff9f2;--card:#fffefd;--ink:#351653;--soft:#705b86;--pri:#6926b9;--priink:#fff;
+ --acc:#ff901f;--ok:#238b68;--okbg:#e4f7ef;--bad:#d94b68;--badbg:#fff0f3;
+ --line:#eadcf6;--chip:#f3eaff;--lav:#f0e5ff;--gold:#ffd044;--deep:#4a197f;
+ --shadow:0 12px 34px rgba(89,43,137,.10);color-scheme:light
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#20132f;--card:#2b1b3d;--ink:#fff6ff;--soft:#d2c0e1;--pri:#b57af0;--priink:#261336;
+ --acc:#ffad48;--ok:#63c79b;--okbg:#183d32;--bad:#ff8aa0;--badbg:#4d2637;
+ --line:#4a315f;--chip:#382449;--lav:#382449;--gold:#ffd45c;--deep:#e3caff;
+ --shadow:0 12px 34px rgba(0,0,0,.25);color-scheme:dark
+}}
+:root[data-theme="dark"]{
+ --bg:#20132f;--card:#2b1b3d;--ink:#fff6ff;--soft:#d2c0e1;--pri:#b57af0;--priink:#261336;
+ --acc:#ffad48;--ok:#63c79b;--okbg:#183d32;--bad:#ff8aa0;--badbg:#4d2637;
+ --line:#4a315f;--chip:#382449;--lav:#382449;--gold:#ffd45c;--deep:#e3caff;
+ --shadow:0 12px 34px rgba(0,0,0,.25);color-scheme:dark
+}
+html{background:var(--bg)}
+body{
+ background:radial-gradient(ellipse at 8% 8%,rgba(222,196,255,.45),transparent 30rem),
+ radial-gradient(ellipse at 92% 24%,rgba(255,218,166,.28),transparent 28rem),var(--bg);
+ color:var(--ink);font-family:"Nunito",system-ui,sans-serif
+}
+body::after{
+ content:"";position:fixed;z-index:-1;pointer-events:none;left:-110px;bottom:-190px;
+ width:360px;height:360px;border-radius:50%;background:rgba(219,197,255,.24);
+ box-shadow:150px -20px 0 20px rgba(255,255,255,.28),290px 28px 0 -10px rgba(255,226,184,.18)
+}
+h1,h2,h3,.logo,.big,.chip,.opt,.devtag{font-family:"Fredoka","Nunito",system-ui,sans-serif}
+main{max-width:1120px;padding:24px clamp(14px,3vw,30px) 12px}
+.top{
+ padding:8px clamp(12px,3vw,30px);min-height:76px;gap:14px;background:rgba(255,253,255,.88);
+ border:0;border-bottom:1px solid var(--line);box-shadow:0 5px 24px rgba(76,35,116,.06);backdrop-filter:blur(14px)
+}
+:root[data-theme="dark"] .top{background:rgba(43,27,61,.91)}
+.logo{gap:10px;color:var(--deep);font-size:1.1rem}
+.brand-copy{display:flex;flex-direction:column;line-height:1}
+.logo .nm{font-size:clamp(1.45rem,2.3vw,1.9rem);font-weight:700;letter-spacing:-.035em}
+.brand-star{color:var(--acc);font-size:.8em;vertical-align:top;margin-left:2px}
+.brand-tagline{margin-top:4px;font-family:"Nunito",sans-serif;font-size:.68rem;font-weight:800;color:var(--soft)}
+.logo .devtag{margin:0 0 0 2px}
+.hr{gap:8px}
+.top .chip{border-radius:999px;background:#f5edff;border-color:#eadcf6;color:#4c216d;box-shadow:none}
+:root[data-theme="dark"] .top .chip{background:#382449;border-color:#4a315f;color:#f7eaff}
+main{position:relative}
+.hero{
+ position:relative;overflow:hidden;justify-content:space-between;gap:24px;min-height:250px;margin:8px 0 20px;
+ padding:22px clamp(20px,4vw,42px);border:2px solid rgba(255,255,255,.9);border-radius:32px;
+ background:linear-gradient(112deg,#f1e4ff 0%,#fff8f3 64%,#ffe9c9 100%);box-shadow:var(--shadow);text-align:left
+}
+:root[data-theme="dark"] .hero{background:linear-gradient(112deg,#382449,#2b1b3d 62%,#4b2c36)}
+.hero::before,.hero::after{content:"";position:absolute;pointer-events:none;border-radius:50%}
+.hero::before{width:250px;height:250px;right:80px;top:-175px;background:rgba(255,255,255,.55)}
+.hero::after{width:170px;height:170px;left:-115px;bottom:-105px;background:rgba(255,255,255,.48)}
+.hero-copy{position:relative;z-index:1;max-width:650px}
+.hero h1{margin:10px 0 7px;font-size:clamp(2.1rem,5.3vw,3.65rem);font-weight:700;letter-spacing:-.03em;color:#43146e}
+:root[data-theme="dark"] .hero h1{color:#fff}
+.hero p{max-width:560px;margin:0;color:#654879;font-size:clamp(1rem,2vw,1.2rem);font-weight:700;line-height:1.55}
+:root[data-theme="dark"] .hero p{color:#dfc9f0}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.68);color:#75419a;font-size:.74rem;font-weight:900;letter-spacing:.08em}
+.hero-note{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:8px 13px;border-radius:999px;background:#fff3d3;color:#75431b;font-weight:900;font-size:.88rem}
+.hero-note span{color:#ef9a12}
+.mascot-sprite{
+ display:inline-block;flex:none;width:128px;height:128px;aspect-ratio:1;
+ background-repeat:no-repeat;background-size:contain;background-position:center;
+ filter:drop-shadow(0 10px 8px rgba(71,34,105,.12))
+}
+.pose-welcome{background-image:url("./assets/mascots/welcome.svg")}
+.pose-curious{background-image:url("./assets/mascots/curious.svg")}
+.pose-surprised{background-image:url("./assets/mascots/surprised.svg")}
+.pose-reading{background-image:url("./assets/mascots/reading.svg")}
+.pose-proud{background-image:url("./assets/mascots/proud.svg")}
+.pose-dream{background-image:url("./assets/mascots/dreaming.svg")}
+.pose-book{background-image:url("./assets/mascots/book.svg")}
+.pose-celebrate{background-image:url("./assets/mascots/celebrate.svg")}
+.pose-explore{background-image:url("./assets/mascots/explore.svg")}
+.logo-mascot{width:56px;height:56px;filter:none}
+.hero-mascot{position:relative;z-index:1;width:clamp(170px,22vw,230px);height:clamp(170px,22vw,230px);margin-right:12px}
+.story-companion,.quiz-companion{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 14px;color:var(--soft);font-weight:900;font-size:.88rem}
+.story-mascot{width:52px;height:52px}
+.quiz-companion{justify-content:flex-start;margin:0 0 12px;padding:8px 12px;border-radius:18px;background:var(--lav);color:var(--deep)}
+.quiz-mascot{width:62px;height:62px}
+.dialog-mascot{width:116px;height:116px;margin:0 auto 6px}
+.loading-mascot{width:116px;height:116px;margin:4px auto 0}
+.message-mascot{width:142px;height:142px;margin:0 auto 8px}
+.result-mascot{width:172px;height:172px;margin:4px auto 10px}
+.section-title{display:flex;align-items:center;gap:10px}
+.section-icon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:13px;background:#f4e6ff;font-size:1.25rem}
+.card{
+ background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(18px,3vw,28px);
+ box-shadow:var(--shadow);margin:18px 0
+}
+.card h2{font-size:clamp(1.35rem,2.3vw,1.75rem);font-weight:600;color:var(--deep)}
+.card h3{font-weight:600}
+.hint{color:var(--soft)}
+#home>.card{background:linear-gradient(145deg,var(--card),rgba(243,234,255,.64))}
+#home>.big{max-width:640px;margin:18px auto 0}
+#home>.hint{text-align:center}
+.big{
+ min-height:60px;border-radius:19px;padding:15px 22px;background:linear-gradient(180deg,#ffad40,#ff8619);color:#4a2508;
+ box-shadow:0 5px 0 #d96e13,0 10px 22px rgba(235,126,27,.18);font-size:1.3rem;font-weight:600;
+ transition:transform .12s,filter .12s,box-shadow .12s
+}
+.big:hover:not(:disabled){filter:brightness(1.035);transform:translateY(-1px)}
+.big:active{transform:translateY(3px);box-shadow:0 2px 0 #d96e13}
+.big:disabled{opacity:.5;box-shadow:none}
+.big.pri{background:linear-gradient(180deg,#8240d0,#6422b2);color:#fff;box-shadow:0 5px 0 #4b1886,0 10px 22px rgba(91,35,158,.2)}
+.big.pri:active{box-shadow:0 2px 0 #4b1886}
+.chip{border-radius:16px;background:var(--chip);border-color:var(--line);color:var(--ink);box-shadow:0 2px 0 rgba(80,34,115,.04)}
+.chip[aria-pressed="true"]{background:var(--pri);color:#fff;border-color:var(--pri)}
+#likes.likes-grid{gap:14px}
+#likes .chip{
+ min-height:132px;border:1.5px solid #e7d9f4;border-radius:22px;background:linear-gradient(160deg,#fff,#f8f1ff);color:#40205f;
+ box-shadow:0 4px 0 rgba(105,38,185,.06),0 8px 18px rgba(76,40,106,.05);
+ transition:transform .14s,border-color .14s,box-shadow .14s,background .14s
+}
+#likes .chip:hover{transform:translateY(-2px);border-color:#cba9ee;box-shadow:0 7px 0 rgba(105,38,185,.07),0 12px 20px rgba(76,40,106,.08)}
+#likes .like-emoji{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:18px;background:linear-gradient(145deg,#f2e5ff,#fff3df);font-size:2rem;box-shadow:inset 0 1px 0 #fff}
+#likes .like-name{font-family:"Fredoka",sans-serif;font-size:1.08rem;font-weight:500;line-height:1.15}
+#likes .chip[aria-pressed="true"]{color:#fff;background:linear-gradient(145deg,#8240d0,#6220ac);border-color:#5d20a3;box-shadow:0 4px 0 #4a1882,0 11px 22px rgba(91,35,158,.18)}
+#likes .chip[aria-pressed="true"] .like-emoji{background:rgba(255,255,255,.17);box-shadow:none}
+#likes .chip[aria-pressed="true"] small{background:#ffd65d;color:#5b2a00}
+.opt{border:1.5px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);box-shadow:0 3px 0 rgba(77,35,114,.04);font-family:"Nunito",sans-serif;font-weight:800}
+:root[data-theme="dark"] .opt{background:#342344}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--lav)}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:#175a43}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.exp{border:1px solid #e6d7f5;border-left:5px solid var(--pri);background:var(--lav);color:var(--ink)}
+.story h2{font-family:"Fredoka",sans-serif;font-size:clamp(1.6rem,4vw,2.25rem);color:var(--deep)}
+.story p{font-family:"Nunito",sans-serif;color:var(--ink);line-height:1.85}
+#gloss h3{font-family:"Fredoka",sans-serif;color:var(--deep)}
+.en{color:var(--deep);background:var(--lav);border-bottom-color:var(--pri)}
+.en.gl{border-color:#cda8f1}
+.bar,.hbar{background:var(--chip)}
+.bar i,.hbar i{background:linear-gradient(90deg,#8a4ed4,#ff9b35)}
+.info{border-color:var(--line);background:var(--lav);color:var(--pri)}
+.badge{background:linear-gradient(145deg,#fff,#f5eaff);border:1px solid var(--line);box-shadow:0 5px 14px rgba(72,36,109,.07)}
+.badge b{color:#f0a815}
+.badge.new{border:2px solid var(--gold);background:#fff7d9}
+.pts{background:linear-gradient(100deg,#ffe17c,#ffc13c);color:#59340a;box-shadow:0 5px 0 #e6a42c}
+.stars{color:var(--deep)}
+dialog{border:1px solid #e2d2f0;border-radius:28px;background:var(--card);box-shadow:0 20px 70px rgba(39,16,62,.23)}
+dialog::backdrop{background:rgba(49,20,75,.54);backdrop-filter:blur(4px)}
+.mhead h2{font-family:"Fredoka",sans-serif}
+.foot{max-width:1120px;color:var(--soft);padding:18px 16px 36px}
+.flink{color:var(--deep)}
+.chip.newtag{background:#fff0cf;border-color:#ffdb87;color:#68400a}
+.app-toast{border-color:var(--ok);box-shadow:var(--shadow)}
+@media(max-width:700px){
+ main{padding:14px 13px 8px}.hero{min-height:200px;padding:18px;gap:6px}
+ .hero-mascot{width:150px;height:150px;margin-right:-8px}.hero h1{font-size:clamp(1.9rem,7vw,2.65rem)}
+ .hero p{font-size:.98rem}.brand-tagline{display:none}.logo .nm{display:inline!important}
+ .logo-mascot{width:46px;height:46px}.card{border-radius:23px}
+}
+@media(max-width:480px){
+ .top{min-height:64px;padding:7px 10px}.logo{gap:5px}.logo .nm{font-size:1.35rem}
+ .logo-mascot{width:40px;height:40px}.hero{min-height:190px;border-radius:24px}
+ .hero-mascot{width:118px;height:118px;margin-right:-12px}.eyebrow{font-size:.64rem;padding:5px 9px}
+ .hero-note{font-size:.73rem;padding:7px 9px}.story-companion{font-size:.78rem}
+ .result-mascot{width:148px;height:148px}#likes.likes-grid{gap:9px}
+ #likes .chip{min-height:108px;padding:10px 6px}#likes .like-emoji{width:48px;height:48px;font-size:1.8rem}
+}
+@media(max-width:360px){.hero-mascot{width:100px;height:100px}.logo .nm{font-size:1.2rem}.top .chip{padding:5px 8px}}
+@media(prefers-reduced-motion:reduce){.mascot-sprite{animation:none!important}.big,.chip,.opt{transition:none}}
+
+
+/* ================= Inicio tablet · Cuentitis ================= */
+.home-header{
+ position:relative;top:auto;z-index:3;display:flex;align-items:center;justify-content:space-between;
+ width:100%;min-height:42px;padding:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none;
+ flex-wrap:nowrap
+}
+.home-header .logo{display:inline-flex;align-items:center;gap:9px;min-width:0;color:var(--deep)}
+.home-header .logo .nm{font-family:"Fredoka","Nunito",sans-serif;font-size:clamp(1.55rem,2.7vw,2.1rem);font-weight:700;letter-spacing:-.04em;white-space:nowrap}
+.home-header .brand-star{color:#ffb52e}
+.home-header .devtag{margin:0 0 0 2px;font-size:.58rem}
+.home-header .hr{display:flex;align-items:center;justify-content:flex-end;gap:clamp(5px,.8vw,10px);margin-left:auto;flex-wrap:nowrap}
+.home-header .header-action{
+ display:inline-flex;align-items:center;justify-content:center;min-width:42px;width:42px;height:42px;min-height:42px;
+ padding:0;border:1px solid rgba(112,68,152,.13);border-radius:15px;background:rgba(255,255,255,.78);
+ color:#552282;font-size:1.12rem;box-shadow:0 4px 12px rgba(87,43,133,.07)
+}
+.home-header .reward-action{width:auto;min-width:72px;padding:0 11px;gap:5px}
+.home-header .reward-action b{font-family:"Fredoka",sans-serif;font-size:.95rem;font-weight:600}
+.home-header .agepill{
+ display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 12px;
+ border:1px solid rgba(112,68,152,.13);border-radius:15px;background:rgba(255,255,255,.82);
+ color:#552282;font-size:.92rem;font-weight:800;box-shadow:0 4px 12px rgba(87,43,133,.07);white-space:nowrap
+}
+.home-header .agepill b{font-family:"Fredoka",sans-serif;font-size:1rem}
+.home-header .newtag{min-height:42px;padding:5px 10px;border-radius:14px}
+.hero{
+ position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:8px;
+ min-height:0;margin:0;padding:clamp(10px,1.5svh,20px) clamp(16px,3vw,42px);
+ border:1px solid rgba(255,255,255,.88);border-radius:clamp(22px,2.8vw,34px);
+ background:
+  radial-gradient(ellipse at 88% 20%,rgba(255,220,171,.62),transparent 34%),
+  radial-gradient(ellipse at 8% 88%,rgba(207,177,255,.62),transparent 42%),
+  linear-gradient(115deg,#eee0ff 0%,#fff8f5 58%,#fff0d9 100%);
+ box-shadow:var(--shadow)
+}
+:root[data-theme="dark"] .hero{
+ background:radial-gradient(ellipse at 88% 20%,rgba(146,95,76,.22),transparent 34%),
+ radial-gradient(ellipse at 8% 88%,rgba(130,91,174,.22),transparent 42%),linear-gradient(115deg,#382449,#2b1b3d 62%,#4b2c36)
+}
+.hero::before{width:clamp(180px,27vw,350px);height:clamp(180px,27vw,350px);right:10%;top:-70%;background:rgba(255,255,255,.42)}
+.hero::after{width:clamp(170px,22vw,300px);height:clamp(170px,22vw,300px);left:-10%;bottom:-80%;background:rgba(255,255,255,.3)}
+.hero-stage{
+ position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(190px,.88fr);
+ align-items:center;gap:clamp(8px,2vw,24px);flex:1 1 auto;min-height:0
+}
+.hero-copy{max-width:760px}
+.hero h1{margin:0 0 clamp(6px,1.1svh,13px);font-size:clamp(2.15rem,5.1vw,4.4rem);font-weight:700;letter-spacing:-.04em;line-height:1.04;color:#43146e}
+.hero p{max-width:740px;margin:0;color:#654879;font-size:clamp(1rem,1.75vw,1.35rem);font-weight:750;line-height:1.42}
+:root[data-theme="dark"] .hero h1{color:#fff}
+:root[data-theme="dark"] .hero p{color:#dfc9f0}
+.hero-visual{
+ position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;align-self:stretch;
+ width:100%;min-height:120px
+}
+.hero-visual::before{
+ content:"";position:absolute;z-index:-1;width:min(88%,280px);aspect-ratio:1;border-radius:50%;
+ background:radial-gradient(circle,rgba(255,255,255,.88),rgba(240,222,255,.46) 58%,rgba(255,255,255,0) 72%);
+ transition:background .4s ease
+}
+.hero-visual::after{
+ content:"";position:absolute;z-index:-1;bottom:10%;left:15%;width:70%;height:15%;border-radius:50%;
+ background:rgba(91,51,130,.13);filter:blur(13px)
+}
+.hero-visual[data-mood="nature"]::before{background:radial-gradient(circle,rgba(240,255,221,.88),rgba(210,236,198,.46) 58%,transparent 72%)}
+.hero-visual[data-mood="sky"]::before{background:radial-gradient(circle,rgba(224,245,255,.9),rgba(211,222,255,.5) 58%,transparent 72%)}
+.hero-visual[data-mood="energy"]::before{background:radial-gradient(circle,rgba(255,244,211,.92),rgba(255,219,183,.52) 58%,transparent 72%)}
+.hero-visual[data-mood="magic"]::before{background:radial-gradient(circle,rgba(255,237,255,.92),rgba(231,210,255,.54) 58%,transparent 72%)}
+.hero-mascot{
+ position:relative;z-index:1;width:clamp(150px,22svh,258px);height:clamp(150px,22svh,258px);margin:0;
+ transform:translate3d(var(--mascot-x,0),var(--mascot-y,0),0) rotate(var(--mascot-r,0deg));
+ transform-origin:50% 72%;transition:transform .62s cubic-bezier(.2,.82,.22,1),filter .3s ease;
+ will-change:transform
+}
+.hero-topic-badge{
+ position:absolute;z-index:2;top:12%;right:10%;display:grid;place-items:center;
+ width:clamp(38px,5.6svh,58px);height:clamp(38px,5.6svh,58px);border-radius:18px;
+ background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);
+ box-shadow:0 7px 18px rgba(75,39,112,.13);font-size:clamp(1.35rem,2.5svh,1.9rem);
+ transition:transform .45s cubic-bezier(.2,.82,.22,1),background .3s ease
+}
+.hero-visual[data-mood="nature"] .hero-topic-badge{background:#f1ffe6}
+.hero-visual[data-mood="sky"] .hero-topic-badge{background:#eaf7ff}
+.hero-visual[data-mood="energy"] .hero-topic-badge{background:#fff1d9}
+.hero-visual[data-mood="magic"] .hero-topic-badge{background:#faedff}
+.adventure-dock{display:flex;flex:0 0 auto;flex-direction:column;gap:clamp(6px,.85svh,10px);margin-top:auto}
+.adventure-dock .card{
+ margin:0;padding:clamp(9px,1.15svh,16px) clamp(12px,1.8vw,24px);
+ border-radius:clamp(20px,2.2vw,28px);background:linear-gradient(145deg,#fffefd,rgba(249,242,255,.96))
+}
+.adventure-dock .card h2{
+ margin:0 0 clamp(6px,.8svh,10px);font-size:clamp(1.12rem,2.1vw,1.62rem);line-height:1.08
+}
+.adventure-dock .section-title{gap:8px}
+.adventure-dock .section-icon{width:30px;height:30px;border-radius:10px;background:transparent;font-size:1.35rem}
+#likes.likes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(5px,.72vw,9px)}
+#likes .chip{
+ position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(2px,.45svh,5px);
+ width:100%;height:clamp(64px,8.8svh,120px);min-height:0;min-width:0;padding:5px 4px;
+ border:1.5px solid #e7d9f4;border-radius:clamp(13px,1.6vw,20px);
+ background:linear-gradient(160deg,#fff,#f8f1ff);color:#40205f;
+ box-shadow:0 3px 0 rgba(105,38,185,.06),0 7px 15px rgba(76,40,106,.05);
+ transition:transform .16s,border-color .16s,box-shadow .16s,background .16s
+}
+#likes .chip:hover{transform:translateY(-2px);border-color:#cba9ee;box-shadow:0 6px 0 rgba(105,38,185,.07),0 10px 18px rgba(76,40,106,.08)}
+#likes .like-emoji{
+ display:flex;align-items:center;justify-content:center;width:clamp(28px,4.4svh,52px);height:clamp(28px,4.4svh,52px);
+ flex:none;border-radius:14px;background:linear-gradient(145deg,#f2e5ff,#fff3df);
+ font-size:clamp(1.25rem,2.7svh,2.1rem);line-height:1;box-shadow:inset 0 1px 0 #fff
+}
+#likes .like-name{
+ display:block;max-width:100%;font-family:"Fredoka",sans-serif;
+ font-size:clamp(.72rem,1.12vw,1rem);font-weight:500;line-height:1.06;text-align:center;overflow-wrap:anywhere
+}
+#likes .chip small{
+ position:absolute;top:4px;right:5px;display:block;margin:0;padding:2px 6px;
+ border-radius:999px;background:#ffd65d;color:#5b2a00;font-size:clamp(.52rem,.65vw,.64rem);
+ font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:.02em
+}
+#likes .chip[aria-pressed="true"]{
+ color:#fff;background:linear-gradient(145deg,#8240d0,#6220ac);border-color:#5d20a3;
+ box-shadow:0 4px 0 #4a1882,0 9px 18px rgba(91,35,158,.18)
+}
+#likes .chip[aria-pressed="true"] .like-emoji{background:rgba(255,255,255,.17);box-shadow:none}
+.adventure-dock>.big{width:min(100%,560px);min-height:clamp(50px,5.3svh,66px);margin:0 auto;padding:8px 18px;font-size:clamp(1.05rem,1.7vw,1.28rem);border-radius:18px}
+.adventure-dock>.hint{margin:0;text-align:center;font-size:clamp(.68rem,.82vw,.82rem);line-height:1.1}
+body.home-active{
+ display:flex;flex-direction:column;width:100%;height:100vh;height:100svh;min-height:0;overflow:hidden
+}
+body.home-active main{
+ display:flex;flex:1 1 auto;flex-direction:column;min-height:0;width:100%;max-width:1480px;
+ margin:0 auto;padding:clamp(8px,1.15svh,18px) clamp(14px,2.2vw,34px) clamp(5px,.8svh,10px)
+}
+body.home-active #home{display:flex;flex:1 1 auto;flex-direction:column;min-height:0;gap:clamp(7px,1.05svh,14px)}
+body.home-active footer.foot{
+ display:flex;flex:0 0 auto;align-items:center;justify-content:center;flex-wrap:nowrap;gap:clamp(5px,.8vw,12px);
+ width:100%;max-width:none;min-height:42px;margin:0;padding:5px 14px calc(7px + env(safe-area-inset-bottom,0px));
+ background:rgba(242,231,255,.86);font-size:clamp(.64rem,.82vw,.82rem);line-height:1.15;white-space:nowrap
+}
+body.home-active footer .g{display:inline}
+body.home-active footer .commit-meta{font-size:.68em}
+body.home-active footer .flink{padding:2px 3px;font-size:inherit}
+@media(max-height:900px) and (min-width:701px){
+ body.home-active main{padding-top:7px;padding-bottom:5px}
+ body.home-active #home{gap:7px}
+ body.home-active .hero{min-height:150px;padding:9px 22px}
+ .home-header,.home-header .header-action,.home-header .agepill,.home-header .newtag{min-height:36px;height:36px}
+ .home-header .header-action{min-width:36px;width:36px}
+ #likes .chip{height:clamp(48px,6.7svh,66px);padding:3px}
+ #likes .like-emoji{width:clamp(24px,3.6svh,34px);height:clamp(24px,3.6svh,34px);font-size:clamp(1.05rem,2.4svh,1.55rem)}
+ #likes .like-name{font-size:clamp(.67rem,.95vw,.85rem)}
+ .adventure-dock .card{padding:8px 14px}
+ .adventure-dock .card h2{margin-bottom:6px;font-size:clamp(1rem,1.6vw,1.3rem)}
+ .adventure-dock>.big{min-height:48px}
+ body.home-active footer.foot{min-height:36px;padding:4px 10px 5px}
+}
+@media(max-width:700px){
+ body.home-active{height:auto;min-height:100svh;overflow:auto;display:block}
+ body.home-active main{display:block;flex:none;min-height:0;padding:14px 13px 8px}
+ body.home-active #home{display:block;min-height:0}
+ body.home-active .hero{min-height:0;margin:0 0 12px;padding:12px 14px;gap:8px}
+ .home-header{min-height:38px;gap:7px}
+ .home-header .logo .nm{font-size:1.45rem}
+ .home-header .devtag{display:none}
+ .home-header .hr{gap:4px}
+ .home-header .header-action,.home-header .agepill,.home-header .newtag{min-width:34px;width:auto;height:36px;min-height:36px;padding:0 8px;border-radius:12px}
+ .home-header .reward-action{min-width:58px}
+ .home-header .agepill{gap:4px}
+ .hero-stage{grid-template-columns:minmax(0,1fr) minmax(96px,34%);min-height:145px;gap:3px}
+ .hero h1{font-size:clamp(1.75rem,6.5vw,2.55rem);margin-bottom:7px}
+ .hero p{font-size:clamp(.86rem,3.3vw,1rem);line-height:1.28}
+ .hero-visual{min-height:120px}
+ .hero-mascot{width:clamp(100px,29vw,150px);height:clamp(100px,29vw,150px)}
+ .hero-topic-badge{width:34px;height:34px;top:8%;right:3%;border-radius:12px;font-size:1.2rem}
+ .adventure-dock{gap:10px}
+ .adventure-dock .card{margin:0;padding:14px 12px;border-radius:22px}
+ .adventure-dock .card h2{font-size:1.2rem}
+ #likes.likes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #likes .chip{height:auto;min-height:104px;padding:10px 6px;border-radius:18px;gap:5px}
+ #likes .like-emoji{width:46px;height:46px;font-size:1.8rem}
+ #likes .like-name{font-size:.93rem}
+ .adventure-dock>.big{min-height:54px}
+ .adventure-dock>.hint{font-size:.78rem}
+ body.home-active footer.foot{display:block;height:auto;min-height:0;padding:12px 14px 20px;text-align:center;white-space:normal;font-size:.8rem;line-height:1.5}
+ body.home-active footer .g{display:block}
+ body.home-active footer .sep{display:none}
+}
+@media(max-height:560px) and (min-width:701px){
+ body.home-active{height:auto;min-height:100svh;overflow:auto}
+ body.home-active main{min-height:0}
+ body.home-active .hero{min-height:170px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-mascot,.hero-topic-badge{transition:none!important}
+}
+
+/* La barra de lectura ahora vive dentro de la vista de lectura, no en la cabecera. */
+.hbar{position:relative;left:auto;right:auto;bottom:auto;width:100%;height:6px;margin:0 0 12px;border-radius:999px;overflow:hidden}
+.story-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 8px}
+.story-toolbar .story-companion{margin:0 auto 0 0}
+.story-toolbar .fsz{flex:none}
+
+/* ================= Ajuste final de dirección visual · Cuentitis ================= */
+.app-top{
+ position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
+ background:rgba(255,253,255,.94);border:0;border-bottom:1px solid var(--line);
+ box-shadow:0 5px 22px rgba(76,35,116,.07);backdrop-filter:blur(14px)
+}
+.app-top .logo{gap:8px;color:var(--deep)}
+.app-top .logo .nm{font-family:"Fredoka","Nunito",sans-serif;font-size:1.42rem;font-weight:700;white-space:nowrap}
+.app-top .hr{gap:8px}
+.app-top .header-action{display:inline-flex;align-items:center;justify-content:center;min-width:42px;width:42px;height:42px;min-height:42px;padding:0;border:1px solid var(--line);border-radius:14px;background:var(--lav);color:var(--deep);font-size:1.1rem}
+.app-top .reward-action{width:auto;min-width:72px;padding:0 11px;gap:5px}
+.app-top .reward-action b{font-family:"Fredoka",sans-serif;font-size:.95rem;font-weight:600}
+.app-top .agepill{display:inline-flex;align-items:center;gap:6px;min-height:42px;padding:0 12px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--deep);font-size:.92rem;white-space:nowrap}
+.app-top .agepill b{font-family:"Fredoka",sans-serif;font-size:1rem}
+.hero{flex:1 1 220px;min-height:0}
+.hero-stage{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)}
+.hero-visual{grid-column:1;grid-row:1}
+.hero-copy{grid-column:2;grid-row:1;justify-self:center;width:100%;max-width:720px;text-align:center}
+.hero h1{font-size:clamp(2.1rem,5vw,4.15rem)}
+.hero p{max-width:680px;margin:0 auto;font-size:clamp(1rem,1.75vw,1.34rem)}
+.hero-mascot{width:clamp(155px,23svh,290px);height:clamp(155px,23svh,290px)}
+.hero-visual::before{width:min(92%,310px);background:radial-gradient(circle,rgba(255,255,255,.94),rgba(234,214,255,.56) 58%,transparent 74%)}
+.hero-visual::after{bottom:9%;left:12%;width:76%;height:13%;background:rgba(91,51,130,.17);filter:blur(15px)}
+.hero-topic-badge{top:10%;right:7%;width:clamp(38px,5.2svh,60px);height:clamp(38px,5.2svh,60px);border-radius:50%;font-size:clamp(1.3rem,2.6svh,1.85rem)}
+.hero-mascot.is-moving{animation:mascot-arrive .68s cubic-bezier(.2,.82,.22,1) both}
+@keyframes mascot-arrive{
+ 0%{opacity:.55;transform:translate3d(0,18px,0) rotate(-7deg) scale(.84)}
+ 62%{opacity:1;transform:translate3d(var(--mascot-x),calc(var(--mascot-y) - 9px),0) rotate(var(--mascot-r)) scale(1.06)}
+ 100%{opacity:1;transform:translate3d(var(--mascot-x),var(--mascot-y),0) rotate(var(--mascot-r)) scale(1)}
+}
+.adventure-dock{margin-top:auto}
+.adventure-dock>.hint{display:none!important}
+#likes .chip small{display:none!important}
+body.home-active footer.foot .commit-meta{display:none}
+body.home-active footer.foot{min-height:42px;background:linear-gradient(180deg,rgba(246,237,255,.78),rgba(239,226,255,.96));border-radius:22px 22px 0 0}
+@media(max-height:900px) and (min-width:701px){
+ .hero{flex:1 1 0;min-height:0}
+ .hero-stage{min-height:0}
+ .hero-mascot{width:clamp(145px,21svh,220px);height:clamp(145px,21svh,220px)}
+}
+@media(max-width:700px){
+ .app-top{position:sticky;padding:7px 10px}
+ .app-top .logo .nm{font-size:1.3rem}
+ .app-top .hr{gap:4px}
+ .app-top .header-action,.app-top .agepill{min-width:34px;width:auto;height:36px;min-height:36px;padding:0 8px;border-radius:12px}
+ .app-top .reward-action{min-width:56px}
+ .hero-stage{grid-template-columns:minmax(94px,34%) minmax(0,1fr)}
+ .hero-visual{grid-column:1;grid-row:1}
+ .hero-copy{grid-column:2;grid-row:1;text-align:left}
+ .hero h1{font-size:clamp(1.7rem,6.2vw,2.45rem)}
+ .hero p{margin:0;font-size:clamp(.84rem,3.2vw,.98rem)}
+}
+@media(max-width:380px){
+ .home-header .logo .nm{font-size:1.25rem}
+ .home-header .header-action,.home-header .agepill,.home-header .newtag{min-width:31px;width:auto;padding:0 6px}
+ .home-header .reward-action{min-width:51px}
+ .home-header .logo .devtag{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-mascot.is-moving{animation:none!important}
+}
+
+/* ================= Hero ilustrado · referencia tablet ================= */
+body.home-active main{padding-top:0}
+body.home-active #home{gap:0}
+.home-header{
+ min-height:clamp(62px,8svh,82px);height:clamp(62px,8svh,82px);
+ padding:0 clamp(28px,5.2vw,68px);gap:18px
+}
+.home-header .logo{gap:10px}
+.home-header .logo::before{
+ content:"";display:block;flex:none;width:34px;height:42px;
+ background:
+  linear-gradient(48deg,transparent 43%,#ffbc32 45% 57%,transparent 59%) 2px 0/22px 17px no-repeat,
+  linear-gradient(90deg,transparent 42%,#ffbc32 44% 58%,transparent 60%) 0 18px/30px 12px no-repeat,
+  linear-gradient(-48deg,transparent 43%,#ffbc32 45% 57%,transparent 59%) 7px 29px/20px 13px no-repeat
+}
+.home-header .logo .nm{font-size:clamp(2.1rem,4.8vw,3.35rem);letter-spacing:-.055em}
+.home-header .logo .brand-star{font-size:.65em;margin-left:3px}
+.home-header .devtag{align-self:center;margin-left:0;padding:3px 7px;font-size:.5rem}
+.home-header .hr{gap:clamp(9px,1.2vw,15px)}
+.home-header .header-action{
+ width:clamp(48px,5.2vw,60px);min-width:clamp(48px,5.2vw,60px);height:clamp(46px,5.1vw,58px);min-height:0;
+ border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);
+ color:#6626a7;box-shadow:0 4px 12px rgba(94,50,143,.13);font-size:1.2rem
+}
+.home-header .info-action svg{width:27px;height:27px}
+.home-header .reward-action{
+ min-width:clamp(116px,13vw,142px);width:auto;padding:0 12px;gap:9px;border-radius:999px;
+ background:rgba(255,255,255,.72)
+}
+.home-header .reward-action>span{font-size:1.75rem;line-height:1}
+.home-header .reward-action b{
+ min-width:64px;padding:4px 12px;border-radius:999px;background:#7027bd;color:#fff;
+ font-family:"Fredoka",sans-serif;font-size:1.06rem;font-weight:600;text-align:center
+}
+.home-header .agepill{
+ min-height:clamp(46px,5.1vw,58px);height:clamp(46px,5.1vw,58px);padding:0 16px;gap:9px;
+ border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.92);
+ color:#432064;box-shadow:0 4px 12px rgba(94,50,143,.13);font-size:1rem
+}
+.home-header .profile-avatar{width:29px;height:29px;color:#6f2bb6;flex:none}
+.home-header .agepill b{font-family:"Fredoka",sans-serif;font-size:1.12rem;font-weight:600;white-space:nowrap}
+.hero{
+ width:calc(100% + 4.4vw);margin:0 0 0 -2.2vw;padding:0;
+ overflow:hidden;border:0;border-radius:0;box-shadow:none;flex:1 1 auto;min-height:0;
+ background:
+  radial-gradient(ellipse at 12% 36%,rgba(216,190,255,.85),transparent 36%),
+  radial-gradient(ellipse at 86% 29%,rgba(255,230,196,.84),transparent 35%),
+  linear-gradient(112deg,#e9d3ff 0%,#fff8fb 46%,#ffefd9 100%)
+}
+:root[data-theme="dark"] .hero{
+ background:radial-gradient(ellipse at 12% 36%,rgba(125,83,166,.5),transparent 36%),
+ radial-gradient(ellipse at 86% 29%,rgba(140,94,71,.3),transparent 35%),linear-gradient(112deg,#30203f,#2b1b3d 55%,#47333f)
+}
+.hero::before{
+ width:clamp(250px,29vw,400px);height:clamp(250px,29vw,400px);right:8%;top:-65%;
+ background:rgba(255,255,255,.44)
+}
+.hero::after{
+ width:clamp(220px,26vw,340px);height:clamp(220px,26vw,340px);left:-6%;bottom:-74%;
+ background:rgba(255,255,255,.34)
+}
+.hero-stage{
+ width:100%;height:100%;flex:1 1 auto;min-height:0;position:relative;isolation:isolate;
+ grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+ align-items:stretch;gap:clamp(6px,1.2vw,18px);
+ padding:0 clamp(28px,5.2vw,68px) clamp(18px,3svh,34px)
+}
+.hero-visual{
+ grid-column:1;grid-row:1;align-self:stretch;align-items:flex-end;justify-content:center;
+ min-height:0;padding-bottom:clamp(24px,5svh,56px)
+}
+.hero-visual::before{
+ width:min(98%,390px);background:radial-gradient(circle,rgba(255,255,255,.82),rgba(234,211,255,.42) 61%,transparent 75%)
+}
+.hero-visual::after{
+ bottom:clamp(24px,4.5svh,48px);left:10%;width:80%;height:13%;
+ background:rgba(79,38,122,.18);filter:blur(16px)
+}
+.hero-books{position:absolute;z-index:0;bottom:clamp(15px,3svh,33px);left:4%;width:92%;height:clamp(76px,13svh,126px)}
+.hero-books i,.hero-books b{position:absolute;display:block;left:3%;width:94%;border-radius:11px 14px 13px 11px;box-shadow:0 9px 16px rgba(68,34,102,.15)}
+.hero-books i{
+ bottom:32%;height:43%;transform:rotate(-1deg);
+ background:linear-gradient(90deg,#f3a02f 0 5%,#268ea3 5% 90%,#f1c05b 90% 94%,#fff1d4 94%);
+ border-bottom:7px solid #1d718d
+}
+.hero-books i::after{
+ content:"";position:absolute;right:3%;top:7%;bottom:8%;width:18%;border-radius:3px;
+ background:repeating-linear-gradient(0deg,#ffeecb 0 3px,#e6c796 3px 4px)
+}
+.hero-books b{
+ bottom:0;height:35%;transform:rotate(1deg);
+ background:linear-gradient(90deg,#ed8b2e 0 6%,#e5a04c 6% 91%,#fff0d1 91% 96%,#b96c38 96%);
+ border-bottom:6px solid #b9642c
+}
+.hero-mascot{
+ position:relative;z-index:1;align-self:auto;margin:0 0 clamp(54px,9svh,88px);
+ width:clamp(250px,32vw,380px);height:clamp(250px,32vw,380px);
+ transform:translate3d(var(--mascot-x,0),var(--mascot-y,0),0) rotate(var(--mascot-r,0deg));
+ filter:drop-shadow(0 15px 13px rgba(71,34,105,.2))
+}
+.hero-topic-badge{
+ top:17%;right:4%;width:clamp(42px,5vw,58px);height:clamp(42px,5vw,58px);
+ border-radius:50%;font-size:clamp(1.45rem,2.4vw,1.8rem)
+}
+.hero-copy-wrap{
+ grid-column:2;grid-row:1;position:relative;z-index:2;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;min-width:0;min-height:0;padding-top:clamp(8px,2svh,24px)
+}
+.hero-copy{width:100%;max-width:720px;text-align:center}
+.hero h1{
+ margin:0 0 clamp(8px,1.6svh,18px);font-size:clamp(2.7rem,5.4vw,4.65rem);
+ line-height:1.04;letter-spacing:-.045em;color:#43146e
+}
+.hero p{
+ max-width:680px;margin:0 auto;color:#654879;font-size:clamp(1.12rem,2.1vw,1.55rem);
+ line-height:1.38;font-weight:750
+}
+.hero-open-book{width:min(100%,570px);height:clamp(125px,19svh,210px);margin-top:clamp(7px,1.6svh,18px);filter:drop-shadow(0 10px 10px rgba(92,50,128,.1))}
+.hero-open-book svg{display:block;width:100%;height:100%;overflow:visible}
+.hero-dragon,.hero-castle{
+ position:absolute;z-index:1;display:block;pointer-events:none
+}
+.hero-dragon{top:3%;left:43%;width:clamp(88px,12vw,145px);opacity:.72}
+.hero-dragon svg{width:100%;height:auto;filter:drop-shadow(0 3px 4px rgba(79,39,119,.1))}
+.hero-castle{top:2%;right:2.5%;width:clamp(100px,14vw,170px);opacity:.93}
+.hero-castle svg{width:100%;height:auto}
+.hero-clouds{
+ position:absolute;z-index:0;left:0;right:0;bottom:0;height:clamp(36px,7svh,74px);
+ background:
+  radial-gradient(ellipse 7% 72% at 2% 100%,#f2e7ff 98%,transparent 100%),
+  radial-gradient(ellipse 8% 86% at 12% 100%,#f3e9ff 98%,transparent 100%),
+  radial-gradient(ellipse 9% 72% at 25% 100%,#f2e8ff 98%,transparent 100%),
+  radial-gradient(ellipse 8% 85% at 39% 100%,#f9efff 98%,transparent 100%),
+  radial-gradient(ellipse 9% 75% at 54% 100%,#fff6ee 98%,transparent 100%),
+  radial-gradient(ellipse 9% 84% at 69% 100%,#fff3e5 98%,transparent 100%),
+  radial-gradient(ellipse 8% 72% at 84% 100%,#fff0df 98%,transparent 100%),
+  radial-gradient(ellipse 8% 85% at 98% 100%,#ffefd9 98%,transparent 100%);
+ pointer-events:none
+}
+body.home-active main{padding-top:0}
+@media(max-height:900px) and (min-width:701px){
+ .home-header{min-height:58px;height:58px}
+ .home-header .logo .nm{font-size:clamp(2rem,4.2vw,2.9rem)}
+ .home-header .header-action{width:46px;height:46px;min-width:46px}
+ .home-header .reward-action{min-width:110px}
+ .home-header .agepill{height:46px;min-height:46px}
+ .home-header .profile-avatar{width:25px;height:25px}
+ .hero-stage{padding-bottom:20px}
+ .hero-mascot{width:clamp(220px,30vw,320px);height:clamp(220px,30vw,320px);margin-bottom:64px}
+ .hero-open-book{height:clamp(105px,16svh,150px)}
+}
+@media(max-width:700px){
+ .hero{width:calc(100% + 26px);margin-left:-13px;padding:0 12px}
+ .home-header{padding:0 2px;min-height:50px;height:50px}
+ .home-header .logo::before{display:none}
+ .home-header .logo .nm{font-size:1.8rem}
+ .home-header .hr{gap:5px}
+ .home-header .header-action{width:36px;height:36px;min-width:36px}
+ .home-header .reward-action{min-width:68px;padding:0 7px;gap:4px}
+ .home-header .reward-action>span{font-size:1.25rem}
+ .home-header .reward-action b{min-width:34px;padding:3px 7px;font-size:.8rem}
+ .home-header .agepill{height:36px;min-height:36px;padding:0 7px;gap:5px;font-size:.8rem}
+ .home-header .profile-avatar{width:21px;height:21px}
+ .hero-stage{grid-template-columns:minmax(96px,.78fr) minmax(0,1.22fr);padding:0 0 34px;gap:0}
+ .hero-visual{padding-bottom:30px}
+ .hero-books{height:65px;bottom:12px}
+ .hero-mascot{width:clamp(110px,31vw,165px);height:clamp(110px,31vw,165px);margin-bottom:46px}
+ .hero-copy-wrap{padding:0 5px}
+ .hero h1{font-size:clamp(1.65rem,6.5vw,2.5rem)}
+ .hero p{font-size:clamp(.82rem,3.2vw,1rem)}
+ .hero-open-book{height:100px;margin-top:5px}
+ .hero-dragon{left:38%;top:0;width:64px}
+ .hero-castle{right:0;top:0;width:72px}
+ .hero-clouds{height:36px}
+}
+
+/* Correcciones de proporción para el hero integrado. */
+.hero-stage{height:auto}
+@media(max-height:900px) and (min-width:701px){
+ .hero-stage{height:auto}
+ .hero-mascot{width:clamp(150px,27svh,245px);height:clamp(150px,27svh,245px);margin-bottom:clamp(18px,4svh,40px)}
+ .hero-open-book{height:clamp(105px,16svh,150px)}
+ .hero-copy-wrap{padding-top:6px}
+ .hero-dragon{top:2%}
+ .hero-castle{top:2%}
+}
+
+/* ================= Hero raster original · fidelidad a la propuesta ================= */
+body.home-active main{padding-top:0}
+body.home-active #home{gap:0}
+#home .hero.hero-reference,
+#home .hero{
+ width:calc(100% + 4.4vw);margin:0 0 0 -2.2vw;padding:0;
+ flex:0 0 auto;min-height:0;overflow:visible;border:0;border-radius:0;box-shadow:none;
+ background:transparent
+}
+#home .hero-raster-shell{
+ position:relative;width:100%;aspect-ratio:1133/650;overflow:hidden;
+ background:#ead7ff;line-height:0
+}
+#homeReferenceImage{
+ display:block;width:100%;height:100%;object-fit:contain;object-position:center;
+}
+#home .hero-ref-hit{
+ position:absolute;display:block;margin:0;padding:0;border:0;background:transparent;
+ border-radius:999px;cursor:pointer;min-width:0;min-height:0;box-shadow:none;
+}
+#home .hero-ref-hit:focus-visible,
+#home .hero-ref-age:focus-visible{
+ outline:3px solid #ffbd36;outline-offset:2px
+}
+/* Hitbox sobre el botón de información dibujado en la ilustración. */
+#home .hero-ref-info{left:59.6%;top:1.6%;width:7.6%;height:9.8%}
+/* La estrella y la cápsula morada ya forman parte de la imagen; solo se actualiza la cifra. */
+#home .hero-ref-points{left:67.5%;top:1.5%;width:13.1%;height:9.5%}
+#home .hero-ref-points b{
+ position:absolute;left:56%;top:35%;width:41%;height:35%;display:flex;
+ align-items:center;justify-content:center;color:#fff;font-family:"Fredoka","Nunito",sans-serif;
+ font-size:clamp(10px,1.55vw,20px);font-weight:700;line-height:1
+}
+/* Avatar y cápsula están en la imagen; edad dinámica en la zona de texto. */
+#home .hero-ref-age{
+ position:absolute;left:88.1%;top:3%;width:10.2%;height:7%;
+ display:flex;align-items:center;justify-content:flex-start;
+ color:#351653;font-family:"Fredoka","Nunito",sans-serif;font-size:clamp(10px,1.55vw,20px);
+ line-height:1;white-space:nowrap;pointer-events:none
+}
+#home .hero-ref-age b{font-weight:700}
+#home .hero-ref-dev{
+ position:absolute;right:.9%;bottom:1.1%;padding:3px 7px;
+ border-radius:999px;background:rgba(83,26,142,.82);color:#fff;
+ font:700 9px/1 "Nunito",sans-serif;letter-spacing:.08em;box-shadow:0 2px 7px rgba(48,19,80,.15)
+}
+#home .hero-new-tag{margin:7px auto 0;min-height:28px}
+#home .hero-stage[hidden]{display:none!important}
+#home .adventure-dock{margin-top:auto}
+#home .adventure-dock>.card>h2{display:none!important}
+#home .adventure-dock>.card{margin-top:0}
+@media(max-width:700px){
+ #home .hero{width:calc(100% + 26px);margin-left:-13px}
+ #home .hero-ref-points b{font-size:clamp(9px,2.4vw,14px)}
+ #home .hero-ref-age{font-size:clamp(9px,2.2vw,14px)}
+ #home .hero-ref-dev{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ #home .hero-raster-shell{scroll-behavior:auto}
+}
+
+/* ================= Nueva home UX · wireframe 4x4 ================= */
+body.home-active{
+ display:block;height:auto;min-height:100svh;overflow-x:hidden;overflow-y:auto;background:#fff9f2
+}
+body.home-active main{
+ display:block;flex:none;width:100%;max-width:1240px;min-height:0;margin:0 auto;
+ padding:0 clamp(14px,2.8vw,34px) 18px
+}
+body.home-active #home{display:block;min-height:0}
+.home-layout{position:relative;width:100%;max-width:1180px;margin:0 auto}
+.home-header{
+ position:relative;top:auto;z-index:5;display:flex;align-items:center;justify-content:space-between;
+ min-height:78px;padding:8px clamp(10px,2vw,24px);background:transparent;border:0;box-shadow:none;backdrop-filter:none
+}
+.home-brand{display:flex;flex-direction:column;align-items:flex-start;gap:0;line-height:1}
+.home-brand-name{font-family:"Fredoka","Nunito",sans-serif;color:#42176d;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;letter-spacing:-.04em}
+.home-brand-name .brand-star{color:#ffad2f;margin-left:2px}
+.home-brand-dev{margin-top:4px;color:#9279a9;font-size:.66rem;font-weight:900;letter-spacing:.18em}
+.home-meta{display:flex;align-items:center;justify-content:flex-end;gap:9px}
+.home-info,.home-metric{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 15px;
+ border:1px solid #eadcf6;border-radius:999px;background:#fff;color:#4d286f;
+ box-shadow:0 3px 10px rgba(69,32,104,.08);font:700 .94rem "Nunito",sans-serif;white-space:nowrap
+}
+.home-info{width:44px;padding:0;font-size:1.1rem;font-weight:900}
+.home-info::after{content:"";position:absolute}
+.home-points{cursor:pointer}
+.home-points b{font-family:"Fredoka",sans-serif;font-size:1.06rem;color:#542080}
+.home-metric-icon{font-size:1.02rem;line-height:1}
+.home-age{background:#fffdf7;border-color:#f3e2c2;color:#624225}
+.home-age b{font-family:"Fredoka",sans-serif;font-size:1.02rem;font-weight:600}
+.home-welcome{
+ position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(190px,.78fr) minmax(0,1.22fr);
+ align-items:center;gap:clamp(8px,3vw,34px);min-height:276px;margin:0 0 0;padding:12px clamp(28px,5vw,68px) 48px;
+ overflow:hidden;border-radius:30px 30px 0 0;
+ background:
+  radial-gradient(ellipse at 15% 65%,rgba(209,182,255,.48),transparent 42%),
+  radial-gradient(ellipse at 83% 20%,rgba(255,221,174,.42),transparent 38%),
+  linear-gradient(112deg,#f1e6ff 0%,#fff9f4 56%,#fff0dc 100%)
+}
+.home-welcome::before,.home-welcome::after{content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
+.home-welcome::before{width:250px;height:250px;left:-130px;top:-160px;background:#fff;opacity:.48}
+.home-welcome::after{width:300px;height:300px;right:-140px;bottom:-225px;background:#fff;opacity:.38}
+.home-welcome-art{display:flex;align-items:center;justify-content:center;min-width:0;min-height:190px}
+.home-mascot-frame{
+ position:relative;display:flex;align-items:center;justify-content:center;width:min(100%,220px);height:220px;min-height:0;
+ overflow:visible;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(237,220,255,.42) 62%,transparent 73%)
+}
+.home-mascot-frame::after{
+ content:"";position:absolute;z-index:-1;bottom:5%;left:15%;width:70%;height:12%;
+ border-radius:50%;background:rgba(73,38,111,.14);filter:blur(13px)
+}
+.home-mascot-frame .hero-mascot{
+ width:clamp(150px,20vw,205px);height:clamp(150px,20vw,205px);margin:0;
+ filter:drop-shadow(0 10px 8px rgba(71,34,105,.14))
+}
+.home-mascot-frame .hero-topic-badge{
+ top:12%;right:5%;width:44px;height:44px;border-radius:50%;font-size:1.35rem;
+ background:#fff;border:1px solid #fff;box-shadow:0 5px 13px rgba(79,44,119,.12)
+}
+.home-welcome-copy{position:relative;z-index:1;max-width:630px;padding:10px 0;text-align:left}
+.home-eyebrow{
+ display:inline-flex;align-items:center;padding:6px 12px;margin:0 0 11px;border-radius:999px;
+ background:rgba(255,255,255,.72);color:#7a4a9d;font-size:.76rem;font-weight:900;letter-spacing:.05em
+}
+.home-welcome-copy h1{
+ margin:0 0 10px;color:#43146e;font-family:"Fredoka","Nunito",sans-serif;
+ font-size:clamp(2.3rem,4.3vw,3.7rem);font-weight:600;line-height:1.02;letter-spacing:-.04em
+}
+.home-welcome-copy p{max-width:540px;margin:0;color:#654879;font-size:clamp(1rem,1.55vw,1.22rem);font-weight:700;line-height:1.5}
+.home-spark{position:absolute;color:#ffb634;line-height:1;pointer-events:none}
+.home-spark-one{top:20%;left:43%;font-size:1.8rem}
+.home-spark-two{right:8%;bottom:24%;font-size:2.2rem;color:#ad7bd8}
+.adventure-panel{
+ position:relative;z-index:3;margin:-34px 0 0;padding:clamp(18px,2.5vw,28px);
+ border:1px solid #e9dff0;border-radius:22px;background:#fff;
+ box-shadow:0 10px 30px rgba(45,27,65,.12)
+}
+.adventure-panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 15px;padding:0 2px}
+.panel-kicker{display:block;margin:0 0 3px;color:#9b78b4;font-size:.68rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.adventure-panel-head h2{
+ margin:0;color:#351653;font-family:"Fredoka","Nunito",sans-serif;font-size:clamp(1.35rem,2.25vw,1.72rem);font-weight:600
+}
+.home-new-tag{
+ display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:0 14px;
+ border:1px solid #eadcf6;border-radius:999px;background:#fff;color:#522777;
+ box-shadow:0 2px 8px rgba(50,24,76,.08);font:800 .86rem "Nunito",sans-serif;cursor:pointer
+}
+.home-new-tag b{color:#9a5ac4;font-size:.78rem}
+#likes.likes-grid{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px
+}
+#likes .chip{
+ position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+ width:100%;min-width:0;min-height:116px;padding:12px 8px;border:1.5px solid #eadcf6;border-radius:17px;
+ background:linear-gradient(155deg,#fff 0%,#faf6ff 100%);color:#4b2769;
+ box-shadow:0 3px 0 rgba(105,38,185,.045),0 6px 15px rgba(70,37,97,.045);
+ font-family:"Nunito",sans-serif;font-weight:800;text-align:center;white-space:normal;
+ transition:transform .14s,border-color .14s,box-shadow .14s,background .14s
+}
+#likes .chip:hover{transform:translateY(-2px);border-color:#c9a8e7;box-shadow:0 5px 0 rgba(105,38,185,.06),0 9px 18px rgba(70,37,97,.08)}
+#likes .like-emoji{
+ display:flex;align-items:center;justify-content:center;width:46px;height:46px;flex:none;border-radius:14px;
+ background:linear-gradient(145deg,#f1e5ff,#fff1d9);font-size:1.85rem;line-height:1;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.9)
+}
+#likes .like-name{display:block;max-width:100%;font-size:.92rem;font-weight:800;line-height:1.13;overflow-wrap:anywhere}
+#likes .chip[aria-pressed="true"]{
+ color:#fff;border-color:#6121a8;background:linear-gradient(145deg,#8743d0,#6221aa);
+ box-shadow:0 4px 0 #4b1884,0 8px 18px rgba(91,35,158,.15)
+}
+#likes .chip[aria-pressed="true"] .like-emoji{background:rgba(255,255,255,.18);box-shadow:none}
+#likes .chip:focus-visible,.home-info:focus-visible,.home-metric:focus-visible,.home-new-tag:focus-visible,.adventure-panel .big:focus-visible{
+ outline:3px solid #ffbb3f;outline-offset:3px
+}
+.adventure-panel-action{display:flex;flex-direction:column;align-items:center;gap:6px;margin:20px auto 0}
+.adventure-panel-action .big{
+ display:flex;align-items:center;justify-content:center;gap:12px;width:min(100%,310px);min-height:54px;
+ border-radius:16px;background:linear-gradient(180deg,#ffad40,#ff8a1e);color:#4a2508;
+ box-shadow:0 4px 0 #dc7418,0 8px 16px rgba(235,126,27,.14);
+ font-family:"Fredoka","Nunito",sans-serif;font-size:1.12rem;font-weight:600
+}
+.adventure-panel-action .big span{font-size:1.25rem;transition:transform .15s}
+.adventure-panel-action .big:hover:not(:disabled) span{transform:translateX(4px)}
+.adventure-panel-action .big:disabled{opacity:.52;filter:saturate(.7);box-shadow:none}
+.home-selection-hint{margin:0;color:#9a8aa5;font-size:.76rem;font-weight:700;text-align:center}
+body.home-active footer.foot{
+ display:block;width:100%;max-width:100%;min-height:0;margin:0;padding:12px 16px 22px;
+ background:#f5effa;color:#816e90;text-align:center;font-size:.78rem;line-height:1.5;white-space:normal
+}
+body.home-active footer .g{display:inline}
+body.home-active footer .commit-meta{display:none}
+@media(max-width:700px){
+ body.home-active main{padding:0 12px 16px}
+ .home-header{min-height:64px;padding:7px 2px}
+ .home-brand-name{font-size:1.55rem}
+ .home-meta{gap:5px}
+ .home-info,.home-metric{min-height:37px;padding:0 9px;font-size:.78rem;gap:5px}
+ .home-info{width:37px;padding:0}
+ .home-points b,.home-age b{font-size:.86rem}
+ .home-metric-icon{font-size:.84rem}
+ .home-welcome{grid-template-columns:minmax(100px,.74fr) minmax(0,1.26fr);min-height:195px;gap:8px;padding:8px 18px 34px;border-radius:23px 23px 0 0}
+ .home-welcome-art{min-height:140px}
+ .home-mascot-frame{width:100%;height:150px}
+ .home-mascot-frame .hero-mascot{width:clamp(105px,29vw,145px);height:clamp(105px,29vw,145px)}
+ .home-mascot-frame .hero-topic-badge{width:34px;height:34px;font-size:1.05rem}
+ .home-welcome-copy{padding:5px 0}
+ .home-eyebrow{font-size:.61rem;padding:5px 8px;margin-bottom:8px}
+ .home-welcome-copy h1{font-size:clamp(1.65rem,6.4vw,2.3rem);margin-bottom:7px}
+ .home-welcome-copy p{font-size:clamp(.82rem,3.15vw,.96rem);line-height:1.35}
+ .home-spark-one{left:40%;top:12%;font-size:1.25rem}
+ .home-spark-two{right:5%;bottom:16%;font-size:1.6rem}
+ .adventure-panel{margin-top:-20px;padding:15px 12px 17px;border-radius:19px}
+ .adventure-panel-head{margin-bottom:11px;gap:7px}
+ .adventure-panel-head h2{font-size:1.25rem}
+ .panel-kicker{font-size:.58rem}
+ .home-new-tag{min-height:34px;padding:0 10px;font-size:.76rem}
+ #likes.likes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #likes .chip{min-height:105px;padding:9px 6px;border-radius:15px;gap:6px}
+ #likes .like-emoji{width:42px;height:42px;font-size:1.65rem}
+ #likes .like-name{font-size:.86rem}
+ .adventure-panel-action{margin-top:15px}
+ .adventure-panel-action .big{width:100%;min-height:52px}
+ .home-selection-hint{font-size:.7rem}
+ body.home-active footer.foot{padding:12px 14px 20px;font-size:.76rem}
+ body.home-active footer .g{display:block}
+ body.home-active footer .sep{display:none}
+}
+@media(max-width:380px){
+ .home-brand-name{font-size:1.38rem}
+ .home-meta{gap:4px}
+ .home-info,.home-metric{min-height:34px;padding:0 7px;font-size:.71rem}
+ .home-info{width:34px}
+ .home-welcome{grid-template-columns:minmax(88px,.68fr) minmax(0,1.32fr);padding-left:12px;padding-right:12px}
+ .home-welcome-copy h1{font-size:1.58rem}
+ .home-welcome-copy p{font-size:.8rem}
+ #likes .chip{min-height:98px}
+}
+
+</style>
+</head>
+<body>
+
+<header class="top app-top" id="appTop" hidden aria-label="Navegación de Cuentitis">
+  <span class="logo">
+    <span class="nm">Cuentitis<span class="brand-star" aria-hidden="true">★</span></span>
+    <span class="devtag" aria-label="Versión de desarrollo">DEV</span>
+  </span>
+  <div class="hr">
+    <span class="agepill" id="appAgePill" hidden><span aria-hidden="true">👤</span><b id="appAgeNum"></b><span>años</span></span>
+    <button class="chip header-action" id="appInfoBtn" aria-label="Información para familias" title="Información">ℹ️</button>
+    <button class="chip header-action reward-action" id="appPrizesBtn" aria-label="Mis premios" title="Mis premios"><span aria-hidden="true">⭐</span><b id="appPointsNum">0</b></button>
+  </div>
+</header>
+
+<main>
+
+<section id="home">
+  <div class="home-layout">
+    <header class="home-header" aria-label="Cabecera de Cuentitis">
+      <div class="home-brand" aria-label="Cuentitis, versión de desarrollo">
+        <span class="home-brand-name">Cuentitis<span class="brand-star" aria-hidden="true">★</span></span>
+        <span class="home-brand-dev">DEV</span>
+      </div>
+      <div class="home-meta">
+        <button class="home-info" id="infoBtn" type="button" aria-label="Información para familias" title="Información para familias">i</button>
+        <button class="home-metric home-points" id="prizesBtn" type="button" aria-label="Ver mis premios">
+          <span class="home-metric-icon" aria-hidden="true">⭐</span>
+          <span><b id="pointsNum">0</b> puntos</span>
+        </button>
+        <span class="home-metric home-age" id="agePill" hidden>
+          <span class="home-metric-icon" aria-hidden="true">🎂</span>
+          <b><span id="ageNum"></span> años</b>
+        </span>
+      </div>
+    </header>
+
+    <section class="home-welcome" aria-labelledby="homeGreeting">
+      <div class="home-welcome-art">
+        <div class="hero-visual home-mascot-frame" id="heroVisual" data-mood="welcome">
+          <span class="mascot-sprite pose-welcome hero-mascot" id="heroMascot" role="img" aria-label="La mascota de Cuentitis te da la bienvenida"></span>
+          <span class="hero-topic-badge home-mascot-badge" id="heroTopicBadge" aria-hidden="true">✨</span>
+        </div>
+      </div>
+      <div class="home-welcome-copy">
+        <span class="home-eyebrow">¡Tu próxima historia empieza aquí!</span>
+        <h1 id="homeGreeting">Hola, aventurero</h1>
+        <p>Elige lo que más te gusta y prepárate para descubrir una nueva aventura.</p>
+      </div>
+      <span class="home-spark home-spark-one" aria-hidden="true">✦</span>
+      <span class="home-spark home-spark-two" aria-hidden="true">✧</span>
+    </section>
+
+    <section class="adventure-panel" aria-labelledby="adventureTitle">
+      <div class="adventure-panel-head">
+        <div>
+          <span class="panel-kicker">Un mundo de historias</span>
+          <h2 id="adventureTitle">Elige tu aventura</h2>
+        </div>
+        <button class="home-new-tag" id="newTag" type="button" hidden aria-label="Ver lecturas nuevas">
+          <span aria-hidden="true">✨</span> Nuevos <b id="newN"></b>
+        </button>
+      </div>
+      <div class="likes-grid" id="likes" aria-label="Temas de lectura"></div>
+      <div class="adventure-panel-action">
+        <button class="big" id="go" type="button" disabled>Crear mi aventura <span aria-hidden="true">→</span></button>
+        <p class="home-selection-hint">Elige un tema para empezar a leer</p>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section id="loading" hidden class="card center">
+  <span class="mascot-sprite pose-dream loading-mascot" aria-hidden="true"></span>
+  <div class="spin"></div>
+  <h2 id="loadmsg">Buscando tu lectura…</h2>
+  <p class="hint">Un momento…</p>
+</section>
+
+<section id="error" hidden class="card center">
+  <span class="mascot-sprite pose-surprised message-mascot" role="img" aria-label="La mascota está sorprendida"></span>
+  <h2>Vaya, algo no ha salido bien</h2>
+  <p id="errmsg"></p>
+  <button class="big pri" id="retryGen">Intentarlo otra vez</button>
+  <button class="link" data-home>Volver al inicio</button>
+</section>
+
+<section id="read" hidden>
+  <div class="hbar" id="hbar" hidden aria-hidden="true"><i id="prog"></i></div>
+  <div class="card story">
+    <div class="story-toolbar">
+      <div class="story-companion"><span class="mascot-sprite pose-reading story-mascot" aria-hidden="true"></span><span>Lee a tu ritmo. ¡Estás de aventura!</span></div>
+      <span class="fsz" id="fsz" hidden><button class="chip" id="smaller" aria-label="Letra más pequeña">A−</button><button class="chip" id="bigger" aria-label="Letra más grande">A+</button></span>
+    </div>
+    <h2 id="title"></h2>
+    <div id="text"></div>
+    <div id="gloss"></div>
+    <div id="endMark"></div>
+    <button class="big pri" id="done" disabled>📖 Ya me lo he leído</button>
+    <p class="hint center" id="donehint">Baja hasta el final para activar el botón.</p>
+  </div>
+</section>
+
+<section id="quiz" hidden>
+  <div class="card quiz-card">
+    <div class="quiz-companion"><span class="mascot-sprite pose-curious quiz-mascot" aria-hidden="true"></span><span>¡Piensa, recuerda y demuestra lo que sabes!</span></div>
+    <p class="hint" id="qn"></p>
+    <div class="bar" aria-hidden="true"><i id="qprog"></i></div>
+    <div class="q" id="qtext"></div>
+    <div id="opts"></div>
+    <div class="exp" id="exp" hidden></div>
+    <button class="big pri" id="next" hidden>Siguiente ➜</button>
+  </div>
+</section>
+
+<section id="result" hidden>
+  <div class="card center" id="resbox"></div>
+  <div class="card" id="prizes" hidden><h2>🏅 Tus premios</h2><p class="stars" id="starsRes"></p><div class="badges" id="badgesRes"></div></div>
+</section>
+
+</main>
+<footer class="foot">
+  <span class="g">Cuentitis · versión beta</span>
+  <span class="sep"> · </span>
+  <span class="g">Ayúdame a mejorarlo: <button class="flink" id="fbOpen">💬 Enviar comentarios</button></span>
+  <span class="sep"> · </span>
+  <span class="g commit-meta" id="latestCommitId" aria-label="Identificador del commit"></span>
+</footer>
+
+<dialog id="ageModal" aria-labelledby="agetitle">
+  <div class="center">
+    <span class="mascot-sprite pose-welcome dialog-mascot" aria-hidden="true"></span>
+    <h2 id="agetitle" tabindex="-1" autofocus>¡Hola! Soy Cuentitis</h2>
+    <p id="birthIntro"><b>¿Cuál es tu fecha de nacimiento?</b></p>
+    <form id="birthForm">
+      <div class="birth-wheel-set" role="group" aria-label="Fecha de nacimiento">
+        <div class="birth-wheel-row">
+          <span class="birth-picker-label">☀️ Día</span>
+          <div class="birth-wheel-shell">
+            <div class="birth-wheel days" id="birthDayWheel" role="group" aria-label="Día de nacimiento"></div>
+          </div>
+        </div>
+        <div class="birth-wheel-row">
+          <span class="birth-picker-label">🌷 Mes</span>
+          <div class="birth-wheel-shell">
+            <div class="birth-wheel months" id="birthMonthWheel" role="group" aria-label="Mes de nacimiento"></div>
+          </div>
+        </div>
+        <div class="birth-wheel-row">
+          <span class="birth-picker-label">📅 Año</span>
+          <div class="birth-wheel-shell">
+            <div class="birth-wheel years" id="birthYearWheel" role="group" aria-label="Año de nacimiento"></div>
+          </div>
+        </div>
+      </div>
+      <p class="hint birth-wheel-hint">Desliza cada fila a izquierda o derecha. El dato del centro es el seleccionado.</p>
+      <p class="hint" id="birthHelp">Calcularé tu edad automáticamente para elegir las lecturas adecuadas.</p>
+      <p class="hint" id="birthError" role="alert" style="color:var(--bad)" hidden></p>
+      <button class="big pri" id="birthSave" type="submit">¡Empezar!</button>
+    </form>
+    <p class="hint">La fecha se guarda solo en este dispositivo.</p>
+  </div>
+</dialog>
+
+<dialog id="birthdayModal" aria-labelledby="birthdayTitle">
+  <div class="center">
+    <span class="mascot-sprite pose-proud dialog-mascot" aria-hidden="true"></span>
+    <div class="emoji">🎂🎉</div>
+    <h2 id="birthdayTitle">¡Feliz cumpleaños!</h2>
+    <p id="birthdayMessage">¡Has cumplido un año más!</p>
+    <p>Ya tienes preparadas nuevas lecturas para tu edad.</p>
+    <button class="big pri" id="acceptBirthday" type="button">¡Vamos a leer!</button>
+  </div>
+</dialog>
+
+<dialog id="noMoreStoriesModal" aria-labelledby="noMoreStoriesTitle">
+  <div class="center">
+    <span class="mascot-sprite pose-dream dialog-mascot" aria-hidden="true"></span>
+    <div class="emoji">📚✨</div>
+    <h2 id="noMoreStoriesTitle">¡Te has leído todos estos cuentos!</h2>
+    <p>¡Has leído todas las lecturas disponibles para tu edad!</p>
+    <p>Pide a un adulto que reinicie tus cuentos desde Información para familias o solicita nuevas historias.</p>
+    <button class="big" id="requestMoreStories" type="button">✉️ Solicitar más cuentos</button>
+    <p class="hint" id="moreStoriesStatus" role="status"></p>
+    <button class="link" id="closeNoMoreStories" type="button">Ahora no</button>
+  </div>
+</dialog>
+
+<dialog id="resetSeenModal" aria-labelledby="resetSeenTitle">
+  <div class="center">
+    <div class="emoji">🔄</div>
+    <h2 id="resetSeenTitle">¿Volvemos a empezar?</h2>
+    <p>Los cuentos que ya has leído volverán a estar disponibles. Tus puntos e insignias se conservarán.</p>
+    <button class="big pri" id="confirmResetSeen" type="button">Sí, reiniciar cuentos</button>
+    <button class="link" id="cancelResetSeen" type="button">Cancelar</button>
+  </div>
+</dialog>
+
+<dialog id="fbModal" aria-labelledby="fbtitle">
+  <div class="mhead"><h2 id="fbtitle">💬 Envíanos tus comentarios</h2><button class="chip" id="fbclose" aria-label="Cerrar">✕</button></div>
+  <p>Cuentitis está en fase beta. Cuéntanos qué mejorarías o qué ha fallado. Este formulario es para adultos.</p>
+  <form id="fbForm">
+    <div class="fld"><label for="fbType">Tipo de comentario</label>
+      <select id="fbType" name="tipo">
+        <option>Mejora o idea nueva</option>
+        <option>Error o algo que no funciona</option>
+        <option>Contenido de las lecturas o preguntas</option>
+        <option>Diseño y facilidad de uso</option>
+        <option>Otro</option>
+      </select></div>
+    <div class="fld"><label for="fbMsg">Tu comentario</label>
+      <textarea id="fbMsg" name="mensaje" rows="5" required maxlength="2000"></textarea></div>
+    <div class="fld"><label for="fbMail">Tu correo (opcional, solo si quieres que te responda)</label>
+      <input id="fbMail" name="email" type="email" maxlength="120" autocomplete="email"></div>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+    <p class="hint">Junto al comentario se envía el tipo de navegador y de pantalla, para ayudar a reproducir los errores. Por favor, no escribas datos de los niños.</p>
+    <button class="big pri" id="fbSend" type="submit">Enviar comentario</button>
+    <p id="fbStatus" role="status" class="hint"></p>
+  </form>
+</dialog>
+
+<dialog id="parentModal" aria-labelledby="ptitle">
+  <div class="mhead"><h2 id="ptitle">ℹ️ Información para familias</h2><button class="chip" id="pclose" aria-label="Cerrar">✕</button></div>
+  <p>Cuentitis es una aplicación para practicar la lectura comprensiva en primaria, de 5 a 12 años.</p>
+  <div class="ai"><b>🤖 Contenido creado con inteligencia artificial.</b> Todas las lecturas y preguntas están generadas con IA (Claude, de Anthropic). Han pasado comprobaciones automáticas de formato, longitud, puntuación y una doble comprobación para que el contenido esté adaptado a la edad por otra IA, en este caso, Gemini; aun así, pueden contener errores o frases mejorables.</div>
+  <h3>Cómo funciona</h3>
+  <ul>
+    <li>La primera vez, la familia introduce la fecha de nacimiento. Cuentitis calcula la edad automáticamente y selecciona lecturas del tramo correspondiente. Después se elige un tema favorito para orientar las lecturas.</li>
+    <li>Cuando llega un cumpleaños, aparece una felicitación. Al aceptarla, Cuentitis actualiza la edad y adapta las lecturas al nuevo tramo automáticamente.</li>
+    <li>Se le propone una lectura adaptada a su edad. Al llegar al final del texto se activa el botón «Ya me lo he leído».</li>
+    <li>Después responde 5 preguntas tipo test sobre lo que ha leído.</li>
+    <li>Con 4 o 5 aciertos supera la lectura: gana 10 puntos, que se van sumando, y puede conseguir insignias. Con menos, vuelve a leer el texto y lo intenta de nuevo.</li>
+  </ul>
+  <h3>Qué ofrece</h3>
+  <ul>
+    <li><b id="nRead">50</b> lecturas originales de entre 350 y 650 palabras, adaptadas a cuatro tramos de edad: 5-6, 7-8, 9-10 y 11-12 años.</li>
+    <li>16 temas para elegir: animales, dinosaurios, espacio, fútbol, princesas y reyes, superhéroes, piratas, coches, cocina, ciencia, dragones, robots, naturaleza y medioambiente, música, misterios y detectives, y ¿Sabías que...?</li>
+    <li>Frases y vocabulario adaptados a cada edad: más sencillos en los pequeños y más ricos en los mayores.</li>
+    <li>En cada lectura, 3 o 4 palabras básicas aparecen en inglés en lugar de en español (por ejemplo, table o sleep) y están resaltadas. Al pulsarlas se ve su traducción y se escucha su pronunciación, si el dispositivo lo permite. Al final del texto se repasan todas.</li>
+    <li>Preguntas sobre datos del texto, deducciones, vocabulario e idea principal, con 3 opciones hasta los 8 años y 4 desde los 9.</li>
+    <li>Letra ajustable (A− y A+), barra de progreso de lectura, puntos y 8 insignias por conseguir.</li>
+  </ul>
+  <h3>Edad</h3>
+  <p>Edad calculada: <b id="ageNow"></b>. <button class="flink" id="ageChange">Cambiar fecha de nacimiento</button></p>
+  <h3>Cuentos leídos</h3>
+  <p>En este dispositivo se han leído <b id="seenCount">0</b> cuentos. Las historias ya leídas no vuelven a aparecer.</p>
+  <button class="flink" id="resetSeen">Reiniciar cuentos vistos</button>
+  <p class="hint">Esto permite volver a leer las historias desde el principio. No borra puntos ni premios.</p>
+  <h3>Privacidad</h3>
+  <ul>
+    <li>No hay cuentas. La fecha de nacimiento se guarda únicamente en el almacenamiento local del navegador de este dispositivo y no se envía a ningún servidor.</li>
+    <li>Los premios, los puntos, la fecha de nacimiento y las lecturas ya vistas se guardan solo en este navegador. Si se borran sus datos, se pierden.</li>
+    <li>El formulario de comentarios del pie de página es opcional, está pensado para adultos y envía únicamente el comentario escrito, junto con el tipo de navegador y de pantalla.</li>
+  </ul>
+</dialog>
+
+<dialog id="infoModal" aria-labelledby="ititle">
+  <div class="mhead"><h2 id="ititle"></h2><button class="chip" id="iclose" aria-label="Cerrar">✕</button></div>
+  <p id="ibody"></p>
+</dialog>
+
+<dialog id="modal" aria-labelledby="mtitle">
+  <div class="mhead"><h2 id="mtitle">🏅 Mis premios</h2><button class="chip" id="mclose" aria-label="Cerrar">✕</button></div>
+  <p class="stars" id="starsHome"></p>
+  <div class="badges" id="badgesHome"></div>
+</dialog>
+
+<div id="tip" role="status" hidden></div>
+<div id="appToast" class="app-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+<script>
+"use strict";
+
+async function loadLatestCommit(){
+  const id=$("latestCommitId");
+  if(!id)return;
+  id.textContent="";
+  try{
+    const response=await fetch("https://api.github.com/repos/juanandeval/cuentitis-dev/commits?sha=main&per_page=1",{
+      headers:{Accept:"application/vnd.github+json"}
+    });
+    if(!response.ok)throw new Error("GitHub API: "+response.status);
+    const commits=await response.json();
+    const latest=Array.isArray(commits)?commits[0]:null;
+    if(!latest||!latest.sha)throw new Error("No se encontró el último commit");
+    id.textContent=latest.sha.slice(0,7);
+    id.title=latest.sha;
+  }catch(error){
+    // Si GitHub no responde, no se muestra un dato desactualizado.
+    id.textContent="";
+    id.removeAttribute("title");
+  }
+}
+const $=id=>document.getElementById(id);
+const LIKES=[
+ ["🐶","Animales"],["🦖","Dinosaurios"],["🚀","Espacio"],["⚽","Fútbol"],
+ ["👑","Princesas y reyes"],["🦸","Superhéroes"],["🏴‍☠️","Piratas"],["🚗","Coches"],
+ ["🍰","Cocina"],["🔬","Ciencia"],["🐉","Dragones"],["🤖","Robots"],
+ ["🌳","Naturaleza y medioambiente"],["🎵","Música"],["🕵️","Misterios y detectives"],["🧠","¿Sabías que...?"]
+];
+const POINTS=10;
+const BADGES=[
+ {id:"first",e:"🌱",n:"Primera lectura",d:"Supera tu primer test",f:s=>s.passes>=1},
+ {id:"perfect",e:"⭐",n:"Cinco de cinco",d:"Acierta las 5 preguntas",f:s=>s.perfect>=1},
+ {id:"persist",e:"💪",n:"Nunca me rindo",d:"Aprueba tras volver a leer",f:s=>s.persist>=1},
+ {id:"three",e:"📖",n:"Lector constante",d:"Supera 3 lecturas",f:s=>s.passes>=3},
+ {id:"explorer",e:"🧭",n:"Explorador",d:"Lee sobre 6 temas distintos",f:s=>s.topics.length>=6},
+ {id:"five",e:"🏆",n:"Súper lector",d:"Supera 5 lecturas",f:s=>s.passes>=5},
+ {id:"points",e:"🌟",n:"Cazapuntos",d:"Consigue 150 puntos",f:s=>s.points>=150},
+ {id:"ten",e:"👑",n:"Rey o reina de la lectura",d:"Supera 10 lecturas",f:s=>s.passes>=10}
+];
+let st={age:null,likes:[]},story=null,qi=0,right=0,failedBefore=false,fs=0;
+
+function loadStats(){try{const v=JSON.parse(localStorage.getItem("lector_stats")||"null");if(v&&v.topics){if(typeof v.points!=="number")v.points=(v.passes||0)*POINTS;return v}}catch(e){}return{passes:0,perfect:0,persist:0,points:0,topics:[],badges:[]}}
+function saveStats(s){try{localStorage.setItem("lector_stats",JSON.stringify(s))}catch(e){}}
+let stats=loadStats();
+let birthDate="",birthdayPendingAge=null;
+
+function calculateAge(value){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value||""))return -1;
+  const parts=value.split("-").map(Number),birth=new Date(parts[0],parts[1]-1,parts[2]);
+  if(birth.getFullYear()!==parts[0]||birth.getMonth()!==parts[1]-1||birth.getDate()!==parts[2])return -1;
+  const today=new Date();
+  let age=today.getFullYear()-birth.getFullYear();
+  if(today.getMonth()<birth.getMonth()||(today.getMonth()===birth.getMonth()&&today.getDate()<birth.getDate()))age--;
+  return age;
+}
+function loadBirthProfile(){
+  try{birthDate=localStorage.getItem("lector_birthdate")||""}catch(e){}
+  if(!birthDate)return;
+  const age=calculateAge(birthDate);
+  if(age<5){birthDate="";return}
+  let acknowledged=null;
+  try{
+    const saved=localStorage.getItem("lector_birthday_ack_age");
+    acknowledged=saved===null?age:Number(saved);
+    if(saved===null)localStorage.setItem("lector_birthday_ack_age",String(age));
+    localStorage.setItem("lector_age",String(age));
+  }catch(e){acknowledged=age}
+  if(!Number.isFinite(acknowledged))acknowledged=age;
+  if(age>acknowledged){
+    st.age=acknowledged;
+    birthdayPendingAge=age;
+  }else{
+    st.age=age;
+  }
+}
+const MONTH_NAMES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+let birthParts={day:15,month:6,year:0},birthWheelTimers={},birthWheelFrames={},birthWheelsBound=false;
+function availableBirthYears(){
+  const currentYear=new Date().getFullYear();
+  const savedYear=birthDate?Number(birthDate.slice(0,4)):0;
+  const firstYear=Math.min(currentYear-12,savedYear||currentYear-12);
+  const lastYear=currentYear-5;
+  const years=[];
+  for(let year=firstYear;year<=lastYear;year++)years.push(year);
+  return years;
+}
+function birthDaysInMonth(){
+  return new Date(birthParts.year||2000,birthParts.month||1,0).getDate();
+}
+function normalizeBirthDay(){
+  birthParts.day=Math.min(Math.max(1,Number(birthParts.day)||15),birthDaysInMonth());
+}
+function birthWheelId(kind){return "birth"+kind.charAt(0).toUpperCase()+kind.slice(1)+"Wheel"}
+function birthWheelOptions(kind){
+  if(kind==="day")return Array.from({length:birthDaysInMonth()},(_,i)=>({value:i+1,label:String(i+1)}));
+  if(kind==="month")return MONTH_NAMES.map((name,i)=>({value:i+1,label:name.charAt(0).toUpperCase()+name.slice(1)}));
+  return availableBirthYears().map(year=>({value:year,label:String(year)}));
+}
+function centerBirthWheelItem(kind,behavior){
+  const wheel=$(birthWheelId(kind));
+  const selected=String(birthParts[kind]);
+  const item=[...wheel.children].find(el=>el.dataset.value===selected);
+  if(!item)return;
+  const wheelRect=wheel.getBoundingClientRect(),itemRect=item.getBoundingClientRect();
+  const left=wheel.scrollLeft+(itemRect.left-wheelRect.left)-(wheel.clientWidth-item.clientWidth)/2;
+  wheel.scrollTo({left,behavior:behavior||"auto"});
+}
+function updateBirthWheelSelection(kind){
+  const wheel=$(birthWheelId(kind)),selected=String(birthParts[kind]);
+  [...wheel.children].forEach(item=>item.setAttribute("aria-pressed",String(item.dataset.value===selected)));
+}
+function renderBirthWheel(kind,center){
+  const wheel=$(birthWheelId(kind));
+  wheel.innerHTML="";
+  birthWheelOptions(kind).forEach(option=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="birth-wheel-item";
+    button.textContent=option.label;
+    button.dataset.value=String(option.value);
+    button.setAttribute("aria-pressed",String(Number(birthParts[kind])===option.value));
+    button.setAttribute("aria-label",kind==="month"?option.label:kind==="day"?"Día "+option.label:"Año "+option.label);
+    button.onclick=()=>selectBirthWheelValue(kind,option.value);
+    wheel.appendChild(button);
+  });
+  if(center)requestAnimationFrame(()=>centerBirthWheelItem(kind,"auto"));
+}
+function selectBirthWheelValue(kind,value){
+  birthParts[kind]=Number(value);
+  if(kind==="month"||kind==="year"){
+    normalizeBirthDay();
+    renderBirthWheel("day",true);
+  }
+  updateBirthWheelSelection(kind);
+  centerBirthWheelItem(kind,"smooth");
+}
+function nearestBirthWheelValue(kind){
+  const wheel=$(birthWheelId(kind)),center=wheel.getBoundingClientRect().left+wheel.clientWidth/2;
+  let nearest=null,distance=Infinity;
+  [...wheel.children].forEach(item=>{
+    const rect=item.getBoundingClientRect(),d=Math.abs(rect.left+rect.width/2-center);
+    if(d<distance){distance=d;nearest=item}
+  });
+  return nearest?Number(nearest.dataset.value):null;
+}
+function bindBirthWheel(kind){
+  const wheel=$(birthWheelId(kind));
+  wheel.addEventListener("scroll",()=>{
+    if(!birthWheelFrames[kind]){
+      birthWheelFrames[kind]=requestAnimationFrame(()=>{
+        const value=nearestBirthWheelValue(kind);
+        if(value!==null)birthParts[kind]=value;
+        updateBirthWheelSelection(kind);
+        birthWheelFrames[kind]=0;
+      });
+    }
+    clearTimeout(birthWheelTimers[kind]);
+    birthWheelTimers[kind]=setTimeout(()=>{
+      const value=nearestBirthWheelValue(kind);
+      if(value!==null)birthParts[kind]=value;
+      if(kind==="month"||kind==="year"){
+        const oldDay=birthParts.day;
+        normalizeBirthDay();
+        if(oldDay!==birthParts.day)renderBirthWheel("day",true);
+      }
+      updateBirthWheelSelection(kind);
+    },140);
+  },{passive:true});
+}
+function bindBirthWheels(){
+  if(birthWheelsBound)return;
+  ["day","month","year"].forEach(bindBirthWheel);
+  birthWheelsBound=true;
+}
+function fillBirthWheels(value){
+  const parts=value?value.split("-").map(Number):[];
+  const years=availableBirthYears();
+  birthParts={
+    day:parts[2]||15,
+    month:parts[1]||6,
+    year:parts[0]||years[Math.floor(years.length/2)]||new Date().getFullYear()-8
+  };
+  normalizeBirthDay();
+  renderBirthWheel("day",false);
+  renderBirthWheel("month",false);
+  renderBirthWheel("year",false);
+  requestAnimationFrame(()=>{
+    centerBirthWheelItem("day","auto");
+    centerBirthWheelItem("month","auto");
+    centerBirthWheelItem("year","auto");
+  });
+  bindBirthWheels();
+}
+function saveBirthDate(event){
+  event.preventDefault();
+  // Lee el elemento más cercano al centro de cada rueda por si se pulsa Guardar justo después de deslizar.
+  ["day","month","year"].forEach(kind=>{
+    const value=nearestBirthWheelValue(kind);
+    if(value!==null)birthParts[kind]=value;
+  });
+  normalizeBirthDay();
+  ["day","month","year"].forEach(updateBirthWheelSelection);
+  const day=Number(birthParts.day),month=Number(birthParts.month),year=Number(birthParts.year);
+  if(!day||!month||!year){
+    $("birthError").textContent="¡Elige el día, el mes y el año de tu nacimiento!";
+    $("birthError").hidden=false;
+    (!day?$("chooseBirthDay"):!month?$("chooseBirthMonth"):$("chooseBirthYear")).focus();
+    return;
+  }
+  const value=String(year)+"-"+String(month).padStart(2,"0")+"-"+String(day).padStart(2,"0");
+  const age=calculateAge(value);
+  if(age<5||age>12){
+    $("birthError").textContent="La fecha debe corresponder a una edad de entre 5 y 12 años.";
+    $("birthError").hidden=false;
+    $("chooseBirthYear").focus();
+    return;
+  }
+  birthDate=value;
+  st.age=age;
+  birthdayPendingAge=null;
+  try{
+    localStorage.setItem("lector_birthdate",birthDate);
+    localStorage.setItem("lector_age",String(age));
+    localStorage.setItem("lector_birthday_ack_age",String(age));
+  }catch(e){}
+  $("birthError").hidden=true;
+  $("ageModal").close();
+  drawHome();
+  show("home");
+  window.scrollTo({top:0});
+}
+function openAge(){
+  $("agetitle").textContent=birthDate?"Fecha de nacimiento":"¡Hola! Soy Cuentitis";
+  $("birthIntro").textContent=birthDate?"Puedes actualizar la fecha de nacimiento para ajustar la edad y las lecturas.":"¿Cuál es tu fecha de nacimiento?";
+  fillBirthWheels(birthDate);
+  $("birthError").hidden=true;
+  $("birthSave").textContent=birthDate?"Guardar cambios":"¡Empezar!";
+  $("ageModal").showModal();
+}
+function openBirthday(){
+  const age=birthdayPendingAge;
+  if(age===null)return;
+  $("birthdayMessage").textContent="¡Feliz cumpleaños! ¡Has cumplido "+age+" años!";
+  if(age>12)$("birthdayMessage").textContent+=" Por ahora, tus lecturas seguirán siendo del tramo de 11-12 años, el más avanzado de Cuentitis.";
+  $("birthdayModal").showModal();
+}
+function acceptBirthday(){
+  if(birthdayPendingAge!==null){
+    st.age=birthdayPendingAge;
+    try{
+      localStorage.setItem("lector_birthday_ack_age",String(st.age));
+      localStorage.setItem("lector_age",String(st.age));
+    }catch(e){}
+  }
+  birthdayPendingAge=null;
+  $("birthdayModal").close();
+  drawHome();
+  show("home");
+}
+
+function show(id){["home","loading","error","read","quiz","result"].forEach(x=>$(x).hidden=x!==id);document.body.classList.toggle("home-active",id==="home");$("appTop").hidden=id==="home";$("hbar").hidden=id!=="read";$("fsz").hidden=id!=="read";window.scrollTo({top:0,behavior:"smooth"})}
+
+/* ---------- Escena del inicio: la mascota acompaña el tema elegido ---------- */
+const HERO_SCENES={
+ "Animales":{emoji:"🐾",pose:"pose-curious",x:"-13%",y:"5%",r:"-5deg",mood:"nature"},
+ "Dinosaurios":{emoji:"🦖",pose:"pose-surprised",x:"-9%",y:"-8%",r:"-3deg",mood:"nature"},
+ "Espacio":{emoji:"🚀",pose:"pose-explore",x:"15%",y:"-12%",r:"6deg",mood:"sky"},
+ "Fútbol":{emoji:"⚽",pose:"pose-proud",x:"13%",y:"9%",r:"7deg",mood:"energy"},
+ "Princesas y reyes":{emoji:"👑",pose:"pose-proud",x:"12%",y:"-8%",r:"4deg",mood:"magic"},
+ "Superhéroes":{emoji:"⚡",pose:"pose-celebrate",x:"-15%",y:"-7%",r:"-7deg",mood:"energy"},
+ "Piratas":{emoji:"🏴‍☠️",pose:"pose-explore",x:"14%",y:"8%",r:"7deg",mood:"magic"},
+ "Coches":{emoji:"🏎️",pose:"pose-surprised",x:"16%",y:"2%",r:"6deg",mood:"energy"},
+ "Cocina":{emoji:"🧁",pose:"pose-curious",x:"-12%",y:"8%",r:"-4deg",mood:"warm"},
+ "Ciencia":{emoji:"🧪",pose:"pose-explore",x:"12%",y:"-9%",r:"4deg",mood:"sky"},
+ "Dragones":{emoji:"🐉",pose:"pose-surprised",x:"-15%",y:"-10%",r:"-6deg",mood:"magic"},
+ "Robots":{emoji:"🤖",pose:"pose-proud",x:"15%",y:"-6%",r:"6deg",mood:"sky"},
+ "Naturaleza y medioambiente":{emoji:"🌿",pose:"pose-reading",x:"-14%",y:"10%",r:"-5deg",mood:"nature"},
+ "Música":{emoji:"🎵",pose:"pose-celebrate",x:"13%",y:"-10%",r:"5deg",mood:"warm"},
+ "Misterios y detectives":{emoji:"🔎",pose:"pose-curious",x:"-17%",y:"-3%",r:"-6deg",mood:"magic"},
+ "¿Sabías que...?":{emoji:"💡",pose:"pose-explore",x:"15%",y:"-10%",r:"5deg",mood:"sky"}
+};
+let lastHomeMascotTopic=null;
+function updateHomeMascot(topic){
+  const scene=HERO_SCENES[topic]||null;
+  const mascot=$("heroMascot"),badge=$("heroTopicBadge"),visual=$("heroVisual");
+  const topicChanged=topic!==lastHomeMascotTopic;
+  mascot.className="mascot-sprite "+(scene?scene.pose:"pose-welcome")+" hero-mascot";
+  mascot.style.setProperty("--mascot-x",scene?scene.x:"0%");
+  mascot.style.setProperty("--mascot-y",scene?scene.y:"0%");
+  mascot.style.setProperty("--mascot-r",scene?scene.r:"0deg");
+  mascot.setAttribute("aria-label",scene?"La mascota se prepara para una aventura de "+topic:"La mascota de Cuentitis te da la bienvenida");
+  badge.textContent=scene?scene.emoji:"✨";
+  visual.dataset.mood=scene?scene.mood:"welcome";
+  if(scene&&topicChanged){
+    mascot.classList.remove("is-moving");
+    void mascot.offsetWidth;
+    mascot.classList.add("is-moving");
+  }else{
+    mascot.classList.remove("is-moving");
+  }
+  lastHomeMascotTopic=topic;
+}
+
+/* ---------- Inicio ---------- */
+function drawHome(){
+  $("agePill").hidden=!st.age;$("ageNum").textContent=st.age||"";$("pointsNum").textContent=stats.points||0;
+  $("appAgePill").hidden=!st.age;$("appAgeNum").textContent=st.age||"";$("appPointsNum").textContent=stats.points||0;
+  updateHomeMascot(st.likes[0]||"");
+  $("likes").innerHTML="";
+  LIKES.forEach(([emoji,name])=>{
+    const selected=st.likes[0]===name;
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="chip";
+    if(selected)button.classList.add("main");
+    const icon=document.createElement("span");
+    icon.className="like-emoji";
+    icon.textContent=emoji;
+    icon.setAttribute("aria-hidden","true");
+    const label=document.createElement("span");
+    label.className="like-name";
+    label.textContent=name;
+    button.append(icon,label);
+    button.setAttribute("aria-pressed",String(selected));
+    button.setAttribute("aria-label",name+(selected?", tema elegido":""));
+    button.onclick=()=>{st.likes=[name];drawHome()};
+    $("likes").appendChild(button);
+  });
+  const ok=st.likes.length===1;
+  $("go").disabled=!ok;
+}
+function drawBadges(boxId,starsId,newOnes){
+  $(starsId).textContent="⭐ "+stats.points+" puntos · "+stats.passes+(stats.passes===1?" lectura superada":" lecturas superadas");
+  const box=$(boxId);box.innerHTML="";
+  BADGES.forEach(b=>{const on=stats.badges.includes(b.id);const d=document.createElement("div");d.className="badge"+(on?"":" off")+(newOnes.includes(b.id)?" new":"");
+   d.innerHTML="<b></b><span></span><small></small>";d.children[0].textContent=on?b.e:"🔒";d.children[1].textContent=b.n;d.children[2].textContent=b.d;box.appendChild(d)});
+}
+
+/* ---------- Generación con Claude ---------- */
+function levelGuide(a){
+  if(a<=6)return "Nivel 5-6 años: frases muy cortas (5 a 9 palabras), vocabulario cotidiano y concreto, mucha repetición y diálogos sencillos, una sola línea argumental, sin palabras difíciles.";
+  if(a<=8)return "Nivel 7-8 años: frases de 8 a 12 palabras, vocabulario sencillo con alguna palabra nueva explicada por el contexto, diálogos, trama clara con inicio, nudo y final.";
+  if(a<=10)return "Nivel 9-10 años: frases de 10 a 16 palabras, vocabulario algo más rico, descripciones breves, algún giro en la trama y sentimientos de los personajes.";
+  return "Nivel 11-12 años: frases más largas y variadas, vocabulario rico, intriga, personajes con motivaciones, algún dato curioso o reflexión final.";
+}
+let BANK=null;
+async function loadBank(){if(BANK)return BANK;const r=await fetch("lecturas.json",{cache:"no-cache"});if(!r.ok)throw new Error("No se pudo cargar el banco de lecturas.");BANK=await r.json();if(!Array.isArray(BANK)||!BANK.length)throw new Error("El banco de lecturas está vacío.");return BANK}
+function band(a){return a<=6?"5-6":a<=8?"7-8":a<=10?"9-10":"11-12"}
+function checkNew(bank){
+  const ids=bank.map(r=>r.id);let known=null;
+  try{known=JSON.parse(localStorage.getItem("lector_known")||"null")}catch(e){}
+  if(!Array.isArray(known)){try{localStorage.setItem("lector_known",JSON.stringify(ids))}catch(e){}return}
+  const fresh=bank.filter(r=>!known.includes(r.id));
+  if(!fresh.length)return;
+  $("newN").textContent=fresh.length+(fresh.length===1?" nueva":" nuevas");$("newTag").hidden=false;
+  $("newTag").onclick=()=>{
+    $("ititle").textContent="🆕 Lecturas nuevas";
+    $("ibody").textContent="Hemos añadido "+(fresh.length===1?"una lectura nueva:":fresh.length+" lecturas nuevas:")+"\n"+fresh.map(r=>"• "+r.title+" ("+r.band+" años)").join("\n");
+    $("infoModal").showModal();
+    try{localStorage.setItem("lector_known",JSON.stringify(ids))}catch(e){}
+    $("newTag").hidden=true};
+}
+function loadSeenStories(){
+  try{
+    const value=JSON.parse(localStorage.getItem("lector_seen")||"[]");
+    return Array.isArray(value)?[...new Set(value.filter(x=>typeof x==="string"))]:[];
+  }catch(e){return []}
+}
+function saveSeenStories(ids){
+  try{localStorage.setItem("lector_seen",JSON.stringify([...new Set(ids)]));return true}catch(e){return false}
+}
+function markStorySeen(id){
+  if(!id)return;
+  saveSeenStories([...loadSeenStories(),id]);
+}
+function updateSeenCount(){
+  const el=$("seenCount");
+  if(el)el.textContent=String(loadSeenStories().length);
+}
+function pickReading(bank,likes,age){
+  const seen=loadSeenStories();
+  const available=bank.filter(r=>r.band===band(age)&&!seen.includes(r.id));
+  if(!available.length)return null;
+  const preferred=available.filter(r=>(r.topics||[]).includes(likes[0]));
+  const pool=preferred.length?preferred:available;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+async function generate(){
+  show("loading");
+  const msgs=["Buscando tu lectura…","Buscando personajes geniales…","Preparando preguntas…","Puliendo las últimas palabras…"];let m=0;
+  const iv=setInterval(()=>{m=(m+1)%msgs.length;$("loadmsg").textContent=msgs[m]},3500);
+  try{
+    await new Promise(r=>setTimeout(r,700));
+    const bank=await loadBank();const picks=[...st.likes];
+    const data=pickReading(bank,picks,st.age);
+    if(!data){
+      $("moreStoriesStatus").textContent="";
+      $("requestMoreStories").disabled=false;
+      $("requestMoreStories").textContent="✉️ Solicitar más cuentos";
+      show("home");
+      $("noMoreStoriesModal").showModal();
+      return;
+    }
+    if(!Array.isArray(data.paragraphs)||!Array.isArray(data.questions)||data.questions.length<5)throw new Error("La lectura llegó incompleta.");
+    story={id:data.id,topics:Array.isArray(data.topics)?data.topics:[picks[0]],title:String(data.title||"Tu lectura"),paragraphs:data.paragraphs.map(String),questions:data.questions.slice(0,5),english:Array.isArray(data.english)?data.english:[]};
+    failedBefore=false;
+    startReading();
+  }catch(e){
+    $("errmsg").textContent=(e&&e.code==="not_granted")?"Necesitamos tu permiso para crear la lectura.":(e&&e.message)||"Inténtalo de nuevo en un momento.";
+    show("error");
+  }finally{clearInterval(iv)}
+}
+
+/* ---------- Lectura ---------- */
+function applyFont(){
+  const base=st.age<=7?1.4:st.age<=9?1.25:1.15;
+  document.documentElement.style.setProperty("--fs",(base+fs*0.12)+"rem");
+}
+let io=null;
+function sayEn(w){try{if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(w);u.lang="en-GB";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function showTip(btn,en,es){
+  const tip=$("tip");tip.innerHTML="";const b=document.createElement("b");b.textContent=en;tip.appendChild(b);
+  tip.appendChild(document.createTextNode(" = "+es+" 🔊"));tip.hidden=false;
+  const r=btn.getBoundingClientRect(),w=tip.offsetWidth;
+  let left=r.left+scrollX+r.width/2-w/2;left=Math.max(8,Math.min(left,document.documentElement.clientWidth-w-8));
+  tip.style.left=left+"px";tip.style.top=(r.bottom+scrollY+6)+"px";sayEn(en)}
+function hideTip(){$("tip").hidden=true}
+document.addEventListener("click",e=>{if(!e.target.closest(".en")&&!e.target.closest("#tip"))hideTip()});
+addEventListener("scroll",hideTip,{passive:true});
+function enChip(en,es){const b=document.createElement("button");b.type="button";b.className="en";b.textContent=en;b.setAttribute("aria-label",en+": ver la traducción");b.onclick=()=>showTip(b,en,es);return b}
+function fillP(el,text){const re=/\[en:([^|\]]+)\|([^\]]+)\]/g;let last=0,m;while((m=re.exec(text))){el.appendChild(document.createTextNode(text.slice(last,m.index)));el.appendChild(enChip(m[1],m[2]));last=re.lastIndex}el.appendChild(document.createTextNode(text.slice(last)))}
+function renderGloss(){const g=$("gloss");g.innerHTML="";const L=story.english||[];if(!L.length)return;
+  const h=document.createElement("h3");h.textContent="🔤 Palabras en inglés";g.appendChild(h);
+  const row=document.createElement("div");row.className="row";
+  L.forEach(x=>{const d=document.createElement("button");d.type="button";d.className="en gl";d.textContent=x.en+" = "+x.es+" 🔊";d.setAttribute("aria-label","Escuchar "+x.en+" en inglés");d.onclick=()=>sayEn(x.en);row.appendChild(d)});g.appendChild(row)}
+function startReading(){
+  $("title").textContent=story.title;
+  const t=$("text");t.innerHTML="";story.paragraphs.forEach(p=>{const el=document.createElement("p");fillP(el,p);t.appendChild(el)});renderGloss();
+  $("done").disabled=true;$("donehint").hidden=false;$("prog").style.width="0";
+  applyFont();show("read");
+  if(io)io.disconnect();
+  io=new IntersectionObserver(es=>{if(es[0].isIntersecting){$("done").disabled=false;$("donehint").hidden=true;}},{threshold:1});
+  io.observe($("endMark"));
+}
+window.addEventListener("scroll",()=>{
+  if($("read").hidden)return;
+  const r=$("text").getBoundingClientRect(),h=r.height-window.innerHeight*0.6;
+  const p=Math.min(1,Math.max(0,(-r.top+window.innerHeight*0.3)/Math.max(h,1)));
+  $("prog").style.width=(p*100)+"%";
+},{passive:true});
+$("smaller").onclick=()=>{fs=Math.max(-3,fs-1);applyFont()};
+$("bigger").onclick=()=>{fs=Math.min(5,fs+1);applyFont()};
+$("done").onclick=()=>{markStorySeen(story&&story.id);qi=0;right=0;showQ();show("quiz")};
+
+/* ---------- Test ---------- */
+function showQ(){
+  const q=story.questions[qi];
+  $("qn").textContent="Pregunta "+(qi+1)+" de 5";$("qprog").style.width=(qi/5*100)+"%";
+  $("qtext").textContent=q.q;$("exp").hidden=true;$("next").hidden=true;
+  const box=$("opts");box.innerHTML="";
+  q.options.forEach((o,i)=>{const b=document.createElement("button");b.className="opt";b.textContent=String.fromCharCode(65+i)+") "+o;
+   b.onclick=()=>answer(i);box.appendChild(b)});
+}
+function answer(i){
+  const q=story.questions[qi],ok=i===Number(q.answer);
+  if(ok)right++;
+  [...$("opts").children].forEach((b,k)=>{b.disabled=true;if(k===Number(q.answer))b.classList.add("ok");else if(k===i)b.classList.add("bad")});
+  $("exp").textContent=(ok?"¡Muy bien! ":"Casi. ")+(q.why||"");$("exp").hidden=false;
+  $("next").textContent=qi===4?"Ver mi resultado 🎉":"Siguiente ➜";$("next").hidden=false;$("next").focus({preventScroll:true});
+}
+$("next").onclick=()=>{if(qi<4){qi++;showQ()}else finish()};
+
+/* ---------- Resultado ---------- */
+function finish(){
+  const box=$("resbox");box.innerHTML="";$("prizes").hidden=true;
+  const pass=right>=4;
+  const mascot=document.createElement("span");
+  mascot.className="mascot-sprite result-mascot "+(pass?"pose-celebrate":"pose-book");
+  mascot.setAttribute("aria-hidden","true");
+  box.appendChild(mascot);
+  const mk=(tag,txt,cls)=>{const e=document.createElement(tag);e.textContent=txt;if(cls)e.className=cls;box.appendChild(e);return e};
+  if(pass){
+    stats.passes++;stats.points+=POINTS;if(right===5)stats.perfect++;if(failedBefore)stats.persist++;
+    (story.topics||[]).forEach(l=>{if(!stats.topics.includes(l))stats.topics.push(l)});
+    const before=[...stats.badges],now=BADGES.filter(b=>b.f(stats)).map(b=>b.id);
+    stats.badges=now;saveStats(stats);
+    const fresh=now.filter(x=>!before.includes(x));
+    mk("div",right===5?"🏆":"🎉","emoji");
+    mk("h2",right===5?"¡Perfecto! 5 de 5":"¡Genial! "+right+" de 5");
+    mk("p","Has entendido muy bien la lectura.");
+    mk("div","⭐ ¡Has conseguido "+POINTS+" puntos!","pts");
+    mk("p","Llevas "+stats.points+" puntos en total.");
+    $("prizes").hidden=false;drawBadges("badgesRes","starsRes",fresh);
+    if(fresh.length)mk("p","🎁 ¡Nuevo premio desbloqueado!","stars");
+    const b=mk("button","📚 Leer otra historia","big pri");b.onclick=()=>generate();
+    const h=mk("button","Volver al inicio","link");h.onclick=goHome;
+  }else{
+    failedBefore=true;
+    mk("div","🤔","emoji");
+    mk("h2","Has acertado "+right+" de 5");
+    mk("p","No pasa nada. Cada intento te ayuda a aprender. ¡Abrimos el libro y lo intentamos otra vez, sin prisa!");
+    const b=mk("button","📖 ¡Leerlo otra vez!","big pri");b.onclick=startReading;
+    const h=mk("button","Elegir otro tema","link");h.onclick=goHome;
+  }
+  show("result");
+}
+function goHome(){drawHome();show("home")}
+document.querySelectorAll("[data-home]").forEach(b=>b.onclick=goHome);
+$("retryGen").onclick=generate;
+$("go").onclick=generate;
+function openPrizes(){drawBadges("badgesHome","starsHome",[]);$("modal").showModal()}
+function openFamilyInfo(){
+  const dob=birthDate?new Date(birthDate+"T12:00:00").toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"}):"sin indicar";
+  $("ageNow").textContent=st.age?st.age+" años · nacimiento: "+dob:"sin indicar";
+  updateSeenCount();
+  $("parentModal").showModal();
+}
+$("prizesBtn").onclick=openPrizes;
+$("appPrizesBtn").onclick=openPrizes;
+$("mclose").onclick=()=>$("modal").close();
+$("infoBtn").onclick=openFamilyInfo;
+$("appInfoBtn").onclick=openFamilyInfo;
+$("ageChange").onclick=()=>{$("parentModal").close();openAge()};
+$("resetSeen").onclick=()=>$("resetSeenModal").showModal();
+$("cancelResetSeen").onclick=()=>$("resetSeenModal").close();
+$("confirmResetSeen").onclick=()=>{
+  saveSeenStories([]);
+  updateSeenCount();
+  $("resetSeenModal").close();
+  $("parentModal").close();
+};
+$("resetSeenModal").addEventListener("cancel",e=>e.preventDefault());
+$("ageModal").addEventListener("cancel",e=>e.preventDefault());
+$("birthdayModal").addEventListener("cancel",e=>e.preventDefault());
+$("birthForm").addEventListener("submit",saveBirthDate);
+$("acceptBirthday").onclick=acceptBirthday;
+$("closeNoMoreStories").onclick=()=>$("noMoreStoriesModal").close();
+$("requestMoreStories").onclick=async()=>{
+  const button=$("requestMoreStories"),status=$("moreStoriesStatus");
+  button.disabled=true;
+  status.textContent="Enviando la petición…";
+  const message=[
+    "Solicitud de nuevas lecturas para Cuentitis.",
+    "Tramo de edad: "+band(st.age),
+    "Tema elegido: "+st.likes.join(", "),
+    "Cuentos leídos en este dispositivo: "+loadSeenStories().length,
+    "La petición se ha realizado desde la versión de desarrollo."
+  ].join("\n");
+  try{
+    await sendWithFormSubmit({
+      _subject:"Cuentitis: solicitud de más cuentos",
+      Tipo:"Solicitud de nuevos cuentos",
+      Mensaje:message,
+      Correo:"Solicitud desde la aplicación"
+    });
+    $("noMoreStoriesModal").close();
+    showAppToast("¡Solicitud enviada! Gracias por ayudarnos a crear más cuentos. 💜");
+  }catch(error){
+    status.textContent=formSubmitErrorMessage(error);
+    button.disabled=false;
+  }
+};
+$("noMoreStoriesModal").addEventListener("cancel",e=>e.preventDefault());
+// Notificación breve tras cerrar los formularios enviados correctamente.
+let appToastTimer=0,appToastHideTimer=0;
+function showAppToast(message){
+  const toast=$("appToast");
+  clearTimeout(appToastTimer);
+  clearTimeout(appToastHideTimer);
+  toast.textContent="✓ "+message;
+  toast.hidden=false;
+  requestAnimationFrame(()=>toast.classList.add("is-visible"));
+  appToastTimer=setTimeout(()=>{
+    toast.classList.remove("is-visible");
+    appToastHideTimer=setTimeout(()=>{toast.hidden=true},220);
+  },3800);
+}
+
+// Envío único de comentarios y solicitudes mediante FormSubmit.
+const FORM_ENDPOINT="https://formsubmit.co/ajax/3632c44e51a2675f462a3dd8cec86b0c";
+
+async function sendWithFormSubmit(fields){
+  const payload=Object.assign({
+    _template:"table",
+    _url:window.location.href,
+    _honey:""
+  },fields);
+  const response=await fetch(FORM_ENDPOINT,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify(payload)
+  });
+  let result={};
+  try{result=await response.json()}catch(e){}
+  const accepted=result&&(
+    result.success===true||
+    result.success==="true"||
+    result.success===1
+  );
+  if(!response.ok||!accepted){
+    throw new Error((result&&result.message)||("FormSubmit no confirmó el envío (código "+response.status+")."));
+  }
+  return result;
+}
+function formSubmitErrorMessage(error){
+  const message=String(error&&error.message||"");
+  if(/activat/i.test(message)){
+    return "FormSubmit necesita activación. Revisa tu correo y la carpeta de spam; busca el mensaje de FormSubmit y pulsa el enlace de activación. Después vuelve a probar.";
+  }
+  return "No se ha podido enviar. Comprueba la conexión y vuelve a intentarlo. "+message;
+}
+$("fbOpen").onclick=()=>{$("fbStatus").textContent="";$("fbModal").showModal()};
+$("fbclose").onclick=()=>$("fbModal").close();
+$("fbModal").addEventListener("click",e=>{if(e.target===$("fbModal"))$("fbModal").close()});
+$("fbForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const form=e.target;
+  const button=$("fbSend"),status=$("fbStatus");
+  const tipo=form.tipo.value,msg=form.mensaje.value.trim(),mail=form.email.value.trim();
+  if(!msg){
+    status.textContent="Escribe un comentario antes de enviarlo.";
+    form.mensaje.focus();
+    return;
+  }
+  button.disabled=true;
+  status.textContent="Enviando…";
+  try{
+    const fields={
+      _subject:"Cuentitis beta: "+tipo,
+      Tipo:tipo,
+      Mensaje:msg,
+      Navegador:navigator.userAgent,
+      Pantalla:innerWidth+"x"+innerHeight,
+      _honey:form.elements._honey.value
+    };
+    if(mail)fields.email=mail;
+    await sendWithFormSubmit(fields);
+    form.reset();
+    $("fbModal").close();
+    showAppToast("¡Mensaje enviado! Gracias por ayudarnos. 💜");
+  }catch(error){
+    status.textContent=formSubmitErrorMessage(error);
+  }finally{
+    button.disabled=false;
+  }
+});
+$("pclose").onclick=()=>$("parentModal").close();
+$("parentModal").addEventListener("click",e=>{if(e.target===$("parentModal"))$("parentModal").close()});
+const INFO={likes:{t:"Tu tema favorito",b:"Elige un solo tema. Cuentitis buscará primero lecturas nuevas relacionadas con ese tema. Cuando ya las hayas leído, te ofrecerá otras historias que todavía no hayas leído de tu edad. Así podrás seguir descubriendo cuentos sin repetirlos."}};
+document.querySelectorAll(".info").forEach(b=>b.onclick=()=>{const i=INFO[b.dataset.info];$("ititle").textContent=i.t;$("ibody").textContent=i.b;$("infoModal").showModal()});
+$("iclose").onclick=()=>$("infoModal").close();
+$("infoModal").addEventListener("click",e=>{if(e.target===$("infoModal"))$("infoModal").close()});
+loadBank().then(b=>{$("nRead").textContent=b.length;checkNew(b)}).catch(()=>{});
+$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").close()});
+loadBirthProfile();
+document.body.classList.add("home-active");
+drawHome();
+loadLatestCommit();
+if(!birthDate)openAge();
+else if(birthdayPendingAge!==null)openBirthday();
+</script>
+</body>
+</html>
